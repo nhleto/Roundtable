@@ -14,3 +14,13 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.container .notification .delete') || []).forEach(($delete) => {
+    let $notification = $delete.parentNode.parentNode;
+
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+});

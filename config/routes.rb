@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  root to: 'registrations#new'
+
+  devise_for :users, controllers: { registrations: 'registrations' }
+
   resources :users do
     resources :posts
   end
