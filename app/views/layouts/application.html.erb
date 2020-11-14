@@ -27,20 +27,23 @@
     <div class="navbar-menu">
       <div class="navbar-start"></div>
       <div class="navbar-end">
+        <% if user_signed_in? %>
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link">
-            <% if user_signed_in? %>
-              <h4 class="title is-4" style='color:#4a4e69'><%= current_user.name %></h4>
-            <% else %>
-              <h4 class="title is-4" style='color:#4a4e69'><%= link_to 'Home', posts_path %></h4>
-            <% end %>
+            <h4 class="title is-4" style='color:#4a4e69'><%= current_user.name %></h4>
           </div>
           <div class="navbar-dropdown">
             <div href="" class="navbar-item">
-              <% if user_signed_in? %>
-                <h5 class="title is-5"><%= link_to 'Home', posts_path %></h5>
-              <% end %>
+              <h5 class="title is-5"><%= link_to 'Home', posts_path %></h5>
             </div>
+            <div class="navbar-item">
+              <h5 class="title is-5"><%= link_to 'Profile', user_path(@user) %></h5>
+            </div>
+            <div class="navbar-divider"></div>
+            <div href="" class="navbar-item">
+              <h5 class="button is-primary is-light" style='border:1px solid'><%= link_to 'Logout', destroy_user_session_path, method: :delete %></h5>
+            </div>
+            <% end %>
           </div>
         </div>
       </div>

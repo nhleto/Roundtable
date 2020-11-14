@@ -1,0 +1,10 @@
+<div class="section">
+  <% @posts.each do |post| %>
+  <div class="box">
+    <h4 class="title is-4 mb-1"><%= post.title %></h4>
+    <p class='mb-5'><small>Posted by <u><%= link_to post.user.username, user_path(post.user) %></u> <%= distance_of_time_in_words(post.created_at, Time.now) %> ago</small></p>
+    <p><%= post.body %></p>
+
+  </div>
+  <% end %>
+</div>
