@@ -25,4 +25,17 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.navbar{
+  background-color: #1d3557;
+}
  
+a{
+  transition-duration: 0.4s;
+  color: #f1faee;
+  background-color:#1d3557 ;
+}
+
+a:hover, a:active{
+  color: #707070;
+}

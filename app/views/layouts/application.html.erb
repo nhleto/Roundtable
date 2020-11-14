@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style='background-color:#f1faee'>
 
 <head>
   <title>FakeBook</title>
@@ -12,34 +12,53 @@
 
 <body>
 
-  <div class="navbar" style='color:#1d3557'>
+  <nav class="navbar" style='color:green'>
     <div class="navbar-brand">
       <div class="navbar-item">
-        <h2 class="title is-2">FakeBook</h2>
+        <h2 class="title is-2" style='color:#f1faee'>FakeBook</h2>
+      </div>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" style='color:white'>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu">
+      <div class="navbar-start"></div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <h4 class="title is-4" style='color:#f1faee'><%= link_to 'Home', posts_path %></h4>
+        </div>
+        <div class="navbar-item">
+          <% if user_signed_in? %>
+            <h4 class="title is-4" style='color:#f1faee'><%= link_to current_user.name, user_path(current_user) %></h4>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  </nav>
 
   <% if flash[:notice] %>
-    <div class="container" id='odin-test'>
-      <div class="notification is-primary is-light">
-        <p class="notice">
-          <%= notice %>
-          <button class="delete" id='flash'></button>
-        </p>
-      </div>
+  <div class="container" id='odin-test'>
+    <div class="notification is-primary is-light">
+      <p class="notice">
+        <%= notice %>
+        <button class="delete" id='flash'></button>
+      </p>
     </div>
+  </div>
   <% end %>
 
   <% if flash[:alert] %>
-    <div class="container" id='odin-test'>
-      <div class="notification is-danger is-light">
-        <p class="notice">
-          <%= alert %>
-          <button class="delete" id='flash'></button>
-        </p>
-      </div>
+  <div class="container" id='odin-test'>
+    <div class="notification is-danger is-light">
+      <p class="notice">
+        <%= alert %>
+        <button class="delete" id='flash'></button>
+      </p>
     </div>
+  </div>
   <% end %>
 
 
