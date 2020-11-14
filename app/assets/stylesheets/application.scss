@@ -27,15 +27,18 @@
 }
 
 .navbar{
-  background-color: #1d3557;
+  background-color: #f2e9e4;
 }
  
 a{
   transition-duration: 0.4s;
-  color: #f1faee;
-  background-color:#1d3557 ;
+  color: #4a4e69;
 }
 
 a:hover, a:active{
   color: #707070;
+}
+
+.navbar-link:hover{
+  background-color: blue;
 }
