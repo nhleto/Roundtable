@@ -19,7 +19,9 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit; end
+  def edit
+    @user = User.find(params[:id])
+  end
 
   # POST /users
   # POST /users.json
@@ -40,6 +42,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -70,6 +73,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name, :username, :password, :email, :date_of_birth)
+    params.require(:user).permit(:name, :username, :password, :email, :date_of_birth, :avatar)
   end
 end
