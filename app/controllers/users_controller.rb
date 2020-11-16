@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i[index show]
 
   # GET /users
   # GET /users.json
@@ -47,6 +47,7 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
+        sign_in(:user, current_user, bypass: true)
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
