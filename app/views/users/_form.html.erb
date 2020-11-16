@@ -8,6 +8,7 @@
     <%= f.input :username %>
     <%= f.input :password %>
     <%= f.input :email %>
+    <%= image_tag user_avatar(@user, 100), style: 'border-radius:50%' %>
     <%= f.input :avatar, as: :file %>
     <%= f.input :date_of_birth %>
   </div>
