@@ -1,3 +1,17 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#new_post{
+  width: 100%;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+#input-style{
+  border: none;
+  resize: none;
+  box-shadow: none;
+  margin-top: auto;
+  margin-bottom: auto;
+}

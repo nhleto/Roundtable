@@ -1,7 +1,17 @@
-<div class="section">
-  <div class="box">
-    <div class="media-content">
-      <%= image_tag user_avatar(current_user, 50) %>
+<div class="box mt-6" style='display:flex'>
+    <%= image_tag user_avatar(current_user, 50), style: 'border-radius:50%' %>
+    <%= simple_form_for(@post) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :body,
+          wrapper: false,
+          label: false,
+          input_html: { class: 'input', id: 'input-style' },
+          placeholder: "What's on your mind?"  %>
+      </div>
     </div>
-  </div>
+
+    <% end %>
 </div>
