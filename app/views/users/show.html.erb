@@ -1,5 +1,14 @@
 
+<% if @user != current_user %>
+ <button class="button is-primary"><%= link_to 'Add Friend', current_user.send_friend_request(@user).create %></button> 
+<% end %>
  
+ <div class="box">
+ <h4 class="title is-4">Friends</h4>
+ <%= @user.friends.count %>
+ <%= @user.friends.map(&:name) %>
+ 
+ </div>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>

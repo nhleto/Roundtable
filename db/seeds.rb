@@ -8,8 +8,12 @@
 
 User.destroy_all
 Post.destroy_all
+Friendship.destroy_all
 
 User.create!(name: 'henry', username: 'username', password: 'password', email: 'me@me.com', date_of_birth: '2020-01-01')
+
+User.create!(name: 'sarah', username: 'usernamee', password: 'password', email: 'mee@me.com', date_of_birth: '2020-01-01')
+
 
 10.times do
   User.create!(name: Faker::FunnyName.unique.name, password: 'password', username: Faker::Movies::Lebowski.unique.character,
@@ -25,4 +29,8 @@ end
 
 20.times do
   Post.create!(title: Faker::Book.unique.title, body: Faker::Lorem.unique.paragraphs, user_id: User.ids.sample)
+end
+
+@users.each do |user|
+  user.friends.delete_all
 end

@@ -3,14 +3,14 @@
       <div class="navbar-item">
         <h2 class="title is-2" style='color:#4a4e69'>FakeBook</h2>
       </div>
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" style='color:white'>
+      <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" style='color:black'>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
 
-    <div class="navbar-menu">
+    <div class="navbar-menu" id='navMenu'>
       <div class="navbar-start"></div>
       <div class="navbar-end">
         <% if user_signed_in? %>
