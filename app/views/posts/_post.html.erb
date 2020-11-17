@@ -1,17 +1,28 @@
-<div class="box mt-6" style='display:flex'>
-    <%= image_tag user_avatar(current_user, 50), style: 'border-radius:50%' %>
-    <%= simple_form_for(@post) do |f| %>
-    <%= f.error_notification %>
-
-    <div class="field">
-      <div class="control">
-        <%= f.input :body,
-          wrapper: false,
-          label: false,
-          input_html: { class: 'input', id: 'input-style' },
-          placeholder: "What's on your mind?"  %>
-      </div>
+<div class="card mt-6 mb-6">
+  <div class="card-header">
+    <p class="card-header-title">
+      Create a Post
+    </p>
+  </div>
+  <div class="card-content">
+    <div class="content">
+      <%= image_tag user_avatar(current_user, 50), style: 'border-radius:50%' %>
+      <h3 class="title is-3"><%= current_user.name %></h3>
     </div>
+    <%= simple_form_for(@post) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="field">
+        <div class="control">
+          <%= f.input :body,
+            wrapper: false,
+            label: false,
+            input_html: { class: 'input', id: 'input-style', onclick: 'enlarge()' },
+            onclick: 'enlarge()',
+            placeholder: "What's on your mind?"  %>
+        </div>
+      </div>
 
     <% end %>
+  </div>
 </div>

@@ -24,3 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+function enlarge(){
+  let post = document.querySelector("#input-style");
+  let background = document.querySelector("#html");
+
+  post.classList.toggle("bigger")
+}
