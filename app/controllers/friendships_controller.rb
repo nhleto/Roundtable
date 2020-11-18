@@ -1,10 +1,13 @@
 class FriendshipsController < ApplicationController
   def create
-    @user = User.find(params[:friendships][:user_id])
+    @user = User.find(params[:friendships][:friend_id])
+    current_user = User.find(params[:friendships][:user_id])
     @friendship = Friendship.new(friendship_params)
+    p current_user
     if @friendship.save
       flash[:notice] = 'Friend request sent'
-      redirect_to @user
+    elsif @friendship.save && @user == current_user
+      flash[:notice] = 'Friend request accepted'
     else
       flash[:alert] = 'Failed to add friend'
     end

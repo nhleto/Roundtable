@@ -1,23 +1,32 @@
 
-<% if @user != current_user %>
-  <%= button_to 'Add Friend', friendships_path(friendships: { user_id: @user.id, friend_id: current_user.id }) %>
-<% end %>
- 
- <div class="box">
- <h4 class="title is-4">Friends</h4>
-  <%= @user.friends.count %>
-  <%= @user.friends.map(&:name) %>
-  pending_friends:
-  <%= @user.pending_friends.any? %>
-  active_friends:
-  <%= @user.active_friends.any? %>
-  received_friendships:
-  <%= @user.received_friendships.any? %>
-  received_friends:
-  <%= @user.received_friends.any? %>
 
- </div>
- <h3 class="title is-3"><%= @user.id %></h3>
+<% if @user != current_user && !@user.pending_friends.include?(current_user) && !current_user.friends.include?(@user) %>
+  <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: @user.id }) %>
+<% end %>
+
+<div class="box">
+  <h4 class="title is-4 mb-1">Friend Requests</h4>
+  <% if current_user.received_friends %>
+  <ul>
+    <% current_user.received_friends.each do |friend| %>
+    <li><%= button_to friend.name, friendships_path(friendships: { user_id: friend.id, friend_id: current_user.id }) %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <h4 class="title is-4">Friends</h4>
+  <%= @user.friends.count %>
+  <%= @user.friends.map(&:username) %>
+  pending_friends:
+  <% if @user.pending_friends.any? %>
+    <%= @user.pending_friends.map(&:name) %>
+  <% end %>
+  <% if @user.received_friends.any? %>Received friends
+    <%= @user.received_friends.map(&:name) %>
+  <% end %>
+
+</div>
+<h3 class="title is-3"><%= @user.id %></h3>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -44,4 +53,4 @@
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %> 
+<%= link_to 'Back', users_path %>
