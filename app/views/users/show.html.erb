@@ -1,6 +1,6 @@
 
 <% if @user != current_user %>
-  <button class="button is-primary"><%= link_to 'Add Friend', friendships_path(current_user, @user), method: :post %></button> 
+  <button class="button is-primary"><%= link_to 'Add Friend', url_for: ('friendships#request') %></button> 
 <% end %>
  
  <div class="box">

@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :friendships, only: [:create]
-
   resources :users
   resources :posts
+
+  post 'friendships/:id' => 'friendships#request'
 end
