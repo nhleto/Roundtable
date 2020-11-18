@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @friends = FriendshipsController.new
   end
 
   # def request

@@ -11,8 +11,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users
+  resources :users 
+  resources :friendships
   resources :posts
 
-  post 'friendships/:id' => 'friendships#request'
+  # post 'friendships/:id' => 'friendships#request'
 end

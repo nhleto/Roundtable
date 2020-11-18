@@ -1,14 +1,23 @@
 
 <% if @user != current_user %>
-  <button class="button is-primary"><%= link_to 'Add Friend', url_for: ('friendships#request') %></button> 
+  <%= button_to 'Add Friend', friendships_path(friendships: { user_id: @user.id, friend_id: current_user.id }) %>
 <% end %>
  
  <div class="box">
  <h4 class="title is-4">Friends</h4>
- <%= @user.friends.count %>
- <%= @user.friends.map(&:name) %>
- 
+  <%= @user.friends.count %>
+  <%= @user.friends.map(&:name) %>
+  pending_friends:
+  <%= @user.pending_friends.any? %>
+  active_friends:
+  <%= @user.active_friends.any? %>
+  received_friendships:
+  <%= @user.received_friendships.any? %>
+  received_friends:
+  <%= @user.received_friends.any? %>
+
  </div>
+ <h3 class="title is-3"><%= @user.id %></h3>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>

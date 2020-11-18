@@ -16,16 +16,16 @@ User.create!(name: 'sarah', username: 'usernamee', password: 'password', email: 
 
 
 10.times do
-  User.create!(name: Faker::FunnyName.unique.name, password: 'password', username: Faker::Movies::Lebowski.unique.character,
+  User.create!(name: Faker::FunnyName.unique.name, password: 'password', username: Faker::Movies::LordOfTheRings.unique.character,
                email: Faker::Internet.unique.email, date_of_birth: Faker::Date.between(from: '1997-01-01', to: '1999-01-01'))
 end
 
 @users = User.all
 
-@users.each_with_index do |user, i|
-  user.avatar.attach(io: File.open("app/assets/images/FakeBook_Images/#{i + 1}.jpg"), filename: 'avatarpic.jpg')
-  user.save
-end
+# @users.each_with_index do |user, i|
+#   user.avatar.attach(io: File.open("app/assets/images/FakeBook_Images/#{i + 1}.jpg"), filename: 'avatarpic.jpg')
+#   user.save
+# end
 
 20.times do
   Post.create!(title: Faker::Book.unique.title, body: Faker::Lorem.unique.paragraphs, user_id: User.ids.sample)
