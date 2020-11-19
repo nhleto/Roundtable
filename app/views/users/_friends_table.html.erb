@@ -1,0 +1,39 @@
+<table class="table is-bordered is-striped" style='width:100%'>
+  <thead>
+    <tr>
+      <th>
+        <h4 class="title is-4">Active Friends</h4>
+      </th>
+      <th>
+        <h4 class="title is-4">Pending Friends</h4>
+      </th>
+      <th>
+        <h4 class="title is-4">Received Friends</h4>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @user.active_friends.count %></td>
+      <td><%= @user.pending_friends.count %></td>
+      <td><%= @user.received_friends.count %></td>
+    </tr>
+    <tr>
+      <td style='font-size:14px'>
+        <% if @user.active_friends.any? %>
+          <%= @user.active_friends.map(&:name).join(', ') %>
+        <% end %>
+      </td>
+      <td style='font-size:14px'>
+        <% if @user.pending_friends.any? %>
+          <%= @user.pending_friends.map(&:name).join(', ') %>
+        <% end %>
+      </td>
+      <td style='font-size:14px'>
+        <% if @user.received_friends.any? %>
+          <%= @user.received_friends.map(&:name).join(', ') %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>

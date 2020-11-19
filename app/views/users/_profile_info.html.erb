@@ -1,0 +1,30 @@
+<div class="box">
+  <h3 class="title is-3"><%= @user.id %></h3>
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
+
+  <p>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </p>
+
+  <p>
+    <strong>Password:</strong>
+    <%= @user.password %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <strong>Date of birth:</strong>
+    <%= @user.date_of_birth %>
+  </p>
+
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+</div>

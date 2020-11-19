@@ -1,56 +1,37 @@
+<div class="section">
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+    </div>
+    <div class="column is-one-third">
+      <% if @user != current_user && !@user.pending_friends.include?(current_user) && !current_user.friends.include?(@user) %>
+        <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: @user.id }) %>
+      <% end %>
 
-
-<% if @user != current_user && !@user.pending_friends.include?(current_user) && !current_user.friends.include?(@user) %>
-  <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: @user.id }) %>
-<% end %>
-
-<div class="box">
-  <h4 class="title is-4 mb-1">Friend Requests</h4>
-  <% if current_user.received_friends %>
-  <ul>
-    <% current_user.received_friends.each do |friend| %>
-    <li><%= button_to friend.name, friendships_path(friendships: { user_id: friend.id, friend_id: current_user.id }) %></li>
-    <% end %>
-  </ul>
-  <% end %>
-
-  <h4 class="title is-4">Friends</h4>
-  <%= @user.friends.count %>
-  <%= @user.friends.map(&:username) %>
-  pending_friends:
-  <% if @user.pending_friends.any? %>
-    <%= @user.pending_friends.map(&:name) %>
-  <% end %>
-  <% if @user.received_friends.any? %>Received friends
-    <%= @user.received_friends.map(&:name) %>
-  <% end %>
-
+      <%= render 'friends_table' %>
+      <%= render 'profile_info' %>
+    </div>
+    <div class="column is-one-third">
+      <% if @user == current_user %>
+        <div class="card">
+          <div class="card-header">
+            <p class="card-header-title">
+              Received Friends
+            </p>
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <% if @user.received_friends.any? %>
+                <h5 class="title is-5">Click name to accept Friend Request</h5> 
+                <ul>
+                  <% received_not_active_friends(@user).map do |friend| %>
+                    <li><%= link_to friend.name, friendships_path(friendships: { user_id: current_user.id, friend_id: friend.id }), method: :post  %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<h3 class="title is-3"><%= @user.id %></h3>
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Date of birth:</strong>
-  <%= @user.date_of_birth %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users 
-  resources :friendships
+  resources :users
+  resources :friendships, only: %i[create destroy]
   resources :posts
 
   # post 'friendships/:id' => 'friendships#request'

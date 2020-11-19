@@ -14,9 +14,10 @@ User.create!(name: 'henry', username: 'username', password: 'password', email: '
 
 User.create!(name: 'sarah', username: 'usernamee', password: 'password', email: 'mee@me.com', date_of_birth: '2020-01-01')
 
+# username: Faker::Movies::LordOfTheRings.unique.character
 
-10.times do
-  User.create!(name: Faker::FunnyName.unique.name, password: 'password', username: Faker::Movies::LordOfTheRings.unique.character,
+10.times do |i|
+  User.create!(name: Faker::FunnyName.unique.name, password: 'password', username: "username#{i}",
                email: Faker::Internet.unique.email, date_of_birth: Faker::Date.between(from: '1997-01-01', to: '1999-01-01'))
 end
 

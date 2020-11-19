@@ -1,9 +1,8 @@
 class FriendshipsController < ApplicationController
   def create
     @user = User.find(params[:friendships][:friend_id])
-    current_user = User.find(params[:friendships][:user_id])
+    # current_user = User.find(params[:friendships][:user_id])
     @friendship = Friendship.new(friendship_params)
-    p current_user
     if @friendship.save
       flash[:notice] = 'Friend request sent'
     elsif @friendship.save && @user == current_user
@@ -11,7 +10,7 @@ class FriendshipsController < ApplicationController
     else
       flash[:alert] = 'Failed to add friend'
     end
-    redirect_to @user
+    redirect_to request.referrer
   end
 
   private
