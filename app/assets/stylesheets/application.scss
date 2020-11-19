@@ -62,3 +62,52 @@ a:hover, a:active, u:hover, h2:hover{
   transition: .3s;
   height: 200px;
 }
+
+.badge{
+  position: absolute;
+  font-size: x-small;
+  border-radius: 50%;
+  padding: 3px 7px;
+  background: red;
+  color: white;
+  top: -1px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(255,0,0, 0.4);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(255,0,0, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(255,0,0, 0);
+  }
+}
+
+@include until($desktop) {
+  .navbar-menu {
+    display: block;
+    opacity: 0;
+
+    position: absolute;   /* or float: left; width: 100%;*/
+    left: 0;
+    right: 0;
+
+    transform: translateY(-50%);
+    transition: all .4s ease-in-out;
+    pointer-events: none;
+  }
+
+  .navbar-menu.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
+.hide-flash {
+  opacity: 0;
+  transition: opacity 0.5s ease;  
+}

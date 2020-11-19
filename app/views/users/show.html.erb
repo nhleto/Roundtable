@@ -15,18 +15,19 @@
         <div class="card">
           <div class="card-header">
             <p class="card-header-title">
-              Received Friends
+              Friend Requests
             </p>
           </div>
           <div class="card-content">
             <div class="content">
               <% if @user.received_friends.any? %>
-                <h5 class="title is-5">Click name to accept Friend Request</h5> 
-                <ul>
-                  <% received_not_active_friends(@user).map do |friend| %>
-                    <li><%= link_to friend.name, friendships_path(friendships: { user_id: current_user.id, friend_id: friend.id }), method: :post  %></li>
-                  <% end %>
-                </ul>
+                <h5 class="title is-5">Friend Requests</h5>
+                <div class="field is-grouped">
+                  <% received_not_active_friends(@user).each do |friend| %>
+                    <%= button_to 'Accept', friendships_path(friendships: { user_id: current_user.id, friend_id: friend.id }), method: :post  %></li>
+                    <%= button_to 'Reject', friendship_path(friendships: {  user_id: current_user.id, friend_id: friend.id }), method: :delete %>
+                  <% end %>           
+                </div>
               <% end %>
             </div>
           </div>

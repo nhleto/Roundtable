@@ -12,6 +12,13 @@ class FriendshipsController < ApplicationController
     redirect_to request.referrer
   end
 
+  def destroy
+    @user = User.find(params[:friendships][:user_id])
+    friend = User.find(params[:friendships][:friend_id])
+    @user.received_friends.find(friend.id).destroy
+    redirect_to request.referrer
+  end
+
   private
 
   def friendship_params

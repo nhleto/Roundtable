@@ -48,6 +48,14 @@ function postEnlarge(element){
   element.classList.toggle("big-post")
 }
 
+// function hideFlash() {
+//   const flash = document.querySelector(".notice")
+//   if (flash) {
+//     flash.classList.add("hide-flash");    
+//   }
+// }
+// hideFlash();
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -72,5 +80,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
 });
