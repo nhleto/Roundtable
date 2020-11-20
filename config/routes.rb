@@ -15,5 +15,4 @@ Rails.application.routes.draw do
   resources :friendships, only: %i[create destroy]
   resources :posts
 
-  # post 'friendships/:id' => 'friendships#request'
 end
