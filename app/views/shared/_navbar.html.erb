@@ -1,4 +1,4 @@
-  <nav class="navbar">
+  <nav class="navbar is-transparent">
     <div class="navbar-brand">
       <div class="navbar-item">
         <h2 class="title is-2" style='color:#4a4e69'>FakeBook</h2>
@@ -11,7 +11,25 @@
     </div>
 
     <div class="navbar-menu" id='navMenu'>
-      <div class="navbar-start"></div>
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <div class="navbar-item">
+          <div class="field">
+            <%= simple_form_for(:search, method: :get) do |f| %>
+              <%= f.input :name,
+              required: false,
+              wrapper: false,
+              label: false,
+              placeholder: 'Search for a User...',
+              input_html: { class: 'input' } %>
+
+              <%= f.submit 'Search',
+              class: 'button is-info',
+              input_html: { class: 'buttton is-info' } %>
+
+            <% end %>          
+          </div>
+        </div>
+      </div>
       <div class="navbar-end">
         <% if user_signed_in? %>
         <div class="navbar-item has-dropdown is-hoverable">
