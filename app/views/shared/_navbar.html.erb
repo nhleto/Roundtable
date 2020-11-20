@@ -12,6 +12,7 @@
 
     <div class="navbar-menu" id='navMenu'>
       <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <% if user_signed_in? %>
         <div class="navbar-item">
           <div class="field">
             <%= simple_form_for(:search, method: :get) do |f| %>
@@ -26,9 +27,10 @@
               class: 'button is-info',
               input_html: { class: 'buttton is-info' } %>
 
-            <% end %>          
+            <% end %>
           </div>
         </div>
+        <% end %>
       </div>
       <div class="navbar-end">
         <% if user_signed_in? %>

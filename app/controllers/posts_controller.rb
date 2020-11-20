@@ -6,8 +6,17 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order('created_at DESC')
     @post = Post.new
-    @users = User.all
-    @user = User.find(current_user[:id])
+    return unless params[:search]
+
+    if !params[:search][:name].empty?
+      begin
+        @user = User.where(name: params[:search][:name])
+        redirect_to user_path(@user.ids)
+      rescue => exception
+        redirect_to request.referrer
+      end
+    # redirect_to user_path(@users.ids)
+    end
   end
 
   # GET /posts/1
