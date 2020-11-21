@@ -1,0 +1,11 @@
+<% if !post.comments.nil? %>
+  <% post.comments.each do |comment| %>
+    <div class="media">
+      <div class="media-content">
+        <%= image_tag user_avatar(comment.user, 20), style:'border-radius:50%' %>
+        <small>Posted by <u><%= link_to comment.user.name, user_path(comment.user) %></u> <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago</small>
+        <p><%= comment.body %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

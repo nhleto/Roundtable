@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :comments
+  # resources :comments
   devise_scope :user do
     unauthenticated :user do
       root to: 'devise/sessions#new'
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :friendships, only: %i[create destroy]
-  resources :posts
-
+  resources :posts do
+    resources :comments
+  end
 end
