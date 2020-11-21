@@ -1,6 +1,6 @@
 <div class="fader">
   <% @posts.each do |post| %>
-  <div class="box" id='post-feed' onclick="postEnlarge(this)" style='transition:.3s'>
+  <div class="box" id='post-feed' style='transition:.3s'>
     <% if !post.title.nil? %>
     <h4 class="title is-4 mb-2"><%= post.title %></h4>
     <% end %>

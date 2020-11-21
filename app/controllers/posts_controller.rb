@@ -10,12 +10,11 @@ class PostsController < ApplicationController
 
     if !params[:search][:name].empty?
       begin
-        @user = User.where(name: params[:search][:name])
+        @user = User.where(name: params[:search][:name]) || User.where(username: params[:search][:username])
         redirect_to user_path(@user.ids)
       rescue => exception
         redirect_to request.referrer
       end
-    # redirect_to user_path(@users.ids)
     end
   end
 

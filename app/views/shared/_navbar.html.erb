@@ -16,7 +16,7 @@
         <div class="navbar-item">
           <div class="field">
             <%= simple_form_for(:search, method: :get) do |f| %>
-              <%= f.input :name,
+              <%= f.input :name || :username,
               required: false,
               wrapper: false,
               label: false,
