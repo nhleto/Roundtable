@@ -29,3 +29,13 @@ button#delete{
 .simple_form.search{
   display: flex;
 }
+
+.post-border{
+  border-bottom: 1px solid rgba(219, 219, 219, 0.5);
+  margin-bottom: .5rem;
+  padding-bottom: .5rem;
+}
+
+#new_comment{
+  display: flex;
+}

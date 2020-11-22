@@ -4,11 +4,11 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(comment_params)
+    @comment = current_user.comments.build(comment_params)
     if @comment.save
       redirect_to request.referrer
     else
-      render :new
+      flash[:alert] = "#{@comment.errors.messages}"
       redirect_to request.referrer
     end
   end
@@ -20,6 +20,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :user_id, :post_id)
   end
 end

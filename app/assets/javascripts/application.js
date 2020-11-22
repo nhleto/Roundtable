@@ -48,14 +48,14 @@ function postEnlarge(element){
   element.classList.toggle("big-post")
 }
 
-// function hideFlash() {
-//   const flash = document.querySelector(".notice")
-//   if (flash) {
-//     flash.classList.add("hide-flash");    
-//   }
-// }
-// hideFlash();
-
+function hideComments(elem){
+  const comment = elem.getElementsByClassName("comments > div:not(.form-inputs)")[0];
+  if (comment.style.display === 'none'){
+    comment.style.display = 'block';
+  } else {
+    comment.style.display = 'none';
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 
