@@ -1,6 +1,6 @@
 <div class="fader">
   <% @posts.each do |post| %>
-    <div class="box" id='post-feed' style='transition:.3s' onclick="hideComments(this)">
+    <div class="box" id='post-feed' style='transition:.3s'>
       <% if !post.title.nil? %>
       <h4 class="title is-4 mb-2"><%= post.title %></h4>
       <% end %>
@@ -26,7 +26,7 @@
             </div>
           </nav>
         <% end %>
-      <div class='comments' style='display:none;'>
+      <div class='comments is-collapsible' data-action='collapse'>
         <%= render 'form', post: post %>
         <%= render 'comment', post: post %>
       </div>

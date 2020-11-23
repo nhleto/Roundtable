@@ -14,6 +14,9 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require bulma-extensions
+
+// import bulmaCollapsible from '@creativebulma/dist/js/bulma-collapsible.min.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   (document.querySelectorAll('.container .notification .delete') || []).forEach(($delete) => {
@@ -48,6 +51,11 @@ function postEnlarge(element){
   element.classList.toggle("big-post")
 }
 
+// To bounce off of that, you could turn main element EventListener off,
+// and turn on another one on the subelement you use to collapse it. 
+// (inside the function up there) And on the function attached to the EventListener on the subelement, 
+// the eventListener for the main element gets turned back on
+
 function hideComments(elem){
   const comment = elem.getElementsByClassName("comments")[0];
   if (comment.style.display === 'none'){
@@ -55,6 +63,7 @@ function hideComments(elem){
   } else {
     comment.style.display = 'none';
   }
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {
