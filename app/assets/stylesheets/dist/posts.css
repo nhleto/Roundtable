@@ -1,0 +1,33 @@
+#new_post {
+  width: 100%;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+#input-style {
+  border: none;
+  resize: none;
+  box-shadow: none;
+  margin-top: auto;
+  margin-bottom: auto;
+  overflow: hidden;
+}
+
+button#delete {
+  display: none;
+}
+
+#post-submit {
+  display: none;
+  width: 100%;
+}
+
+.simple_form.search {
+  display: flex;
+}
+
+.post-border {
+  border-bottom: 1px solid rgba(219, 219, 219, 0.5);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+}

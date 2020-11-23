@@ -13,23 +13,26 @@
     <div class="navbar-menu" id='navMenu'>
       <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
         <% if user_signed_in? %>
-        <div class="navbar-item">
-          <div class="field">
+          <div class="navbar-item">
             <%= simple_form_for(:search, method: :get) do |f| %>
-              <%= f.input :name || :username,
-              required: false,
-              wrapper: false,
-              label: false,
-              placeholder: 'Search for a User...',
-              input_html: { class: 'input' } %>
-
-              <%= f.submit 'Search',
-              class: 'button is-info',
-              input_html: { class: 'buttton is-info' } %>
-
+              <div class="field has-addons">
+                <div class="control">
+                  <%= f.input :name,
+                  required: false,
+                  wrapper: false,
+                  label: false,
+                  placeholder: 'Search for a User...',
+                  input_html: { class: 'input' } %>
+                </div>
+                
+                <div class="control">
+                  <%= f.submit 'Search',
+                  class: 'button is-info',
+                  input_html: { class: 'buttton is-info' } %>
+                </div>
+              </div>
             <% end %>
           </div>
-        </div>
         <% end %>
       </div>
       <div class="navbar-end">

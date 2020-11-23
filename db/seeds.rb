@@ -29,7 +29,7 @@ end
 # end
 
 20.times do
-  Post.create!(title: Faker::Book.unique.title, body: Faker::Lorem.unique.paragraphs, user_id: User.ids.sample)
+  Post.create!(title: nil, body: Faker::Lorem.unique.paragraphs, user_id: User.ids.sample)
 end
 
 @users.each do |user|

@@ -63,8 +63,58 @@ function hideComments(elem){
   } else {
     comment.style.display = 'none';
   }
-
+  
 }
+
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  let acc = document.getElementsByClassName("accordion");
+  let panel = document.getElementsByClassName('panel');
+  
+  for (let i = 0; i < acc.length; i++) {
+      acc[i].onclick = function() {
+          let setClasses = !this.classList.contains('active');
+          setClass(acc, 'active', 'remove');
+          setClass(panel, 'show', 'remove');
+  
+          if (setClasses) {
+              this.classList.toggle("active");
+              this.nextElementSibling.classList.toggle("show");
+          }
+      }
+  }
+  
+  function setClass(els, className, fnName) {
+      for (let i = 0; i < els.length; i++) {
+          els[i].classList[fnName](className);
+      }
+  }
+  
+  });
+
+  document.addEventListener("DOMContentLoaded", function(event) { 
+    let acc = document.getElementsByClassName("buttons");
+    let panel = document.getElementsByClassName('comments');
+    
+    for (let i = 0; i < acc.length; i++) {
+        acc[i].onclick = function() {
+            let setClasses = !this.classList.contains('active');
+            setClass(acc, 'active', 'remove');
+            setClass(panel, 'show', 'remove');
+    
+            if (setClasses) {
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+    }
+    
+    function setClass(els, className, fnName) {
+        for (let i = 0; i < els.length; i++) {
+            els[i].classList[fnName](className);
+        }
+    }
+    });
 
 document.addEventListener('DOMContentLoaded', () => {
 
