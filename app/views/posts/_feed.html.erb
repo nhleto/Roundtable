@@ -3,7 +3,7 @@
   <div class="box" id='post-feed'>
     <i class="accordion fa fa-ellipsis-h" style='float:right;font-size:20px;cursor:pointer'></i>
     <% if current_user == post.user && user_signed_in? %>
-      <div class="panel box" style='float:right;padding:2px'>
+      <div class="panel box" style='float:right;padding:2px;margin-bottom:0px'>
         <%= link_to post, method: :delete do %>
           <div class='option-icons'><span><span class="icon"><i class='fa fa-trash-o' aria-hidden='true'></i></span>Delete this post</span></div>
         <% end %>
@@ -23,8 +23,8 @@
       </small>
     </p>
     <p class='post-border'><%= post.body %></p>
-    <button class='button'>Like</button><button class="accordion button">Comment</button>
-    <div class="panel" style='box-shadow:none'>
+    <button class='button' id='like-comment'><i class="fa fa-heart mr-2"></i>Like</button><button class="accordion button" id='like-comment'><i class="fa fa-comments mr-2"></i>Comment</button>
+    <div class="panel" style='box-shadow:none;margin-top:10px'>
       <%= render 'form', post: post %>
       <%= render 'comment', post: post %>
     </div>
