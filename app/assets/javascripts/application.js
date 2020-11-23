@@ -49,7 +49,7 @@ function postEnlarge(element){
 }
 
 function hideComments(elem){
-  const comment = elem.getElementsByClassName("comments > div:not(.form-inputs)")[0];
+  const comment = elem.getElementsByClassName("comments")[0];
   if (comment.style.display === 'none'){
     comment.style.display = 'block';
   } else {

@@ -14,11 +14,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # def request
-  #   @user = User.find(params[:id])
-  #   current_user.id.send_friend_request(@user).create
-  # end
-
   # GET /users/new
   # GET /users/1/edit
   def edit

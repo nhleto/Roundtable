@@ -9,11 +9,11 @@ class PostsController < ApplicationController
     @comment = current_user.comments.build
     return unless params[:search]
 
-    if !params[:search][:name].empty?
+    unless params[:search][:name].empty?
       begin
         @user = User.where(name: params[:search][:name]) || User.where(username: params[:search][:username])
         redirect_to user_path(@user.ids)
-      rescue => exception
+      rescue StandardError
         redirect_to request.referrer
       end
     end
