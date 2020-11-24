@@ -93,3 +93,8 @@ button#like-comment:focus{
   max-height:20px;
   max-width: 20px;
 }
+
+.comment-options{
+  display: flex;
+  float: right;
+}

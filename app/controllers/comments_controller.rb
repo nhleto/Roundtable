@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def new
-    @comment = Comment.new
+    @comment = Comment.new(parent_id: params[:parent_id])
   end
 
   def create
@@ -11,7 +11,15 @@ class CommentsController < ApplicationController
     redirect_to request.referrer
   end
 
-  def destroy; end
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'Comment was successfully destroyed.' }
+      format.json { head :no_content }
+      # format.js {}
+    end
+  end
 
   private
 
