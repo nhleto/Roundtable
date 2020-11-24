@@ -1,0 +1,3 @@
+console.log("create.js.erb file");
+
+document.querySelector('#posts').innerHTML = "<%= j render 'feed', posts: @posts, comment: @comment %>"

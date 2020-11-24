@@ -44,6 +44,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ancestry (3.2.1)
+      activerecord (>= 4.2.0)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -228,6 +230,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ancestry (~> 3.2, >= 3.2.1)
   better_errors (~> 2.8, >= 2.8.3)
   bootsnap (>= 1.1.0)
   bulma-extensions-rails (~> 6.2, >= 6.2.7)

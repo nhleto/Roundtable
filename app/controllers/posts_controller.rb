@@ -35,10 +35,13 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.build(post_params)
+    @posts = Post.all.order('created_at DESC')
+    # @comment = Comment.new
+    # @comments = Comment.all
     respond_to do |format|
       if @post.save
         format.html { redirect_to root_path, notice: 'Post was successfully created.' }
-        # format.js { redirect_to root_path, flash.now[:notice] = "Here is my flash notice" }
+        format.js { }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { redirect_to root_path, alert: "Post failure #{@post.errors.messages}" }
@@ -69,6 +72,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
+      format.js {}
     end
   end
 

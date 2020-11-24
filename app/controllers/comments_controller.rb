@@ -5,17 +5,13 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    if @comment.save
-      redirect_to request.referrer
-    else
-      flash[:alert].now = "#{@comment.errors.messages}"
-      redirect_to request.referrer
+    unless @comment.save
+      flash[:alert].now = @comment.errors.messages.to_s
     end
+    redirect_to request.referrer
   end
 
-  def destroy
-
-  end
+  def destroy; end
 
   private
 

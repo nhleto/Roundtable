@@ -1,10 +1,10 @@
 <div class="fader">
-  <% @posts.each do |post| %>
-  <div class="box" id='post-feed' style='position:relative'>
+  <% @posts.each_with_index do |post, i| %>
+  <div class="box <%= post.id %>" id='post-feed' style='position:relative'>
     <i class="accordion fa fa-ellipsis-h" style='float:right;font-size:20px;cursor:pointer'></i>
     <% if current_user == post.user && user_signed_in? %>
       <div class="panel box" style='right:35px;;padding:2px;margin-bottom:0px'>
-        <%= link_to post, method: :delete do %>
+        <%= link_to post_path(post), method: :delete do %>
           <div class='option-icons'><span><span class="icon"><i class='fa fa-trash-o' aria-hidden='true'></i></span>Delete this post</span></div>
         <% end %>
         <%= link_to edit_post_path(post) do %>
