@@ -9,24 +9,24 @@
     <div style='display:flex'>
       <%= image_tag user_avatar(current_user, 50), style: 'border-radius:50%; align-self:self-start;' %>
       <%= simple_form_for(@post) do |f| %>
-      <%= f.error_notification %>
-      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
 
-      <div class="field">
-        <div class="control">
-          <%= f.input :body,
-              wrapper: false,
-              label: false,
-              input_html: { class: 'input', id: 'input-style', onclick: 'enlarge()' },
-              placeholder: "What's on your mind?" %>
+        <div class="field">
+          <div class="control">
+            <%= f.input :body,
+                wrapper: false,
+                label: false,
+                input_html: { class: 'input', id: 'input-style', onclick: 'enlarge()' },
+                placeholder: "What's on your mind?" %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <%= f.submit 'Post',
-        class: 'button',
-        id: 'post-submit' %>
+      <%= f.submit 'Post',
+          class: 'button',
+          id: 'post-submit' %>
 
     <% end %>
   </div>

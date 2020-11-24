@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to request.referrer
     else
-      flash[:alert] = "#{@comment.errors.messages}"
+      flash[:alert].now = "#{@comment.errors.messages}"
       redirect_to request.referrer
     end
   end
