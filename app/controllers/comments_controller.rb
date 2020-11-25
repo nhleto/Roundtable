@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+  def index
+    @post = Post.find(params[:post_id])
+  end
+
   def new
     @post = Post.all
     @comment = Comment.new(parent_id: params[:parent_id])
@@ -7,7 +11,7 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
     unless @comment.save
-      flash[:alert].now = @comment.errors.messages.to_s
+      flash[:alert] = @comment.errors.messages.to_s
     end
     redirect_to request.referrer
   end
@@ -25,6 +29,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :post_id)
+    params.require(:comment).permit(:body, :user_id, :post_id, :parent_id)
   end
 end
