@@ -1,13 +1,15 @@
 <%= simple_form_for(@comment) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= f.hidden_field :parent_id %>
 
   <div class="field has-addons">
     <div class="control" style='width:100%'>
       <%= f.input :body,
       wrapper: false,
       input_html: { class: 'input is-small', style: 'resize:none; width:100%;' },
-      label: false %>
+      label: false,
+      placeholder: "#{@comment}" %>
     </div>
 
 
@@ -17,5 +19,4 @@
     </div>
   </div>
 
-  <%= f.hidden_field :parent_id %>
 <% end %>
