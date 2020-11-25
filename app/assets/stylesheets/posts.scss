@@ -41,21 +41,24 @@ button#delete{
 }
 
 /* Style the element that is used to open and close the accordion class */
-p.accordion, button.accordion {
+p.accordion, button.accordion, div.accordion1 {
   cursor: pointer;
   transition: 0.4s;
 }
 
 /* Style the element that is used for the panel class */
 
-div.panel {
+div.panel, div.panel1 {
   max-height: 0;
   overflow: hidden;
   transition: 0.4s ease-in-out;
   opacity: 0;
   position: absolute;
-  visibility: hidden;
+  width: 100%;
+  // visibility: hidden;
   z-index: 0;
+  overflow: hidden;
+  // display: none;
 }
 
 div.panel.show {
@@ -97,4 +100,20 @@ button#like-comment:focus{
 .comment-options{
   display: flex;
   float: right;
+}
+
+.nested-comment{
+  width: 100%;
+}
+
+div.panel1.show{
+  opacity: 1;
+  max-height: 500px;
+  margin-right: 5px;
+  display: block;
+  visibility: visible;
+  position: static;
+  z-index: 2;
+  transition: opacity .4s ease-in-out;
+  width: 100%;
 }

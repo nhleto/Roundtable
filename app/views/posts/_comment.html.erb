@@ -1,29 +1,23 @@
 <% if !post.comments.nil? %>
   <% post.comments.each do |comment| %>
     <div class="media">
-      <div class="media-content">
+      <div class="media-content" style='overflow-wrap:anywhere;'>
         <p style='display:flex'>
           <%= image_tag user_avatar(comment.user, 20), id: 'comment-gravatar' %>
           <small>Posted by <u><%= link_to comment.user.name, user_path(comment.user) %></u> <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago</small>
         </p>
         <p><%= comment.body %></p>
-        <div class='comment-options'>
           <% if comment.user == current_user %>
             <%= link_to comment, method: :delete do %>
-              <div class='option-icons' style='border-radius: 20%;'><span><span class="icon"><i class='fa fa-trash-o' aria-hidden='true'></i></div>
+              <i class='fa fa-trash-o ml-2' aria-hidden='true' style='float:right'></i>
             <% end %>
           <% end %>
-          <%= link_to new_comment_path(parent_id: comment) do %>
-            <div class='option-icons' style='border-radius: 20%;'><span><span class="icon"><i class="fa fa-reply" aria-hidden='true'></i></i></div>
-          <% end %>
+          <i class="fa fa-reply accordion1" aria-hidden='true' style='float:right'></i>
+        <div class="panel1">
+          <%= render 'nested_comment', class: 'nested-comment' %>
         </div>
       </div>
     </div>
   <% end %>
 <% end %>
 
-<%
-=begin%>
- http://railscasts.com/episodes/262-trees-with-ancestry?view=comments 
-<%
-=end%>
