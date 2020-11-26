@@ -2,7 +2,6 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <%= f.hidden_field :parent_id, value: comment.id %>
-  <%# <%= f.hidden_field :comment, value: comment %>
   <%= f.hidden_field :post_id, value: comment.post.id %>
 
   <div class="field has-addons">

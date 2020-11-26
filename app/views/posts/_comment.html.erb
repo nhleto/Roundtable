@@ -1,5 +1,6 @@
 <% if !post.comments.nil? %>
   <% post.comments.each do |comment| %>
+  <% next if comment.has_parent? %>
     <div class="media">
       <div class="media-content" style='overflow-wrap:anywhere;'>
         <p style='display:flex'>
@@ -16,6 +17,10 @@
         <div class="panel1">
           <%= render 'nested_comment', class: 'nested-comment', comment: comment %>
         </div>
+        <div class="" style='margin-left:30px'>
+          <%= render 'children_comments', comment: comment %>
+        </div>
+
       </div>
     </div>
   <% end %>
