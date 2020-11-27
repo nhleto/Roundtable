@@ -13,4 +13,8 @@ module ApplicationHelper
       render(comment) + content_tag(:div, nested_comments(sub_comments), class: 'nested_comments')
     end.join.html_safe
   end
+
+  def has_descendants(c)
+    Comment.find(c)
+  end
 end

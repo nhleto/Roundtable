@@ -1,5 +1,7 @@
 <% if comment.has_children? %>
-  <% comment.children.each do |comment| %>
+  <% comment.subtree_ids.sort.each do |c| %>
+    <% comment = has_descendants(c) %>
+    <% next if comment.has_children? %>
     <div class="media">
     <div class="media-content" style='overflow-wrap:anywhere;'>
       <p style='display:flex'>
@@ -12,8 +14,8 @@
             <i class='fa fa-trash-o ml-2' aria-hidden='true' style='float:right'></i>
           <% end %>
         <% end %>
-      <i class="fa fa-reply accordion1" aria-hidden='true' style='float:right;margin-bottom:5px;'></i>
-      <div class="panel1" style='margin-left:30px'>
+      <small>Reply to <%= comment.parent.body if comment.parent %></small><i class="fa fa-reply accordion1" aria-hidden='true' style='float:right;margin-bottom:5px;'></i>
+      <div class="panel1">
         <%= render 'nested_comment', comment: comment %>
       </div>
     </div>
