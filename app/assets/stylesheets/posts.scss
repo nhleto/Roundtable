@@ -75,6 +75,7 @@ div.panel.show {
   display: block;
   visibility: visible;
   // position: relative;
+  overflow-y:auto;
   z-index: 2;
 }
 
@@ -120,4 +121,32 @@ button#like-comment:focus{
 .nested-comment{
   width: 100%;
   transition: .4s ease-in-out;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  .container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: rgba(0,0,0,0);
+    -webkit-background-clip: text;
+    transition: background-color .8s;
+  }
+  .container:hover {
+    background-color: rgba(0,0,0,0.18);  
+  }
+  .container::-webkit-scrollbar-thumb {
+    background-color: inherit;
+  }
+}
+
+.panel::-webkit-scrollbar-button{
+  border-radius: 50%;
+}
+
+.panel::-webkit-scrollbar {
+  width: 11px;
+}
+
+.panel::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
 }
