@@ -4,7 +4,6 @@ class CreateLikes < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :likeable_id
       t.string :likeable_type
-      t.references :user, foreign_key: true
 
       t.timestamps
     end
