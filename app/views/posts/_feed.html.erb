@@ -23,6 +23,7 @@
       </small>
     </p>
     <p class='post-border'><%= post.body %></p>
+    <%= link_to post_like_path %>
     <button class='button' id='like-comment'><i class="fa fa-heart"></i>&#8287Like</button><button class="accordion button" id='like-comment'><i class="fa fa-comments mr-2"></i>Comment</button>
     <div class="panel" style='box-shadow:none;margin-top:10px;position:relative'>
       <%= render 'form', post: post %>
