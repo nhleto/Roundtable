@@ -128,7 +128,6 @@ button#like-comment:focus{
     overflow-y: scroll;
     overflow-x: hidden;
     background-color: rgba(0,0,0,0);
-    -webkit-background-clip: text;
     transition: background-color .8s;
   }
   .container:hover {
@@ -149,4 +148,15 @@ button#like-comment:focus{
 
 .panel::-webkit-scrollbar-track {
   background: var(--scrollbarBG);
+}
+
+.short-likes, .short-comments{
+  display: none;
+}
+
+@media (max-width: 1200px){
+  .short-likes { display: block; }
+  .full-likes { display: none; }
+  .short-comments { display: block; }
+  .full-comments { display: none; }
 }

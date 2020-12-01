@@ -17,4 +17,35 @@ module ApplicationHelper
   def has_descendants(c)
     Comment.find(c)
   end
+
+  def people_or_person(obj)
+    obj.count == 1 ? 'person' : 'people'
+  end
+
+  def comment_or_comments(obj)
+    obj.count == 1 ? 'comment' : 'comments'
+  end
+
+  def like_or_likes(obj)
+    obj.count == 1 ? 'like' : 'likes'
+  end
+
+  def other_others(obj)
+    obj.count - 1 == 1 ? "\u0020 other" : "\u0020 others"
+  end
+
+  def and_others(like)
+    string = []
+    if (like.count - 1).positive?
+      string << 'and '
+    end
+    if (like.count - 1).positive?
+      string << like.count - 1
+    end
+    if (like.count - 1).positive?
+      string << other_others(like)
+    end
+    string << ' liked this post'
+    string.join
+  end
 end

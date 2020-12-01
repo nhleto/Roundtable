@@ -25,8 +25,25 @@
     <p class='post-border'><%= post.body %></p>
     <% if post.likes.any? || post.comments.any? %>
       <div class="post-border" style='display:flex;justify-content:space-between'>
-          <span><%= post.likes.count if post.likes.any? %><%= ' people liked this post' if post.likes.any? %></span>
-          <span><%= post.comments.count if post.comments.any? %><%= ' person commented' if post.comments.any? %></span>
+        <% post.likes.each { |like| like.user == current_user } %>
+        <span class='full-likes'>
+          <% if post.likes.map(&:user).include?(current_user) %>
+            <%= '👍 You ' + and_others(post.likes) if post.likes.any? %>
+          <% else %>
+            <%= '👍 ' if post.likes.any? %>
+            <%= post.likes.count if post.likes.any? %>
+            <%=" #{people_or_person(post.likes)} liked this post" if post.likes.any? %>
+          <% end %>
+        </span>
+        <span class='short-likes'>
+          <%= '👍 ' if post.likes.any? %><%= post.likes.count if post.likes.any? %><%=" #{like_or_likes(post.likes)}" if post.likes.any? %>
+        </span>
+        <span class='full-comments'>
+          <%= post.comments.count if post.comments.any? %><%= " #{comment_or_comments(post.comments)}" if post.comments.any? %><%= ' 💬' if post.comments.any? %>
+        </span>
+         <span class='short-comments'>
+          <%= post.comments.count if post.comments.any? %><%= " #{comment_or_comments(post.comments)}" if post.comments.any? %><%= ' 💬' if post.comments.any? %>
+        </span>
       </div>
     <% end %>
     <%= link_to like_post_path(post), method: :post do %>
