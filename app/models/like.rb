@@ -1,6 +1,8 @@
 class Like < ApplicationRecord
   belongs_to :likeable, polymorphic: true
   belongs_to :user
+  validates :user_id, presence: true,
+                      uniqueness: { scope: %i[likeable_id likeable_type], message: 'item is already in favorites list.' }
 
   def find_parent(like)
     if like.likeable_type == 'Post'

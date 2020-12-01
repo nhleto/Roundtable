@@ -19,6 +19,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def like
+    @post = Post.find(params[:id])
+    @like = @post.likes.build(user_id: current_user.id)
+    if !@like.save
+      flash[:alert] = "Message Failed to save: #{@like.errors.messages}"
+    end
+    redirect_to request.referrer
+  end
   # GET /posts/1
   # GET /posts/1.json
   def show; end

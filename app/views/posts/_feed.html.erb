@@ -13,7 +13,7 @@
       </div>
     <% end %>
     
-    <% if !post.title.nil? %>
+    <% if post.title %>
       <h4 class="title is-4 mb-2"><%= post.title %></h4>
     <% end %>
     <p class='mb-3' style='display:flex'>
@@ -23,8 +23,27 @@
       </small>
     </p>
     <p class='post-border'><%= post.body %></p>
-    <%= link_to post_like_path %>
-    <button class='button' id='like-comment'><i class="fa fa-heart"></i>&#8287Like</button><button class="accordion button" id='like-comment'><i class="fa fa-comments mr-2"></i>Comment</button>
+    <% if post.likes.any? || post.comments.any? %>
+      <div class="post-border" style='display:flex;justify-content:space-between'>
+          <span><%= post.likes.count if post.likes.any? %><%= ' people liked this post' if post.likes.any? %></span>
+          <span><%= post.comments.count if post.comments.any? %><%= ' person commented' if post.comments.any? %></span>
+      </div>
+    <% end %>
+    <%= link_to like_post_path(post), method: :post do %>
+      <button class='button' id='like-comment'><i class="fa fa-heart"></i>&#8287Like</button><button class="accordion button" id='like-comment'>
+    <% end %>
+    <% if post.likes %>
+      <%
+=begin%>
+ <% post.likes.each do |like| %>
+        <p>
+          <%= like.user.name %>
+        </p>
+      <% end %> 
+<%
+=end%>
+    <% end %>
+    <i class="fa fa-comments mr-2"></i>Comment</button>
     <div class="panel" style='box-shadow:none;margin-top:10px;position:relative'>
       <%= render 'form', post: post %>
       <%= render 'comment', post: post %>
