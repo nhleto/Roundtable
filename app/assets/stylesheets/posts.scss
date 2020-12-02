@@ -172,10 +172,12 @@ button#like-comment:focus{
   justify-content: space-between;
 }
 
-.box.like{
+.card.like{
   position: absolute;
   z-index: 2;
   width: 100%;
   left: -.1px;
   display: none;
+  max-height: 400px;
+  overflow-y: scroll;
 }

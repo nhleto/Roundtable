@@ -39,22 +39,29 @@
             </span>
           <% end %>
         </span>
-        <div class="box like">
-          <button class="delete" style='float:right' onclick='hideLikes(this)'></button>
-          <% if post.likes.any? %>
-            <% post.likes.each do |like| %>
-              <ul class='like-display'>
-                <span>
-                  <%= link_to like.user.name %>            
-                </span> 
-                <% if like.user != current_user && !like.user.friendships.include?(current_user) %>
+        <div class="card like">
+          <div class="card-header">
+            <p class="card-header-title" style='display:flex; justify-content:space-between'>
+              Likes
+              <button class="delete" onclick="hideLikes(this)"></button>
+            </p>
+          </div>
+          <div class="card-content">
+            <% if post.likes.any? %>
+              <% post.likes.each do |like| %>
+                <ul class='like-display'>
                   <span>
-                    <%= button_to 'Add Friend', class: 'button is-primary' %>
-                  </span>
-                <% end %>
-              </ul>
+                    <%= link_to like.user.name %>            
+                  </span> 
+                  <% if like.user != current_user && !like.user.friendships.include?(current_user) %>
+                    <span>
+                      <%= button_to 'Add Friend', class: 'button is-primary' %>
+                    </span>
+                  <% end %>
+                </ul>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
         <span class='short-likes like-underline'>
           <%= '👍 ' if post.likes.any? %><%= post.likes.count if post.likes.any? %><%=" #{like_or_likes(post.likes)}" if post.likes.any? %>

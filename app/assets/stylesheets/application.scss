@@ -50,8 +50,12 @@ a:hover, a:active, u:hover, h2:hover{
 }
 
 .post-feed{
-  opacity: 10%;
   transition: .3s;
+  opacity: 10%;
+}
+
+.opaque{
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .fader{
@@ -61,6 +65,10 @@ a:hover, a:active, u:hover, h2:hover{
 .big-post{
   transition: .3s;
   height: 200px;
+}
+
+.faded > *{
+  background-color:rgba(255, 255, 255, 0.1);
 }
 
 .badge{
