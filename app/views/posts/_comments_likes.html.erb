@@ -1,0 +1,17 @@
+<div class="post-border" style='display:flex;justify-content:space-between'>
+  <span class='full-likes'>
+    <% if post.likes.map(&:user).include?(current_user) %>
+      <%= '👍 You ' + and_others(post.likes) if post.likes.any? %>
+    <% else %>
+      <%= '👍 ' if post.likes.any? %>
+      <%= post.likes.count if post.likes.any? %>
+      <%=" #{people_or_person(post.likes)} liked this post" if post.likes.any? %>
+    <% end %>
+  </span>
+  <span class='short-likes'>
+    <%= '👍 ' if post.likes.any? %><%= post.likes.count if post.likes.any? %><%=" #{like_or_likes(post.likes)}" if post.likes.any? %>
+  </span>
+  <span class='full-comments'>
+    <%= post.comments.count if post.comments.any? %><%= " #{comment_or_comments(post.comments)}" if post.comments.any? %><%= ' 💬' if post.comments.any? %>
+  </span>
+</div>

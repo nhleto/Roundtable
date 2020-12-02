@@ -1,0 +1,3 @@
+console.log("<%= @post.id %>");
+
+document.querySelector(".full-likes").innerHTML = "<%= '👍 You ' + and_others(@post.likes) if @post.likes.any? %>";

@@ -22,10 +22,27 @@ class PostsController < ApplicationController
   def like
     @post = Post.find(params[:id])
     @like = @post.likes.build(user_id: current_user.id)
-    if !@like.save
-      flash[:alert] = "Message Failed to save: #{@like.errors.messages}"
+    respond_to do |format|
+      if @like.save
+        format.js {}
+        format.html { redirect_to request.referrer }
+      else
+        format.html { redirect_to request.referrer, alert: "Like Failed to save: #{@like.errors.messages}" }
+      end
     end
-    redirect_to request.referrer
+  end
+
+  def unlike
+    @post = Post.find(params[:id])
+    @like = @post.likes.find_by(user_id: current_user.id)
+    respond_to do |format|
+      if @like.destroy
+        format.js {}
+        format.html { redirect_to request.referrer }
+      else
+        format.html { redirect_to request.referrer, alert: "Like Failed to destroy: #{@like.errors.messages}" }
+      end
+    end
   end
   # GET /posts/1
   # GET /posts/1.json
@@ -44,8 +61,6 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     @posts = Post.all.order('created_at DESC')
-    # @comment = Comment.new
-    # @comments = Comment.all
     respond_to do |format|
       if @post.save
         format.html { redirect_to root_path, notice: 'Post was successfully created.' }

@@ -157,6 +157,25 @@ button#like-comment:focus{
 @media (max-width: 1200px){
   .short-likes { display: block; }
   .full-likes { display: none; }
-  .short-comments { display: block; }
-  .full-comments { display: none; }
+}
+
+.full-likes{
+  cursor: pointer;
+}
+
+.like-underline:hover{
+  text-decoration: underline;
+}
+
+.like-display{
+  display: flex;
+  justify-content: space-between;
+}
+
+.box.like{
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  left: -.1px;
+  display: none;
 }
