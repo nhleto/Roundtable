@@ -25,7 +25,7 @@
     <p class='post-border'><%= post.body %></p>
     <% if post.likes.any? || post.comments.any? %>
       <div class="post-border" style='display:flex;justify-content:space-between'>
-        <span class='full-likes' onclick="showLikes(this)">
+        <span class='full-likes accordion' onclick="showLikes(this)">
           <% if post.likes.map(&:user).include?(current_user) %>
             <%= "👍 " %>
             <span class='like-underline'>
@@ -39,7 +39,7 @@
             </span>
           <% end %>
         </span>
-        <div class="card like">
+        <div class="card like panel">
           <div class="card-header">
             <p class="card-header-title" style='display:flex; justify-content:space-between'>
               Likes

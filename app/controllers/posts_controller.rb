@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @like = @post.likes.build(user_id: current_user.id)
     respond_to do |format|
       if @like.save
-        format.js {}
+        format.js { }
         format.html { redirect_to request.referrer }
       else
         format.html { redirect_to request.referrer, alert: "Like Failed to save: #{@like.errors.messages}" }
