@@ -41,23 +41,20 @@ button#delete{
 }
 
 /* Style the element that is used to open and close the accordion class */
-p.accordion, button.accordion, div.accordion1 {
+p.accordion, button.accordion, div.accordion1, .accordion2 {
   cursor: pointer;
   transition: 0.4s;
 }
 
 /* Style the element that is used for the panel class */
 
-div.panel{
+div.panel, div.panel2{
   max-height: 0;
   overflow: hidden;
   transition: 0.4s ease-in-out;
   opacity: 0;
   position: absolute;
-  // visibility: hidden;
   z-index: 0;
-  overflow: hidden;
-  // display: none;
 }
 
 div.panel1{
@@ -68,7 +65,7 @@ div.panel1{
   width: 100%;
 }
 
-div.panel.show {
+div.panel.show, div.panel2.show {
   opacity: 1;
   max-height: 500px; /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
   margin-right: 5px;
@@ -173,11 +170,18 @@ button#like-comment:focus{
 }
 
 .card.like{
-  position: absolute;
-  z-index: 2;
   width: 100%;
   left: -.1px;
-  display: none;
-  max-height: 400px;
-  overflow-y: scroll;
+}
+
+.panel2.show::-webkit-scrollbar-button{
+  color: blue;
+  background-color: blue;
+}
+
+#like-gravatar{
+  border-radius:50%; 
+  margin-right:5px; 
+  max-height: 30px;
+  max-width: 30px;
 }

@@ -1,0 +1,27 @@
+<div class="card like panel2" style='position:relative'>
+  <div class="card-header">
+    <p class="card-header-title" style='display:flex; justify-content:space-between'>
+      Likes
+      <button class="delete accordion2"></button>
+    </p>
+  </div>
+  <div class="card-content" style='border-bottom:1pxdashedlightgray;max-height:250px'>
+    <% if post.likes.any? %>
+      <% post.likes.each do |like| %>
+        <ul class='like-display post-border'>
+        <div style='display:inline-flex'>
+          <%= image_tag user_avatar(like.user, 50), id: 'like-gravatar' %>
+            <span>
+              <%= link_to like.user.name %>            
+            </span> 
+        </div>
+          <% if like.user != current_user && !like.user.friendships.include?(current_user) %>
+            <span>
+              <%= button_to 'Add Friend', class: 'button is-primary' %>
+            </span>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
+</div>

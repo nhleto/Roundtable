@@ -25,7 +25,7 @@
     <p class='post-border'><%= post.body %></p>
     <% if post.likes.any? || post.comments.any? %>
       <div class="post-border" style='display:flex;justify-content:space-between'>
-        <span class='full-likes accordion' onclick="showLikes(this)">
+        <span class='full-likes accordion2'>
           <% if post.likes.map(&:user).include?(current_user) %>
             <%= "👍 " %>
             <span class='like-underline'>
@@ -39,30 +39,6 @@
             </span>
           <% end %>
         </span>
-        <div class="card like panel">
-          <div class="card-header">
-            <p class="card-header-title" style='display:flex; justify-content:space-between'>
-              Likes
-              <button class="delete" onclick="hideLikes(this)"></button>
-            </p>
-          </div>
-          <div class="card-content">
-            <% if post.likes.any? %>
-              <% post.likes.each do |like| %>
-                <ul class='like-display'>
-                  <span>
-                    <%= link_to like.user.name %>            
-                  </span> 
-                  <% if like.user != current_user && !like.user.friendships.include?(current_user) %>
-                    <span>
-                      <%= button_to 'Add Friend', class: 'button is-primary' %>
-                    </span>
-                  <% end %>
-                </ul>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
         <span class='short-likes like-underline'>
           <%= '👍 ' if post.likes.any? %><%= post.likes.count if post.likes.any? %><%=" #{like_or_likes(post.likes)}" if post.likes.any? %>
         </span>
@@ -70,6 +46,7 @@
           <%= post.comments.count if post.comments.any? %><%= " #{comment_or_comments(post.comments)}" if post.comments.any? %><%= ' 💬' if post.comments.any? %>
         </span>
       </div>
+    <%= render 'likes_card', post: post %>
     <% end %>
     <% if post.likes.map(&:user).include?(current_user) %>
       <%= link_to unlike_post_path(post), method: :delete do %>
