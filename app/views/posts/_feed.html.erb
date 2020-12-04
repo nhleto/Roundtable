@@ -1,7 +1,9 @@
 <div class="fader">
   <% @posts.each_with_index do |post, i| %>
   <div class="box <%= post.id %>" id='post-feed' style='position:relative;'>
-    <i class="accordion fa fa-ellipsis-h" style='float:right;font-size:20px;cursor:pointer'></i>
+    <% if post.user == current_user %>
+      <i class="accordion fa fa-ellipsis-h" style='float:right;font-size:20px;cursor:pointer'></i>
+    <% end %>
     <% if current_user == post.user && user_signed_in? %>
       <div class="panel box" style='right:35px;;padding:2px;margin-bottom:0px'>
         <%= link_to post_path(post), method: :delete do %>
@@ -42,7 +44,7 @@
         <span class='short-likes like-underline'>
           <%= '👍 ' if post.likes.any? %><%= post.likes.count if post.likes.any? %><%=" #{like_or_likes(post.likes)}" if post.likes.any? %>
         </span>
-        <span class='full-comments'>
+        <span class='full-comments like-underline accordion3'>
           <%= post.comments.count if post.comments.any? %><%= " #{comment_or_comments(post.comments)}" if post.comments.any? %><%= ' 💬' if post.comments.any? %>
         </span>
       </div>
@@ -58,7 +60,7 @@
       <% end %>
     <% end %>
     <i class="fa fa-comments mr-2"></i>Comment</button>
-    <div class="panel" style='box-shadow:none;margin-top:10px;position:relative'>
+    <div class="panel3 panel" style='box-shadow:none;margin-top:10px;position:relative'>
       <%= render 'form', post: post %>
       <%= render 'comment', post: post %>
     </div>

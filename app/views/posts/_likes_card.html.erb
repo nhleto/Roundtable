@@ -9,15 +9,21 @@
     <% if post.likes.any? %>
       <% post.likes.each do |like| %>
         <ul class='like-display post-border'>
-        <div style='display:inline-flex'>
-          <%= image_tag user_avatar(like.user, 50), id: 'like-gravatar' %>
+          <div style='display:inline-flex'>
+            <%= image_tag user_avatar(like.user, 50), id: 'like-gravatar' %>
+              <span>
+                <%= link_to like.user.name, user_path(like.user), class: 'like-underline' %>            
+              </span> 
+          </div>
+          <% if like.user != current_user && !like.user.friendships.include?(current_user) && like.user.received_friends.include?(current_user)%>
             <span>
-              <%= link_to like.user.name %>            
-            </span> 
-        </div>
-          <% if like.user != current_user && !like.user.friendships.include?(current_user) %>
+              <%= button_to 'Already Friends', friendships_path(friendships: { user_id: current_user.id, friend_id: like.user.id }),
+                  method: :post, class: 'button is-danger is-small is-inverted', disabled: 'true' %>
+            </span>            
+          <% elsif like.user != current_user && !like.user.friendships.include?(current_user) %>
             <span>
-              <%= button_to 'Add Friend', class: 'button is-primary' %>
+              <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: like.user.id }),
+                  method: :post, class: 'button is-primary is-small is-light is-outlined' %>
             </span>
           <% end %>
         </ul>

@@ -142,6 +142,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     });
 
+    document.addEventListener("DOMContentLoaded", function(event) {
+      let acc = document.getElementsByClassName("accordion4");
+      let panel = document.getElementsByClassName('panel4');
+      
+      for (let i = 0; i < acc.length; i++) {
+          acc[i].onclick = function() {
+              let setClasses = !this.classList.contains('active');
+              setClass(acc, 'active', 'remove');
+              setClass(panel, 'show', 'remove');
+      
+              if (setClasses) {
+                  this.classList.toggle("active");
+                  this.nextElementSibling.classList.toggle("show");
+                  console.log(this.nextElementSibling)
+              }
+          }
+      }
+      
+      function setClass(els, className, fnName) {
+          for (let i = 0; i < els.length; i++) {
+              els[i].classList[fnName](className);
+          }
+      }
+      
+      });
+  
 
   document.addEventListener("DOMContentLoaded", function(event) {
     let acc = document.getElementsByClassName("accordion1");
@@ -155,7 +181,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
             if (setClasses) {
                 this.classList.toggle("active");
-                this.nextElementSibling.classList.toggle("show");
+                this.parentNode.nextElementSibling.classList.toggle("show");
+                console.log(this.parentNode.nextElementSibling)
             }
         }
     }
@@ -167,6 +194,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     
     });
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+      let acc = document.getElementsByClassName("accordion3");
+      let panel = document.getElementsByClassName('panel3');
+      
+      for (let i = 0; i < acc.length; i++) {
+          acc[i].onclick = function() {
+              let setClasses = !this.classList.contains('active');
+              setClass(acc, 'active', 'remove');
+              setClass(panel, 'show', 'remove');
+      
+              if (setClasses) {
+                  this.classList.toggle("active");
+                  this.parentNode.parentNode.children[6].classList.toggle("show");
+                  console.log(this.parentNode.parentNode.children[6])
+              }
+          }
+      }
+      
+      function setClass(els, className, fnName) {
+          for (let i = 0; i < els.length; i++) {
+              els[i].classList[fnName](className);
+          }
+      }
+      
+      });
 
 document.addEventListener('DOMContentLoaded', () => {
 
