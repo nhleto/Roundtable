@@ -8,19 +8,23 @@
           <small>Posted by <u><%= link_to comment.user.name, user_path(comment.user) %></u> <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago</small>
         </p>
         <p><%= comment.body %></p>
-        <div style='display:flex;justify-content:flex-end;'>
-          <span>
-            
+        <div style='display:flex;justify-content:space-between;'>
+          <span class='like-underline'>
+            <i class="fa fa-heart"></i>
+            Like&#8287|
+            <%= comment.likes.count + 1 %>
           </span>
-          <% if comment.user == current_user %>
-            <%= link_to comment, method: :delete do %>
-              <i class='fa fa-trash-o' aria-hidden='true'></i>
+          <span>
+            <% if comment.user == current_user %>
+              <%= link_to comment, method: :delete do %>
+                <i class='fa fa-trash-o' aria-hidden='true'></i>
+              <% end %>
+            <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>
             <% end %>
-          <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>
-          <% end %>
-          <i class="fa fa-reply accordion1 mb-3" aria-hidden='true' style='cursor:pointer;position:relative;bottom:-5px;'></i>
+            <i class="fa fa-reply accordion5 mb-3" aria-hidden='true' style='cursor:pointer;position:relative;bottom:-2px;'></i>
+          </span>
         </div>
-        <div class="panel1">
+        <div class="panel5">
           <%= render 'nested_comment', class: 'nested-comment', comment: comment %>
         </div>
         <div class="comment-child" style='margin-left:30px'>

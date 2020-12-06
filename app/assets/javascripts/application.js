@@ -16,7 +16,7 @@
 //= require_tree .
 //= require bulma-extensions
 
-function showLikes(elem){
+function showLikes(elem) {
   const show = elem.nextElementSibling
   const parent = document.querySelector(".fader")
   const nodes = parent.children;
@@ -30,7 +30,7 @@ function showLikes(elem){
   //   }
   // }
 
-  if (show.style.display === 'block'){
+  if (show.style.display === 'block') {
     show.style.display = 'none'
   } else {
     show.style.display = 'block'
@@ -41,7 +41,7 @@ function showLikes(elem){
 
 function hideLikes(elem) {
   const hide = elem.parentNode.parentNode.parentNode
-  if (hide.style.display === 'block'){
+  if (hide.style.display === 'block') {
     hide.style.display = 'none'
   } else {
     hide.style.display = 'block'
@@ -59,13 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-function enlarge(){
+function enlarge() {
   let post = document.querySelector("#input-style");
   let background = document.querySelector(".fader");
   let cardHeader = document.querySelector("#delete");
   let button = document.querySelector("#post-submit")
 
-  if (cardHeader.style.display === 'block' && button.style.display === 'block'){
+  if (cardHeader.style.display === 'block' && button.style.display === 'block') {
     cardHeader.style.display = 'none';
     button.style.display = 'none';
   } else {
@@ -77,13 +77,13 @@ function enlarge(){
   background.classList.toggle("post-feed")
 }
 
-function postEnlarge(element){
+function postEnlarge(element) {
   element.classList.toggle("big-post")
 }
 
-function hideComments(elem){
+function hideComments(elem) {
   const comment = elem.getElementsByClassName("comments")[0];
-  if (comment.style.display === 'none'){
+  if (comment.style.display === 'none') {
     comment.style.display = 'block';
   } else {
     comment.style.display = 'none';
@@ -91,135 +91,162 @@ function hideComments(elem){
 }
 
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function (event) {
   let acc = document.getElementsByClassName("accordion");
   let panel = document.getElementsByClassName('panel');
-  
+
   for (let i = 0; i < acc.length; i++) {
-      acc[i].onclick = function() {
-          let setClasses = !this.classList.contains('active');
-          setClass(acc, 'active', 'remove');
-          setClass(panel, 'show', 'remove');
-  
-          if (setClasses) {
-              this.classList.toggle("active");
-              this.nextElementSibling.classList.toggle("show");
-          }
+    acc[i].onclick = function () {
+      let setClasses = !this.classList.contains('active');
+      setClass(acc, 'active', 'remove');
+      setClass(panel, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
       }
+    }
   }
-  
+
   function setClass(els, className, fnName) {
-      for (let i = 0; i < els.length; i++) {
-          els[i].classList[fnName](className);
-      }
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList[fnName](className);
+    }
   }
-  
-  });
 
-  document.addEventListener("DOMContentLoaded", function(event) {
-    let acc2 = document.getElementsByClassName("accordion2");
-    let panel2 = document.getElementsByClassName('panel2');
-    
-    for (let i = 0; i < acc2.length; i++) {
-      acc2[i].onclick = function() {
-          let setClasses = !this.classList.contains('active');
-          setClass(acc2, 'active', 'remove');
-          setClass(panel2, 'show', 'remove');
-  
-          if (setClasses) {
-              this.classList.toggle("active");
-              this.nextSibling.parentNode.nextElementSibling.classList.toggle("show");
-              console.log(this.parentNode.nextElementSibling)
-          }
+});
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  let acc2 = document.getElementsByClassName("accordion2");
+  let panel2 = document.getElementsByClassName('panel2');
+
+  for (let i = 0; i < acc2.length; i++) {
+    acc2[i].onclick = function () {
+      let setClasses = !this.classList.contains('active');
+      setClass(acc2, 'active', 'remove');
+      setClass(panel2, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.nextSibling.parentNode.nextElementSibling.classList.toggle("show");
+        console.log(this.parentNode.nextElementSibling)
       }
-  }  
-    
-    function setClass(els, className, fnName) {
-        for (let i = 0; i < els.length; i++) {
-            els[i].classList[fnName](className);
-        }
     }
-    
-    });
+  }
 
-    document.addEventListener("DOMContentLoaded", function(event) {
-      let acc = document.getElementsByClassName("accordion4");
-      let panel = document.getElementsByClassName('panel4');
-      
-      for (let i = 0; i < acc.length; i++) {
-          acc[i].onclick = function() {
-              let setClasses = !this.classList.contains('active');
-              setClass(acc, 'active', 'remove');
-              setClass(panel, 'show', 'remove');
-      
-              if (setClasses) {
-                  this.classList.toggle("active");
-                  this.nextElementSibling.classList.toggle("show");
-                  console.log(this.nextElementSibling)
-              }
-          }
-      }
-      
-      function setClass(els, className, fnName) {
-          for (let i = 0; i < els.length; i++) {
-              els[i].classList[fnName](className);
-          }
-      }
-      
-      });
-  
-
-  document.addEventListener("DOMContentLoaded", function(event) {
-    let acc = document.getElementsByClassName("accordion1");
-    let panel = document.getElementsByClassName('panel1');
-    
-    for (let i = 0; i < acc.length; i++) {
-        acc[i].onclick = function() {
-            let setClasses = !this.classList.contains('active');
-            setClass(acc, 'active', 'remove');
-            setClass(panel, 'show', 'remove');
-    
-            if (setClasses) {
-                this.classList.toggle("active");
-                this.parentNode.nextElementSibling.classList.toggle("show");
-                console.log(this.parentNode.nextElementSibling)
-            }
-        }
+  function setClass(els, className, fnName) {
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList[fnName](className);
     }
-    
-    function setClass(els, className, fnName) {
-        for (let i = 0; i < els.length; i++) {
-            els[i].classList[fnName](className);
-        }
-    }
-    
-    });
+  }
 
-    document.addEventListener("DOMContentLoaded", function(event) {
-      let acc = document.getElementsByClassName("accordion3");
-      let panel = document.getElementsByClassName('panel3');
-      
-      for (let i = 0; i < acc.length; i++) {
-          acc[i].onclick = function() {
-              let setClasses = !this.classList.contains('active');
-              setClass(acc, 'active', 'remove');
-              setClass(panel, 'show', 'remove');
-      
-              if (setClasses) {
-                  this.classList.toggle("active");
-                  this.parentNode.parentNode.children[6].classList.toggle("show");
-                  console.log(this.parentNode.parentNode.children[6])
-              }
-          }
+});
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  let acc = document.getElementsByClassName("accordion4");
+  let panel = document.getElementsByClassName('panel4');
+
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].onclick = function () {
+      let setClasses = !this.classList.contains('active');
+      setClass(acc, 'active', 'remove');
+      setClass(panel, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+        console.log(this.nextElementSibling)
       }
-      
-      function setClass(els, className, fnName) {
-          for (let i = 0; i < els.length; i++) {
-              els[i].classList[fnName](className);
-          }
+    }
+  }
+
+  function setClass(els, className, fnName) {
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList[fnName](className);
+    }
+  }
+
+});
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  let acc = document.getElementsByClassName("accordion5");
+  let panel = document.getElementsByClassName('panel5');
+
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].onclick = function () {
+      let setClasses = !this.classList.contains('active');
+      setClass(acc, 'active', 'remove');
+      setClass(panel, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.parentNode.parentNode.nextElementSibling.classList.toggle("show");
+        console.log(this.parentNode.parentNode.nextElementSibling)
       }
-      
-      });
+    }
+  }
+
+  function setClass(els, className, fnName) {
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList[fnName](className);
+    }
+  }
+
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  let acc = document.getElementsByClassName("accordion1");
+  let panel = document.getElementsByClassName('panel1');
+
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].onclick = function () {
+      let setClasses = !this.classList.contains('active');
+      setClass(acc, 'active', 'remove');
+      setClass(panel, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.parentNode.nextElementSibling.classList.toggle("show");
+        console.log(this.parentNode.nextElementSibling)
+      }
+    }
+  }
+
+  function setClass(els, className, fnName) {
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList[fnName](className);
+    }
+  }
+
+});
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  let acc = document.getElementsByClassName("accordion3");
+  let panel = document.getElementsByClassName('panel3');
+
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].onclick = function () {
+      let setClasses = !this.classList.contains('active');
+      setClass(acc, 'active', 'remove');
+      setClass(panel, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("show");
+        // console.log(this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling)
+      }
+    }
+  }
+
+  function setClass(els, className, fnName) {
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList[fnName](className);
+    }
+  }
+
+});
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -230,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if ($navbarBurgers.length > 0) {
 
     // Add a click event on each of them
-    $navbarBurgers.forEach( el => {
+    $navbarBurgers.forEach(el => {
       el.addEventListener('click', () => {
 
         // Get the target from the "data-target" attribute
