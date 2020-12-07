@@ -10,9 +10,21 @@
         <p><%= comment.body %></p>
         <div style='display:flex;justify-content:space-between;'>
           <span class='like-underline'>
-            <i class="fa fa-heart"></i>
-            Like&#8287|
-            <%= comment.likes.count + 1 %>
+            <% if comment.likes.map(&:user).include?(current_user) %>
+               <%= link_to unlike_comment_path(comment), method: :delete do %>
+                <i class="fa fa-heart"></i>
+                Unlike
+              <% end %> 
+            <% else %>
+              <%= link_to like_comment_path(comment), method: :post do %>
+                <i class="fa fa-heart"></i>
+                Like
+              <% end %>
+            <% end %>
+            <span class='accordion6'>
+              <%= "|" unless comment.likes.count == 0 %>
+              <%= comment.likes.count unless comment.likes.count == 0 %>
+            </span>
           </span>
           <span>
             <% if comment.user == current_user %>
@@ -24,6 +36,7 @@
             <i class="fa fa-reply accordion5 mb-3" aria-hidden='true' style='cursor:pointer;position:relative;bottom:-2px;'></i>
           </span>
         </div>
+        <%= render 'likes_card', post: comment %>
         <div class="panel5">
           <%= render 'nested_comment', class: 'nested-comment', comment: comment %>
         </div>

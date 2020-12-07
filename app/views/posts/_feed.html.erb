@@ -52,7 +52,7 @@
     <% end %>
     <% if post.likes.map(&:user).include?(current_user) %>
       <%= link_to unlike_post_path(post), method: :delete do %>
-        <button class="button post<%= post.id %>" id='like-comment'><i class="fa fa-heart"></i>&#8287Like</button><button class="accordion button" id='like-comment'>
+        <button class="button post<%= post.id %>" id='like-comment'><i class="fa fa-heart"></i>&#8287Unlike</button><button class="accordion button" id='like-comment'>
       <% end %>
     <% else %>
       <%= link_to like_post_path(post), method: :post do %>

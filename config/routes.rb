@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :comments do
     member do
       post 'like'
+      delete 'unlike'
     end
   end
 end

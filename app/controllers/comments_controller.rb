@@ -16,6 +16,32 @@ class CommentsController < ApplicationController
     redirect_to request.referrer
   end
 
+  def like
+    @comment = Comment.find(params[:id])
+    @like = @comment.likes.build(user_id: current_user.id)
+    respond_to do |format|
+      if @like.save
+        format.js { }
+        format.html { redirect_to request.referrer }
+      else
+        format.html { redirect_to request.referrer, alert: "Like Failed to save: #{@like.errors.messages}" }
+      end
+    end
+  end
+
+  def unlike
+    @comment = Comment.find(params[:id])
+    @like = @comment.likes.find_by(user_id: current_user.id)
+    respond_to do |format|
+      if @like.destroy
+        format.js {}
+        format.html { redirect_to request.referrer }
+      else
+        format.html { redirect_to request.referrer, alert: "Like Failed to destroy: #{@like.errors.messages}" }
+      end
+    end
+  end
+
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
