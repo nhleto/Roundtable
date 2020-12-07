@@ -155,7 +155,31 @@ document.addEventListener("DOMContentLoaded", function (event) {
       if (setClasses) {
         this.classList.toggle("active");
         this.parentNode.parentNode.nextElementSibling.classList.toggle("show");
-        // console.log(this.parentNode.nextElementSibling)
+      }
+    }
+  }
+
+  function setClass(els, className, fnName) {
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList[fnName](className);
+    }
+  }
+
+});
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  let acc2 = document.getElementsByClassName("accordion7");
+  let panel2 = document.getElementsByClassName('panel7');
+
+  for (let i = 0; i < acc2.length; i++) {
+    acc2[i].onclick = function () {
+      let setClasses = !this.classList.contains('active');
+      setClass(acc2, 'active', 'remove');
+      setClass(panel2, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.parentNode.parentNode.parentNode.nextElementSibling.classList.toggle("show");
       }
     }
   }

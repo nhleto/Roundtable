@@ -9,21 +9,27 @@
         </p>
         <p><%= comment.body %></p>
         <div style='display:flex;justify-content:space-between;'>
-          <span class='like-underline'>
+          <span>
             <% if comment.likes.map(&:user).include?(current_user) %>
-               <%= link_to unlike_comment_path(comment), method: :delete do %>
-                <i class="fa fa-heart"></i>
-                Unlike
-              <% end %> 
+              <span class='like-underline'>
+                <%= link_to unlike_comment_path(comment), method: :delete do %>
+                  <i class="fa fa-heart"></i>
+                  Unlike
+                <% end %> 
+              </span>
             <% else %>
-              <%= link_to like_comment_path(comment), method: :post do %>
-                <i class="fa fa-heart"></i>
-                Like
-              <% end %>
+              <span class="like-underline">
+                <%= link_to like_comment_path(comment), method: :post do %>
+                  <i class="fa fa-heart"></i>
+                  Like
+                <% end %>
+              </span>
             <% end %>
             <span class='accordion6'>
               <%= "|" unless comment.likes.count == 0 %>
-              <%= comment.likes.count unless comment.likes.count == 0 %>
+              <span class='like-underline'>
+                <%= comment.likes.count unless comment.likes.count == 0 %>
+              </span>
             </span>
           </span>
           <span>

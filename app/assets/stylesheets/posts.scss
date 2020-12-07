@@ -48,7 +48,7 @@ p.accordion, button.accordion, div.accordion1, .accordion2, .accordion6 {
 
 /* Style the element that is used for the panel class */
 
-.panel, .panel2, .panel3, .panel6{
+.panel, .panel2, .panel3, .panel6, .panel7{
   max-height: 0;
   overflow: hidden;
   transition: 0.4s ease-in-out;
@@ -65,7 +65,7 @@ p.accordion, button.accordion, div.accordion1, .accordion2, .accordion6 {
   width: 100%;
 }
 
-.panel.show, .panel2.show, .panel3.show, .panel6.show{
+.panel.show, .panel2.show, .panel3.show, .panel6.show, .panel7.show{
   opacity: 1;
   max-height: 500px; /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
   margin-right: 5px;
