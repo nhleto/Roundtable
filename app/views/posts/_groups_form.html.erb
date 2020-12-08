@@ -1,6 +1,10 @@
 <%= simple_form_for(@group) do |f| %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <%= f.input :name %>
-  <%= f.submit %>
+  <%= f.input :name,
+      input_html: { class: 'input is-small', style: 'resize:none; width:100%;' },
+      wrapper: false %>
+
+  <%= f.submit 'Create Group',
+      class: 'button' %>
 <% end %>

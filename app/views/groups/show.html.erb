@@ -1,7 +1,10 @@
 <div class="section">
-  <div class="columns">
+  <div class="columns is-centered">
     <div class="column">
-      <%= @group.name %>
+      <div class="box">
+        <%= @group.name %><br>
+      </div> 
+      <%= render  "/shared/post" %>
     </div>
   </div>
 </div>

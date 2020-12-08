@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-
   def new
     @group = Group.new
   end
@@ -14,6 +13,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @posts = @group.posts.all
+    @post = current_user.posts.build
   end
 
   private
