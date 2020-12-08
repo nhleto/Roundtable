@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :groups, only: %i[new create destroy show]
   resources :users
   resources :friendships, only: %i[create destroy]
   resources :posts do

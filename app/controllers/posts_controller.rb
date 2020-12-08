@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order('created_at DESC')
     @post = Post.new
+    @groups = Group.all.order('created_at DESC')
+    @group = Group.new
     @comment = current_user.comments.build
     return unless params[:search]
 
