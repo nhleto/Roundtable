@@ -1,10 +1,18 @@
 <div class="section">
   <div class="columns is-centered">
-    <div class="column">
+    <div class="column is-half">
       <div class="box">
         <%= @group.name %><br>
+        <h3 class="title is-3">Join group</h3>
+        <% if current_user.groups.include?(@group) %>
+          <p>you are already a member of this group</p>
+        <% else %>
+        <%= current_user.groups.map(&:name) %>
+          <%= button_to  "Join Group", group_memberships_path(@group, current_user) %>
+        <% end %>
       </div> 
-      <%= render  "/shared/post" %>
+      <%= render "/shared/post" %>
+      <%= render "/shared/feed" %>
     </div>
   </div>
 </div>

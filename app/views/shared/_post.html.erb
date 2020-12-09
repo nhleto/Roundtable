@@ -1,7 +1,7 @@
 <div class="card mt-6 mb-6">
   <div class="card-header">
     <p class="card-header-title" style='display:flex; justify-content:space-between'>
-      Create a Post
+      Create a Post <%= "in #{@group.name}" if @group.name %>
       <button class="delete" id='delete' onclick="enlarge()"></button>
     </p>
   </div>
@@ -11,6 +11,7 @@
       <%= simple_form_for(@post) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= f.hidden_field :group_id, value: @group.id %>
 
 
         <div class="field">
@@ -24,9 +25,16 @@
         </div>
       </div>
 
-      <%= f.submit 'Post',
-          class: 'button',
-          id: 'post-submit' %>
+      <% if current_user.groups.include?(@group) %>
+        <%= f.submit 'Post',
+            class: 'button',
+            id: 'post-submit' %>
+      <% else %>
+        <%= f.submit "You must join #{@group.name} to post here",
+            class: 'button',
+            id: 'post-submit',
+            disabled: 'true' %>
+      <% end %>
 
     <% end %>
   </div>

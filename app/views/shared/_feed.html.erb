@@ -1,5 +1,10 @@
 <div class="fader">
   <% @posts.each_with_index do |post, i| %>
+  <%
+=begin%>
+ <% next if !post.group_id.nil? %> 
+<%
+=end%>
   <div class="box <%= post.id %>" id='post-feed' style='position:relative;'>
     <% if post.user == current_user %>
       <i class="accordion fa fa-ellipsis-h" style='float:right;font-size:20px;cursor:pointer'></i>
@@ -13,10 +18,6 @@
           <div class='option-icons'><span><span class="icon"><i class='fa fa-pencil' aria-hidden='true'></i></span>Edit this post</span></div>
         <% end %>
       </div>
-    <% end %>
-    
-    <% if post.title %>
-      <h4 class="title is-4 mb-2"><%= post.title %></h4>
     <% end %>
     <p class='mb-3' style='display:flex'>
       <%= image_tag  user_avatar(post.user, 40), style:'border-radius:50%;max-height:40px;max-width:40px', class: 'mr-1' %>
@@ -48,7 +49,7 @@
           <%= post.comments.count if post.comments.any? %><%= " #{comment_or_comments(post.comments)}" if post.comments.any? %><%= ' 💬' if post.comments.any? %>
         </span>
       </div>
-    <%= render 'likes_card', post: post %>
+    <%= render '/shared/likes_card', post: post %>
     <% end %>
     <% if post.likes.map(&:user).include?(current_user) %>
       <%= link_to unlike_post_path(post), method: :delete do %>
@@ -61,8 +62,8 @@
     <% end %>
     <i class="fa fa-comments mr-2"></i>Comment</button>
     <div class="panel3 panel" style='box-shadow:none;margin-top:10px;position:relative'>
-      <%= render 'form', post: post %>
-      <%= render 'comment', post: post %>
+      <%= render '/shared/form', post: post %>
+      <%= render '/shared/comment', post: post %>
     </div>
   </div>
   <% end %>

@@ -27,8 +27,9 @@ Rails.application.routes.draw do
   #   end
   # end
 
-  resources :groups, only: %i[new create destroy show]
-
+  resources :groups, only: %i[new create destroy show] do
+    resources :memberships, only: %i[create destroy]
+  end
   resources :users
   resources :friendships, only: %i[create destroy]
   resources :posts do

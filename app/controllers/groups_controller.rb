@@ -13,11 +13,17 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @posts = @group.posts.all
-    @post = current_user.posts.build
+    @posts = @group.posts.all.order('created_at DESC')
+    @post = current_user.posts.build(params[:group_id])
+    @comment = @post.comments.build
+    @members = @group.users
   end
 
   private
+
+  # def post_params
+  #   params.require(:post).permit(:title, :body, :user_id, :group_id)
+  # end
 
   def group_params
     params.require(:group).permit(:name)

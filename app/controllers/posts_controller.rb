@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order('created_at DESC')
-    @post = Post.new
+    @posts = Post.all.where(group_id: nil).order('created_at DESC')
+    @post = Post.new(group_id: params[:group_id])
     @groups = Group.all.order('created_at DESC')
     @group = Group.new
     @comment = current_user.comments.build
@@ -65,11 +65,11 @@ class PostsController < ApplicationController
     @posts = Post.all.order('created_at DESC')
     respond_to do |format|
       if @post.save
-        format.html { redirect_to root_path, notice: 'Post was successfully created.' }
+        format.html { redirect_to request.referrer, notice: 'Post was successfully created.' }
         format.js {}
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { redirect_to root_path, alert: "Post failure #{@post.errors.messages}" }
+        format.html { redirect_to request.referrer, alert: "Post failure #{@post.errors.messages}" }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -95,7 +95,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to request.referrer, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
       format.js {}
     end
@@ -110,6 +110,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :body, :user_id)
+    params.require(:post).permit(:title, :body, :user_id, :group_id)
   end
 end

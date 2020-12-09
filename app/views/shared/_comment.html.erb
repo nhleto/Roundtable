@@ -42,12 +42,12 @@
             <i class="fa fa-reply accordion5 mb-3" aria-hidden='true' style='cursor:pointer;position:relative;bottom:-2px;'></i>
           </span>
         </div>
-        <%= render 'likes_card', post: comment %>
+        <%= render '/shared/likes_card', post: comment %>
         <div class="panel5">
-          <%= render 'nested_comment', class: 'nested-comment', comment: comment %>
+          <%= render '/shared/nested_comment', class: 'nested-comment', comment: comment %>
         </div>
         <div class="comment-child" style='margin-left:30px'>
-          <%= render 'children_comments', comment: comment %>
+          <%= render '/shared/children_comments', comment: comment %>
         </div>
       </div>
     </div>
