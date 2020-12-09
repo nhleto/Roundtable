@@ -33,7 +33,7 @@ end
 # end
 
 5.times do
-  Group.create!(name: Faker::Game.unique.genre)
+  Group.create!(name: Faker::Game.unique.genre, description: Faker::Lorem.unique.paragraphs)
 end
 
 20.times do

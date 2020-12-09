@@ -48,4 +48,12 @@ module ApplicationHelper
     string << ' liked this post'
     string.join
   end
+
+  def likes_border?(post)
+    post.likes.count == 1
+  end
+
+  def check_if_friends?(like)
+    like.user != current_user && !like.user.friendships.include?(current_user) && like.user.received_friends.include?(current_user)
+  end
 end

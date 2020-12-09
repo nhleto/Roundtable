@@ -1,10 +1,18 @@
 <%= simple_form_for(@group) do |f| %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <%= f.input :name,
-      input_html: { class: 'input is-small', style: 'resize:none; width:100%;' },
-      wrapper: false %>
+    <%= f.input :name,
+        input_html: { class: 'input is-small', style: 'resize:none; width:100%;' },
+        label_html: { class: 'label', style:'float:left' },
+        placeholder: 'Name your group...',
+        wrapper: false %>
 
-  <%= f.submit 'Create Group',
-      class: 'button' %>
+    <%= f.input :description,
+        placeholder: 'A brief description of your group...',
+        input_html: { class: 'input is-small', style: 'resize:none; width:100%;' },
+        label_html: { class: 'label', style: 'float:left'},
+        wrapper: false %>
+
+    <%= f.submit 'Create Group',
+        class: 'button' %>
 <% end %>

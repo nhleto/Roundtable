@@ -1,17 +1,15 @@
-<div class="section">
-  <div class="box">
-    <div class="content">
-      <button class="button accordion">+ Create a New Group</button>
-      <div class="panel" style='position:relative'>
-        <%= render "groups_form" %>
-      </div>
+<div class="box has-text-centered" style='background-color:#c9ada7;box-shadow:none;padding-top:0px'>
+  <div class="content">
+    <button class="button accordion">+ Create a New Group</button>
+    <div class="panel group-form" style='position:relative;box-shadow:none'>
+      <%= render "groups_form" %>
     </div>
-    <% if @groups.any? %>
-      <% @groups.each do |group| %>
-        <div class="content">
-          <%= link_to group.name, group_path(group) %>
-        </div>
-      <% end %>
-    <% end %>
   </div>
+  <% if @groups.any? %>
+    <% @groups.each do |group| %>
+      <p class='has-text-centered' id='group-name-content'>
+        <%= link_to group.name, group_path(group), id: 'group-name-link' %>
+      </p>
+    <% end %>
+  <% end %>
 </div>

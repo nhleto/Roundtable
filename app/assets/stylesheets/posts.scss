@@ -186,3 +186,28 @@ button#like-comment:focus{
   max-height: 30px;
   max-width: 30px;
 }
+
+#group-name-link{
+  color: black;
+  font-weight: bold;
+}
+
+#group-name-content:hover, .panel.group-form.show{
+  transition: .4s;
+  background-color:#e4ccc6;
+}
+
+#group-name-content{
+  min-height: 35px;
+  border-radius: 10px;
+}
+
+.group-name-button{
+  display:flex;
+  justify-content:space-between;
+}
+
+.margin-top-bottom{
+  margin-top: auto;
+  margin-bottom: auto;
+}
