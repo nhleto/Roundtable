@@ -14,6 +14,13 @@ class MembershipsController < ApplicationController
     redirect_to request.referrer
   end
 
+  def make_admin
+    @group = Group.find(params[:group_id])
+    @membership = Membership.find_by(user_id: params[:id])
+    @membership.update_attribute(:admin, true)
+    redirect_to request.referrer
+  end
+
   private
 
   def membership_params

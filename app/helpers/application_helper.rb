@@ -50,7 +50,7 @@ module ApplicationHelper
   end
 
   def likes_border?(post)
-    post.likes.count == 1
+    post.count == 1
   end
 
   def check_if_friends?(like)

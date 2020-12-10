@@ -11,24 +11,12 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-
-  # resources :groups, only: %i[new create destroy show] do
-  #   resources :posts do
-  #     member do
-  #       post 'like'
-  #       delete 'unlike'
-  #     end
-  #   end
-  #   resources :comments do
-  #     member do
-  #       post 'like'
-  #       delete 'unlike'
-  #     end
-  #   end
-  # end
-
   resources :groups, only: %i[new create destroy show] do
-    resources :memberships, only: %i[create destroy]
+    resources :memberships, only: %i[create destroy] do
+      member do
+        patch 'make_admin'
+      end
+    end
   end
   resources :users
   resources :friendships, only: %i[create destroy]

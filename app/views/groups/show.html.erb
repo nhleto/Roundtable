@@ -1,31 +1,38 @@
-  <div class="columns">
-    <div class="column is-one-third"></div>
-    <div class="column is-one-third">
-      <div class="box">
-        <div class='group-name-button'>
-          <h3 class="title is-3 mb-0"><%= @group.name %></h3>
-          <% if !current_user.groups.include?(@group) %>
-          <%= button_to  "Join Group", group_memberships_path(@group, current_user), 
-                class: 'button is-primary is-light' %>
-          <% else %>
-          <div style='position:relative'>
-            <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
-            <div class='panel' style='position:absolute;right:20px;'>
-              <%= button_to  "Leave Group", group_membership_path(@group, current_user), 
-                    method: :delete, class: 'button is-danger is-light' %>
-            </div>
+<div class="columns">
+  <div class="column is-one-third"></div>
+  <div class="column is-one-third">
+    <div class="box">
+      <div class='group-name-button'>
+        <h3 class="title is-3 mb-0"><%= @group.name %></h3>
+        <% if !current_user.groups.include?(@group) %>
+        <%= button_to  "Join Group", group_memberships_path(@group, current_user), 
+              class: 'button is-primary is-light' %>
+        <% else %>
+        <div style='position:relative'>
+          <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
+          <div class='panel' style='position:absolute;right:20px;'>
+            <%= button_to  "Leave Group", group_membership_path(@group, current_user), 
+                  method: :delete, class: 'button is-danger is-light' %>
           </div>
+        </div>
+        <% end %>
+      </div>
+        <div class='space-between'>
+          <p><%= @group.users.count %> <%= member_or_members(@group) %></p>
+          <% if @group.users.any? %>
+            <p class='accordion2 like-underline'>View Members</p>
           <% end %>
         </div>
-        <p><%= @group.users.count %> <%= member_or_members(@group) %></p>
-      </div>
-      <%= render "/shared/post" %>
-      <%= render "/shared/feed" %>
+      <%= render "/shared/likes_card", post: @group.memberships %>
     </div>
-    <div class="column is-one-third">
-      <div class="box">
-        <h3 class="title is-3 mb-1">Group Description</h3>
-        <p><%= @group.description %></p>
-      </div>
+    <%= render "/shared/post" %>
+    <p class='mb-4'></p>
+    <%= render "/shared/feed" %>
+  </div>
+  <div class="column is-one-third">
+    <div class="box">
+      <h3 class="title is-3 mb-1">Group Description</h3>
+      <p><%= @group.description %></p>
     </div>
   </div>
+</div>

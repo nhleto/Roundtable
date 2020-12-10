@@ -44,7 +44,7 @@
           <%= post.comments.count if post.comments.any? %><%= " #{comment_or_comments(post.comments)}" if post.comments.any? %><%= ' 💬' if post.comments.any? %>
         </span>
       </div>
-    <%= render '/shared/likes_card', post: post %>
+    <%= render '/shared/likes_card', post: post.likes %>
     <% end %>
     <% if post.likes.map(&:user).include?(current_user) %>
       <%= link_to unlike_post_path(post), method: :delete do %>

@@ -1,6 +1,6 @@
 <%= simple_form_for(@group) do |f| %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
+    <%= f.hidden_field :owner_id, value: current_user.id %>
     <%= f.input :name,
         input_html: { class: 'input is-small', style: 'resize:none; width:100%;' },
         label_html: { class: 'label', style:'float:left' },

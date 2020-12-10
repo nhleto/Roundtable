@@ -211,3 +211,8 @@ button#like-comment:focus{
   margin-top: auto;
   margin-bottom: auto;
 }
+
+.space-between{
+  display:flex;
+  justify-content: space-between;
+}

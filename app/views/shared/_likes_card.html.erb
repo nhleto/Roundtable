@@ -1,27 +1,35 @@
 <div class="card like panel2 panel6 panel7" style='position:relative'>
   <div class="card-header">
     <p class="card-header-title" style='display:flex; justify-content:space-between'>
-      Likes
-      <button class="delete accordion2 accordion6"></button>
+      <%= @group.name ? 'Members' : 'Likes' %>
+      <button class="delete accordion accordion2 accordion6 accordion7"></button>
     </p>
   </div>
   <div class="card-content" style='border-bottom:1pxdashedlightgray;max-height:250px'>
-    <% if post.likes.any? %>
-      <% post.likes.each do |like| %>
+    <% if post.any? %>
+      <% post.each do |like| %>
         <ul class='like-display post-border' style='<%= 'border-bottom:none' if likes_border?(post) %>'>
           <div style='display:inline-flex'>
             <%= image_tag user_avatar(like.user, 50), id: 'like-gravatar' %>
-              <span>
-                <%= link_to like.user.name, user_path(like.user), class: 'like-underline' %>            
-              </span> 
-          </div>
-          <% if like.user != current_user && !like.user.friendships.include?(current_user) && like.user.received_friends.include?(current_user)%>
             <span>
+              <%= link_to like.user.name, user_path(like.user), class: 'like-underline' %>            
+            </span> 
+          </div>
+          <% if check_if_friends?(like) %>
+            <span style='display:flex'>
+            <% if current_user == @group.owner || current_user.memberships.admin %>
+              <%= button_to 'Make Admin', make_admin_group_membership_path(@group.id, like.user.id), method: :patch,
+                  class: 'button is-small' %>
+            <% end %>            
               <%= button_to 'Already Friends', friendships_path(friendships: { user_id: current_user.id, friend_id: like.user.id }),
                   method: :post, class: 'button is-danger is-small is-inverted', disabled: 'true' %>
-            </span>            
+            </span>
           <% elsif like.user != current_user && !like.user.friendships.include?(current_user) %>
-            <span>
+            <span style='display:flex'>
+            <% if current_user == @group.owner && !like.user.memberships.find_by(group_id: @group.id).admin %>
+              <%= button_to 'Make Admin', make_admin_group_membership_path(@group.id, like.user.id), method: :patch,
+                  class: 'button is-small' %>
+            <% end %>
               <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: like.user.id }),
                   method: :post, class: 'button is-primary is-small is-light is-outlined' %>
             </span>

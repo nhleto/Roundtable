@@ -42,7 +42,7 @@
             <i class="fa fa-reply accordion5 mb-3" aria-hidden='true' style='cursor:pointer;position:relative;bottom:-2px;'></i>
           </span>
         </div>
-        <%= render '/shared/likes_card', post: comment %>
+        <%= render '/shared/likes_card', post: comment.likes %>
         <div class="panel5">
           <%= render '/shared/nested_comment', class: 'nested-comment', comment: comment %>
         </div>

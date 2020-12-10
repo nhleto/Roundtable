@@ -5,7 +5,13 @@ class GroupsController < ApplicationController
 
   def create
     @group = current_user.groups.build(group_params)
-    @group.save
+    if @group.save
+      @group.users << @group.owner
+      p @group.owner.memberships
+      @group.owner.memberships.last.update_attribute(:admin, true)
+    else
+      flash[:alert] = @group.errors.messages.to_s
+    end
     redirect_to request.referrer
   end
 
@@ -26,6 +32,6 @@ class GroupsController < ApplicationController
   # end
 
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :owner_id)
   end
 end
