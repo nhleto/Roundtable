@@ -9,7 +9,9 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
-
+    @group = Group.find(params[:group_id])
+    @membership = @group.memberships.find_by(group_id: @group.id).delete
+    redirect_to request.referrer
   end
 
   private

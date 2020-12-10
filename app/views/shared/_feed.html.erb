@@ -5,7 +5,7 @@
       <i class="accordion fa fa-ellipsis-h" style='float:right;font-size:20px;cursor:pointer'></i>
     <% end %>
     <% if current_user == post.user && user_signed_in? %>
-      <div class="panel box" style='right:35px;;padding:2px;margin-bottom:0px'>
+      <div class="panel box" style='right:35px;padding:2px;margin-bottom:0px'>
         <%= link_to post_path(post), method: :delete do %>
           <div class='option-icons'><span><span class="icon"><i class='fa fa-trash-o' aria-hidden='true'></i></span>Delete this post</span></div>
         <% end %>
@@ -15,7 +15,7 @@
       </div>
     <% end %>
     <p class='mb-3' style='display:flex'>
-      <%= image_tag  user_avatar(post.user, 40), style:'border-radius:50%;max-height:40px;max-width:40px', class: 'mr-1' %>
+      <%= image_tag user_avatar(post.user, 40), style:'border-radius:50%;max-height:40px;max-width:40px', class: 'mr-1' %>
       <small style='margin-top:auto; margin-bottom:auto'>
         Posted by <u><%= link_to post.user.username, user_path(post.user) %></u> <%= distance_of_time_in_words(post.created_at, Time.now) %> ago
       </small>

@@ -56,4 +56,8 @@ module ApplicationHelper
   def check_if_friends?(like)
     like.user != current_user && !like.user.friendships.include?(current_user) && like.user.received_friends.include?(current_user)
   end
+
+  def member_or_members(group)
+    group.users.count == 1 ? 'Member' : 'Members'
+  end
 end

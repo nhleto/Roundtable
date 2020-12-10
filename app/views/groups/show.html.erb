@@ -1,29 +1,31 @@
-<div class="section">
-  <div class="columns is-centered">
-    <div class="column is-half">
+  <div class="columns">
+    <div class="column is-one-third"></div>
+    <div class="column is-one-third">
       <div class="box">
         <div class='group-name-button'>
           <h3 class="title is-3 mb-0"><%= @group.name %></h3>
           <% if !current_user.groups.include?(@group) %>
-            <%= button_to  "Join Group", group_memberships_path(@group, current_user), class: 'button' %>
+          <%= button_to  "Join Group", group_memberships_path(@group, current_user), 
+                class: 'button is-primary is-light' %>
+          <% else %>
+          <div style='position:relative'>
+            <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
+            <div class='panel' style='position:absolute;right:20px;'>
+              <%= button_to  "Leave Group", group_membership_path(@group, current_user), 
+                    method: :delete, class: 'button is-danger is-light' %>
+            </div>
+          </div>
           <% end %>
         </div>
-        <p><%= @group.users.count %> Member</p>
+        <p><%= @group.users.count %> <%= member_or_members(@group) %></p>
       </div>
-      <div class="columns is-mobile">
-        <div class="column">
-          <%= render "/shared/post" %>
-        </div>
-        <div class="column">
-          <div class="box">
-            <h3 class="title is-3">Group Description</h3>
-            <p><%= @group.description %></p>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <%= render "/shared/feed" %>
+      <%= render "/shared/post" %>
+      <%= render "/shared/feed" %>
+    </div>
+    <div class="column is-one-third">
+      <div class="box">
+        <h3 class="title is-3 mb-1">Group Description</h3>
+        <p><%= @group.description %></p>
       </div>
     </div>
   </div>
-</div> 
