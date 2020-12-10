@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :memberships
   has_many :groups, through: :memberships, dependent: :destroy
+  has_many :owned_groups, class_name: 'Group', foreign_key: 'owner_id'
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
