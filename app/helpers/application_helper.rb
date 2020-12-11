@@ -60,4 +60,8 @@ module ApplicationHelper
   def member_or_members(group)
     group.users.count == 1 ? 'Member' : 'Members'
   end
+
+  def find_membership(user, group)
+    user.memberships.find_by(group_id: group.id)
+  end
 end

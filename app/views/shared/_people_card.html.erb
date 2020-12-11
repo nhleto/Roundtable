@@ -17,7 +17,7 @@
           </div>
           <% if check_if_friends?(like) %>
             <span style='display:flex'>
-            <% if current_user == @group.owner || current_user.memberships.admin %>
+            <% if find_membership(current_user, @group).admin == true %>
               <%= button_to 'Make Admin', make_admin_group_membership_path(@group.id, like.user.id), method: :patch,
                   class: 'button is-small' %>
             <% end %>            

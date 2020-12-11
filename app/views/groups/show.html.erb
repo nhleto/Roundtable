@@ -26,7 +26,7 @@
         </div>
           <div class='space-between'>
             <p><%= @group.users.count %> <%= member_or_members(@group) %></p>
-            <% if @group.users.any? %>
+            <% if @group.users%>
               <p class='accordion2 like-underline'>View Members</p>
             <% end %>
           </div>
@@ -42,10 +42,12 @@
     <div class="box break-word">
       <h3 class="title is-3 mb-1">Group Description</h3>
       <p><%= @group.description %></p>
-      <button class="button is-primary is-light accordion">Edit Group Info</button>
-      <div class="panel" style='position:relative'>
-        <%= render "/shared/groups_form" %>
-      </div>
+      <% if find_membership(current_user, @group).admin == true %>
+        <button class="button is-primary is-light accordion">Edit Group Info</button>
+        <div class="panel" style='position:relative'>
+          <%= render "/shared/groups_form" %>
+        </div>
+      <% end %>
     </div>
   </div>
     </div>
