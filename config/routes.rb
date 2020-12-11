@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  resources :groups, only: %i[new create destroy show] do
+  resources :groups do
     resources :memberships, only: %i[create destroy] do
       member do
         patch 'make_admin'

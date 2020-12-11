@@ -1,8 +1,8 @@
-<div class="box has-text-centered" style='background-color:#c9ada7;box-shadow:none;padding-top:0px'>
+<div class="box has-text-centered" style='padding-top:0px'>
   <div class="content">
-    <button class="button accordion">+ Create a New Group</button>
+    <button class="button accordion mt-5">+ Create a New Group</button>
     <div class="panel group-form" style='position:relative'>
-      <%= render "groups_form" %>
+      <%= render "/shared/groups_form" %>
     </div>
   </div>
   <% if @groups.any? %>

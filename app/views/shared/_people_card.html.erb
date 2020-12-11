@@ -1,7 +1,7 @@
 <div class="card like panel2 panel6 panel7" style='position:relative'>
   <div class="card-header">
     <p class="card-header-title" style='display:flex; justify-content:space-between'>
-      <%= @group.name ? 'Members' : 'Likes' %>
+      <%= post == @group.memberships ? 'Members' : 'Likes' %>
       <button class="delete accordion accordion2 accordion6 accordion7"></button>
     </p>
   </div>

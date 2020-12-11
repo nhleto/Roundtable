@@ -25,6 +25,18 @@ class GroupsController < ApplicationController
     @members = @group.users
   end
 
+  def edit
+    @group = Group.find(params[:id])
+    @group.save
+    redirect_to 'groups#show'
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    @group.update(group_params)
+    redirect_to request.referrer
+  end
+
   private
 
   # def post_params
@@ -32,6 +44,6 @@ class GroupsController < ApplicationController
   # end
 
   def group_params
-    params.require(:group).permit(:name, :owner_id)
+    params.require(:group).permit(:name, :owner_id, :description, :group_photo)
   end
 end

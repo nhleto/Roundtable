@@ -195,11 +195,17 @@ button#like-comment:focus{
 #group-name-content:hover, .panel.group-form.show{
   transition: .4s;
   background-color:#e4ccc6;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
 }
 
 #group-name-content{
   min-height: 35px;
   border-radius: 10px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .group-name-button{
