@@ -7,7 +7,6 @@ class GroupsController < ApplicationController
     @group = current_user.groups.build(group_params)
     if @group.save
       @group.users << @group.owner
-      p @group.owner.memberships
       @group.owner.memberships.last.update_attribute(:admin, true)
     else
       flash[:alert] = @group.errors.messages.to_s

@@ -17,6 +17,6 @@
         wrapper: false,
         label_html: { class: 'label'} %>
 
-    <%= f.submit 'Create Group',
+    <%= f.submit @group.id ? 'Update Group' : 'Create Group',
         class: 'button is-primary is-light' %>
 <% end %>
