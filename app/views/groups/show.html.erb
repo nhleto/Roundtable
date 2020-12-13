@@ -1,87 +1,86 @@
+
 <div class="columns is-centered">
-  <div class="column is-four-fifths">
+  <div class="column">
     <div class="section">
-      <%= image_tag @group.group_photo, class: 'group-photo' if @group.group_photo.attached? %>
+      <div class="box">
+        <%= image_tag @group.group_photo.variant(resize: '1500x500!'), class: 'group-photo' if @group.group_photo.attached? %>
+      </div>
     </div>
     <div class="columns">
       <div class="column is-one-third">
-        <div class="box">
-          pog
+        <div class="section">
+          <div class="box">
+            pog
+          </div>
         </div>
       </div>
       <div class="column is-one-third">
-        <div class="box">
-          pog
+        <div class="section">
+          <div class="box">
+            pog
+          </div>
         </div>
       </div>
       <div class="column is-one-third">
-        <div class="box">
-          pog
+        <div class="section">
+          <div class="box">
+            pog
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-
 <% if false %>
 <div class="columns">
-  <div class="column is-two-thirds">
+  <div class="column is-one-third">
     <div class="section">
-      <%= image_tag @group.group_photo if @group.group_photo.attached? %>
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-one-third">
-      <div class="section">
-      </div>
-    </div>
-    <div class="column is-one-third">
-      <div class="section">
-        <div class="box">
-          <div class='group-name-button'>
-            <h3 class="title is-3 mb-0"><%= @group.name %></h3>
-            <% if !current_user.groups.include?(@group) %>
+  <div class="column is-one-third">
+    <div class="section">
+      <%= image_tag @group.group_photo if @group.group_photo.attached? %>
+      <div class="box">
+        <div class='group-name-button'>
+          <h3 class="title is-3 mb-0"><%= @group.name %></h3>
+          <% if !current_user.groups.include?(@group) %>
             <%= button_to  "Join Group", group_memberships_path(@group, current_user), 
-                  class: 'button is-primary is-light' %>
-            <% else %>
-            <div style='position:relative'>
-              <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
-              <div class='panel' style='position:absolute;right:20px;'>
-                <%= button_to  "Leave Group", group_membership_path(@group, current_user), 
+                    class: 'button is-primary is-light' %>
+          <% else %>
+          <div style='position:relative'>
+            <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
+            <div class='panel' style='position:absolute;right:20px;'>
+              <%= button_to  "Leave Group", group_membership_path(@group, current_user), 
                       method: :delete, class: 'button is-danger is-light' %>
-                <% if find_membership(current_user, @group).admin == true %>
-                <% end %>
-              </div>
             </div>
-            <% end %>
           </div>
-            <div class='space-between'>
-              <p><%= @group.users.count %> <%= member_or_members(@group) %></p>
-              <% if @group.users%>
-                <p class='accordion2 like-underline'>View Members</p>
-              <% end %>
-            </div>
-          <%= render "/shared/people_card", post: @group.memberships %>
-        </div>
-        <%= render "/shared/post" %>
-        <p class='mb-4'></p>
-        <%= render "/shared/feed" %>
-      </div>
-    </div>
-    <div class="column is-one-third">
-      <div class="section">
-        <div class="box break-word">
-          <h3 class="title is-3 mb-1">Group Description</h3>
-          <p><%= @group.description %></p>
-          <% if find_membership(current_user, @group).admin == true %>
-            <button class="button is-primary is-light accordion">Edit Group Info</button>
-            <div class="panel" style='position:relative'>
-              <%= render "/shared/groups_form" %>
-            </div>
           <% end %>
         </div>
+        <div class='space-between'>
+          <p><%= @group.users.count %> <%= member_or_members(@group) %></p>
+          <% if @group.users%>
+            <p class='accordion2 like-underline'>View Members</p>
+          <% end %>
+        </div>
+        <%= render "/shared/people_card", post: @group.memberships %>
+      </div>
+      <%= render "/shared/post" %>
+      <p class='mb-4'></p>
+      <%= render "/shared/feed" %>
+    </div>
+  </div>
+  <div class="column is-one-third">
+    <div class="section">
+      <div class="box break-word">
+        <h3 class="title is-3 mb-1">Group Description</h3>
+        <p><%= @group.description %></p>
+        <% if find_membership(current_user, @group) %>
+          <button class="button is-primary is-light accordion">Edit Group Info</button>
+          <div class="panel" style='position:relative'>
+            <%= render "/shared/groups_form" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

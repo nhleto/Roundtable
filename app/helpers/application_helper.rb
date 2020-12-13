@@ -62,6 +62,6 @@ module ApplicationHelper
   end
 
   def find_membership(user, group)
-    user.memberships.find_by(group_id: group.id)
+    user.memberships.find_by(group_id: group.id).admin == true if group.id && user.memberships.include?(group)
   end
 end
