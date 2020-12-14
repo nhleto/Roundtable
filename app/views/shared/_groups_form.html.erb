@@ -1,22 +1,27 @@
 <%= simple_form_for(@group) do |f| %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-    <%= f.hidden_field :owner_id, value: current_user.id %>
-    <%= f.input :name,
-        input_html: { class: 'input is-small', style: 'resize:none; width:100%;' },
-        label_html: { class: 'label', style:'float:left' },
-        placeholder: 'Name your group...',
-        wrapper: false %>
+  <%= f.hidden_field :owner_id, value: current_user.id %>
 
-    <%= f.input :description,
-        placeholder: 'A brief description of your group...',
-        input_html: { class: 'input is-small', style: 'resize:none;height:auto' },
-        label_html: { class: 'label', style: 'float:left'},
-        wrapper: false %>
+  <%= f.input :name,
+      input_html: { class: 'input is-small', style: 'resize:none; width:100%;' },
+      label_html: { class: 'label', style:'float:left' },
+      placeholder: 'Name your group...',
+      wrapper: false %>
 
+  <%= f.input :description,
+    placeholder: 'A brief description of your group...',
+    input_html: { class: 'input is-small', style: 'resize:none;height:auto' },
+    label_html: { class: 'label', style: 'float:left'},
+    wrapper: false %>
+
+  <% if @group.id %>
     <%= f.input :group_photo, as: :file,
         wrapper: false,
-        label_html: { class: 'label'} %>
+        label_html: { class: 'label'},
+        input_html: { style: 'margin-bottom:10px;' } %>
+  <% end %>
 
-    <%= f.submit @group.id ? 'Update Group' : 'Create Group',
-        class: 'button is-primary is-light' %>
+  <%= f.submit @group.id ? 'Update Group' : 'Create Group',
+      class: 'button is-primary is-light' %>
+
 <% end %>

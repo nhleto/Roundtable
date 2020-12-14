@@ -5,3 +5,15 @@
 .break-word{
   word-break: break-all;
 }
+
+.group-photo-size{
+  height:100%;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  border: 2px solid white;
+}
+
+.form-outline.show{
+  border-top:1px solid rgba(219, 219, 219, 0.5);
+  box-shadow: none;
+}

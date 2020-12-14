@@ -1,38 +1,3 @@
-
-<div class="columns is-centered">
-  <div class="column">
-    <div class="section">
-      <div class="box">
-        <%= image_tag @group.group_photo.variant(resize: '1500x500!'), class: 'group-photo' if @group.group_photo.attached? %>
-      </div>
-    </div>
-    <div class="columns">
-      <div class="column is-one-third">
-        <div class="section">
-          <div class="box">
-            pog
-          </div>
-        </div>
-      </div>
-      <div class="column is-one-third">
-        <div class="section">
-          <div class="box">
-            pog
-          </div>
-        </div>
-      </div>
-      <div class="column is-one-third">
-        <div class="section">
-          <div class="box">
-            pog
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<% if false %>
 <div class="columns">
   <div class="column is-one-third">
     <div class="section">
@@ -40,8 +5,10 @@
   </div>
   <div class="column is-one-third">
     <div class="section">
-      <%= image_tag @group.group_photo if @group.group_photo.attached? %>
-      <div class="box">
+      <div style='height:150px;min-width:100%'>
+        <%= image_tag @group.group_photo, class: 'group-photo-size' if @group.group_photo.attached? %>
+      </div>
+      <div class="box" style='border-radius: 0 0 10px 10px;'>
         <div class='group-name-button'>
           <h3 class="title is-3 mb-0"><%= @group.name %></h3>
           <% if !current_user.groups.include?(@group) %>
@@ -76,8 +43,8 @@
         <h3 class="title is-3 mb-1">Group Description</h3>
         <p><%= @group.description %></p>
         <% if find_membership(current_user, @group) %>
-          <button class="button is-primary is-light accordion">Edit Group Info</button>
-          <div class="panel" style='position:relative'>
+          <button class="button is-primary is-light accordion mt-4 mb-3">Edit Group Info</button>
+          <div class="panel form-outline" style='position:relative'>
             <%= render "/shared/groups_form" %>
           </div>
         <% end %>
@@ -86,4 +53,41 @@
   </div>
 </div>
 
-<% end %>
+<%
+=begin%>
+ <% if false %>
+<div class="columns is-centered">
+  <div class="column">
+    <div class="section">
+      <div class="box">
+        <%= image_tag @group.group_photo.variant(resize: '1500x500!'), class: 'group-photo' if @group.group_photo.attached? %>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-one-third">
+        <div class="section">
+          <div class="box">
+            pog
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="section">
+          <div class="box">
+            pog
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="section">
+          <div class="box">
+            pog
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %> 
+<%
+=end%>
