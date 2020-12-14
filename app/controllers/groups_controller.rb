@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
     else
       flash[:alert] = @group.errors.messages.to_s
     end
-    redirect_to request.referrer
+    redirect_to @group
   end
 
   def destroy; end

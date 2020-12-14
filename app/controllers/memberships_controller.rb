@@ -2,6 +2,9 @@ class MembershipsController < ApplicationController
   def create
     @group = Group.find(params[:group_id])
     @membership = @group.memberships.new(user_id: current_user.id)
+    if @membership.user == @group.owner
+      @membership.update_attribute(:admin, true)
+    end
     if !@membership.save
       flash[:alert] = @membership.errors
     end

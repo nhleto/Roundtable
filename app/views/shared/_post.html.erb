@@ -2,7 +2,10 @@
   <div class="card-header">
     <p class="card-header-title" style='display:flex; justify-content:space-between'>
       Create a Post <%= "in #{@group.name}" if @group.name %>
-      <button class="delete" id='delete' onclick="enlarge()"></button>
+      <div style='display:flex'>
+        <i class="fa fa-image"></i>
+        <button class="delete" id='delete' onclick="enlarge()"></button>
+      </div>
     </p>
   </div>
   <div class="card-content">
