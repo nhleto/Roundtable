@@ -3,18 +3,25 @@
     <p class="card-header-title" style='display:flex; justify-content:space-between'>
       Create a Post <%= "in #{@group.name}" if @group.name %>
       <div style='display:flex'>
-        <i class="fa fa-image"></i>
-        <button class="delete" id='delete' onclick="enlarge()"></button>
+        <button class="delete mr-2" id='delete' onclick="enlarge()"></button>
+        <div class='mr-2' style='display:flex;margin:auto' onclick="enlarge()">
+          <i class="fa fa-image" style='background:beige'></i>
+          <div class='form-wrapper'>
+            <%= simple_form_for(@post) do |f| %>
+              <%= f.input :images, as: :file,
+                  wrapper: false,
+                  label: false,
+                  onclick: "enlarge()" %>
+          </div>
+        </div>
       </div>
     </p>
   </div>
   <div class="card-content">
     <div style='display:flex'>
       <%= image_tag user_avatar(current_user, 50), style: 'border-radius:50%; align-self:self-start;' %>
-      <%= simple_form_for(@post) do |f| %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
         <%= f.hidden_field :group_id, value: @group.id %>
-
 
         <div class="field">
           <div class="control">

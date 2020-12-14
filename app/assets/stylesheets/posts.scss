@@ -228,3 +228,18 @@ button#like-comment:focus{
   display:flex;
   justify-content: space-between;
 }
+
+input[type='file'] {
+  max-width: 24px;
+  position: relative;
+  right: 25px;
+  background-color: none;
+  color: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.form-wrapper{
+  position: relative;
+  max-width: 0px;
+}
