@@ -20,6 +20,9 @@
         Posted by <u><%= link_to post.user.username, user_path(post.user) %></u> <%= distance_of_time_in_words(post.created_at, Time.now) %> ago
       </small>
     </p>
+    <% post.images.each do |image| %>
+      <%= image_tag image %>
+    <% end %>
     <p class='post-border'><%= post.body %></p>
     <% if post.likes.any? || post.comments.any? %>
       <div class="post-border" style='display:flex;justify-content:space-between'>
@@ -28,20 +31,20 @@
             <%= "👍 " %>
             <span class='like-underline'>
               <%= 'You ' + and_others(post.likes) if post.likes.any? %>
-            </span> 
+            </span>
           <% else %>
             <%= '👍 ' if post.likes.any? %>
             <span class="like-underline">
-              <%= post.likes.count if post.likes.any? %>
+              <%= post.likes.size if post.likes.any? %>
               <%=" #{people_or_person(post.likes)} liked this post" if post.likes.any? %>
             </span>
           <% end %>
         </span>
         <span class='short-likes like-underline'>
-          <%= '👍 ' if post.likes.any? %><%= post.likes.count if post.likes.any? %><%=" #{like_or_likes(post.likes)}" if post.likes.any? %>
+          <%= '👍 ' if post.likes.any? %><%= post.likes.size if post.likes.any? %><%=" #{like_or_likes(post.likes)}" if post.likes.any? %>
         </span>
         <span class='full-comments like-underline accordion3'>
-          <%= post.comments.count if post.comments.any? %><%= " #{comment_or_comments(post.comments)}" if post.comments.any? %><%= ' 💬' if post.comments.any? %>
+          <%= post.comments.size if post.comments.any? %><%= " #{comment_or_comments(post.comments)}" if post.comments.any? %><%= ' 💬' if post.comments.any? %>
         </span>
       </div>
     <%= render '/shared/people_card', post: post.likes %>

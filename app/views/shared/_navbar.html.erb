@@ -1,7 +1,7 @@
   <nav class="navbar is-transparent">
     <div class="navbar-brand">
       <div class="navbar-item">
-        <h2 class="title is-2" style='color:#4a4e69'>FakeBook<%= ' > ' + @group.name if @group.id %></h2>
+        <h2 class="title is-2" style='color:#4a4e69'>FakeBook<%= ' > ' + @group.name if @group && @group.id %></h2>
       </div>
       <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" style='color:black'>
         <span aria-hidden="true"></span>

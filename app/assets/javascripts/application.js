@@ -59,27 +59,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-function enlarge() {
-  let post = document.querySelector("#input-style");
-  let background = document.querySelector(".fader");
-  let cardHeader = document.querySelector("#delete");
-  let button = document.querySelector("#post-submit")
+// function enlarge() {
+//   let post = document.querySelector("#input-style");
+//   let background = document.querySelector(".fader");
+//   let cardHeader = document.querySelector("#delete");
+//   let button = document.querySelector("#post-submit")
+  
+//   if (cardHeader.style.display === 'block' && button.style.display === 'block') {
+//     cardHeader.style.display = 'none';
+//     button.style.display = 'none';
+//   } else {
+//     cardHeader.style.display = 'block';
+//     button.style.display = 'block';
+//   }
+//   post.classList.toggle("bigger")
+//   background.classList.toggle("post-feed")
+// }
 
-  if (cardHeader.style.display === 'block' && button.style.display === 'block') {
-    cardHeader.style.display = 'none';
-    button.style.display = 'none';
-  } else {
-    cardHeader.style.display = 'block';
-    button.style.display = 'block';
-  }
-
-  post.classList.toggle("bigger")
-  background.classList.toggle("post-feed")
-}
-
-function postEnlarge(element) {
-  element.classList.toggle("big-post")
-}
+// function postEnlarge(element) {
+//   element.classList.toggle("big-post")
+// }
 
 function hideComments(elem) {
   const comment = elem.getElementsByClassName("comments")[0];

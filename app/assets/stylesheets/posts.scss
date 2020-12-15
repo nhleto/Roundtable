@@ -15,6 +15,7 @@
   margin-top: auto;
   margin-bottom: auto;
   overflow: hidden;
+  height: 190px;
 }
 
 .fa.fa-image{
@@ -27,8 +28,7 @@ button#delete{
   margin: auto;
 }
 
-#post-submit{
-  display: none;
+#submit-button{
   width: 100%;
 }
 
@@ -229,7 +229,7 @@ button#like-comment:focus{
   justify-content: space-between;
 }
 
-input[type='file'] {
+.card input[type='file'] {
   max-width: 24px;
   position: relative;
   right: 25px;

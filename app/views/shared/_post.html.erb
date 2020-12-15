@@ -3,15 +3,13 @@
     <p class="card-header-title" style='display:flex; justify-content:space-between'>
       Create a Post <%= "in #{@group.name}" if @group.name %>
       <div style='display:flex'>
-        <button class="delete mr-2" id='delete' onclick="enlarge()"></button>
-        <div class='mr-2' style='display:flex;margin:auto' onclick="enlarge()">
+        <div class='mr-2' style='display:flex;margin:auto'>
           <i class="fa fa-image" style='background:beige'></i>
           <div class='form-wrapper'>
             <%= simple_form_for(@post) do |f| %>
-              <%= f.input :images, as: :file,
+              <%= f.file_field :images, multiple: true,
                   wrapper: false,
-                  label: false,
-                  onclick: "enlarge()" %>
+                  label: false %>
           </div>
         </div>
       </div>
@@ -19,16 +17,16 @@
   </div>
   <div class="card-content">
     <div style='display:flex'>
-      <%= image_tag user_avatar(current_user, 50), style: 'border-radius:50%; align-self:self-start;' %>
+      <%= image_tag user_avatar(current_user, 50), style: 'border-radius:50%;align-self:self-start;' %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
         <%= f.hidden_field :group_id, value: @group.id %>
 
-        <div class="field">
+        <div class="field" style='width:100%;height:200px'>
           <div class="control">
             <%= f.input :body,
                 wrapper: false,
                 label: false,
-                input_html: { class: 'input', id: 'input-style', onclick: 'enlarge()' },
+                input_html: { class: 'input', id: 'input-style' },
                 placeholder: "What's on your mind?" %>
           </div>
         </div>
@@ -37,12 +35,13 @@
       <% if current_user.groups.include?(@group) || !@group.id %>
         <%= f.submit 'Post',
             class: 'button',
-            id: 'post-submit' %>
+            id: 'submit-button' %>
       <% else %>
         <%= f.submit "You must join #{@group.name} to post here",
             class: 'button',
-            id: 'post-submit',
-            disabled: 'true' %>
+            input_html: { style: 'display:block;width:100%' },
+            disabled: 'true',
+            id: 'submit-button' %>
       <% end %>
 
     <% end %>
