@@ -2,6 +2,7 @@
   "name": "FakeBook",
   "private": true,
   "dependencies": {
-    "@creativebulma/bulma-collapsible": "^1.0.4"
+    "@creativebulma/bulma-collapsible": "^1.0.4",
+    "bulma-social": "^2.0.0"
   }
 }
