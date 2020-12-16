@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     @groups = Group.all.order('created_at DESC')
     @group = Group.new
     @comment = current_user.comments.build
+    @users = Friendship.where("NOT user_id = ? OR friend_id = ?", current_user.id, current_user.id).map(&:user)
     return unless params[:search]
 
     unless params[:search][:name].empty?
@@ -26,7 +27,7 @@ class PostsController < ApplicationController
     @like = @post.likes.build(user_id: current_user.id)
     respond_to do |format|
       if @like.save
-        format.js { }
+        format.js {}
         format.html { redirect_to request.referrer }
       else
         format.html { redirect_to request.referrer, alert: "Like Failed to save: #{@like.errors.messages}" }

@@ -1,3 +1,6 @@
-<div class="box">
-  dope
+<div class="box has-text-centered">
+  <h4 class="title is-4"><u>People you may know</u></h4>
+  <% if @users.any? %>
+    <%= render 'suggestions_card', user: @users.sample %>
+  <% end %>
 </div>

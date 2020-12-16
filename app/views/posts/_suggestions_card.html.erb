@@ -1,0 +1,12 @@
+<div class="user-card has-text-centered">
+  <div class="media-content">
+    <%= image_tag user_avatar(user, 50), style:'border-radius:50%;align-self:self-start' %>  
+  </div>
+  <div class="content like-underline mb-2">
+    <%= link_to user.name, user_path(user) %>
+  </div>
+  <span class='mb-2'>
+    <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: user.id }),
+        method: :post, class: 'button is-primary is-small is-light is-outlined' %>
+  </span>
+</div>

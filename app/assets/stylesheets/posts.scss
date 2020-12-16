@@ -240,3 +240,22 @@ button#like-comment:focus{
   position: relative;
   max-width: 0px;
 }
+
+.user-card{
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 200px;
+  width: 150px;
+  word-wrap: break-word;
+}
+
+.user-card .media-content, .content{
+  // display: flex;
+  // justify-content: center;
+  margin-top: 10px;
+}
+
+.user-card input[type=submit]{
+  width: 75%;
+  margin-bottom: .5rem;
+}
