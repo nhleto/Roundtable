@@ -28,8 +28,20 @@ button#delete{
   margin: auto;
 }
 
-#submit-button{
+input[type=submit]{
   width: 100%;
+  background-color: #ebfffc;
+}
+
+#submit-button {
+  border-color: #d8efff;
+  color: #006b5b;
+  box-shadow: 0 0 20px 20px #d8efff inset, 0 0 0 0 #d8efff;
+  transition: all 150ms ease-in-out;
+}
+#submit-button:hover {
+  box-shadow: 0 0 5px 0 #d8efff inset, 0 0 5px 4px #d8efff;
+  color: #006b5b;
 }
 
 .simple_form.search{
@@ -181,11 +193,6 @@ button#like-comment:focus{
   left: -.1px;
 }
 
-.panel2.show::-webkit-scrollbar-button{
-  color: blue;
-  background-color: blue;
-}
-
 #like-gravatar{
   border-radius:50%; 
   margin-right:5px; 
@@ -227,16 +234,6 @@ button#like-comment:focus{
 .space-between{
   display:flex;
   justify-content: space-between;
-}
-
-.card input[type='file'] {
-  max-width: 24px;
-  position: relative;
-  right: 25px;
-  background-color: none;
-  color: none;
-  opacity: 0;
-  cursor: pointer;
 }
 
 .form-wrapper{

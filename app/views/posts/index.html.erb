@@ -1,17 +1,17 @@
-<div class="columns is-centered">
+<div class="columns is-centered is-mobile">
   <div class="column is-one-third">
     <div class="section">
       <%= render 'groups' %>
     </div>
   </div>
-  <div class="column is-one-third" id="posts">
+  <div class="column is-one-third-desktop is-two-thirds-tablet is-two-thirds-mobile">
     <div class="section">
       <%= render '/shared/post' %>
       <p class='mb-6'></p>
       <%= render '/shared/feed', class: 'feed' %>
     </div>
   </div>
-  <div class="column is-one-third">
+  <div class="column is-one-third suggestion-column">
     <div class="section">
       <%= render 'suggestions' %>
     </div>

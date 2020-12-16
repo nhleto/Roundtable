@@ -15,7 +15,7 @@
  */
 
  @import 'bulma';
- 
+
  #flash{
   float: right;
 }
@@ -128,3 +128,8 @@ a:hover, a:active, u:hover, h2:hover{
   margin-top: 10px;
   box-shadow: none;
 }
+
+@media (max-width: 1200px){
+  .suggestion-column { display: none; }
+}
+ 

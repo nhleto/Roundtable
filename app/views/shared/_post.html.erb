@@ -3,15 +3,10 @@
     <p class="card-header-title" style='display:flex; justify-content:space-between'>
       Create a Post <%= "in #{@group.name}" if @group.name %>
       <div style='display:flex'>
-        <div class='mr-2' style='display:flex;margin:auto'>
-          <i class="fa fa-image" style='background:beige'></i>
-          <div class='form-wrapper'>
-            <%= simple_form_for(@post) do |f| %>
-              <%= f.file_field :images, multiple: true,
-                  wrapper: false,
-                  label: false %>
-          </div>
-        </div>
+        <%= simple_form_for(@post) do |f| %>
+          <%= f.file_field :images, multiple: true,
+              wrapper: false,
+              label: false %>
       </div>
     </p>
   </div>
@@ -32,17 +27,17 @@
         </div>
       </div>
 
-      <% if current_user.groups.include?(@group) || !@group.id %>
-        <%= f.submit 'Post',
-            class: 'button',
-            id: 'submit-button' %>
-      <% else %>
-        <%= f.submit "You must join #{@group.name} to post here",
-            class: 'button',
-            input_html: { style: 'display:block;width:100%' },
-            disabled: 'true',
-            id: 'submit-button' %>
-      <% end %>
+        <% if current_user.groups.include?(@group) || !@group.id %>
+          <%= f.submit 'Post',
+              class: 'button',
+              id: 'submit-button' %>
+        <% else %>
+          <%= f.submit "You must join #{@group.name} to post here",
+              class: 'button',
+              input_html: { style: 'display:block;width:100%' },
+              disabled: 'true',
+              id: 'submit-button' %>
+        <% end %>
 
     <% end %>
   </div>
