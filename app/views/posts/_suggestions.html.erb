@@ -1,5 +1,5 @@
 <div class="box has-text-centered" style='overflow:hidden'>
-  <h4 class="title is-4"><u>People you may know</u></h4>
+  <h4 class="title is-4" style='text-shadow: 1px 1px 1px rgba(10, 10, 10, 0.2);'>People you may know</h4>
   <div class="columns">
     <% if @users.any? %>
       <% @users.each do |user| %>
@@ -11,15 +11,13 @@
   </div>
 </div>
 
-<div class="box group" style='overflow:hidden'>
-  <h4 class="title is-4"><u>Groups you might be interested in</u></h4>
+<div class="box group has-text-centered" style='overflow:hidden'>
+  <h4 class="title is-4" style='text-shadow: 1px 1px 1px rgba(10, 10, 10, 0.2);'>Groups you might be interested in</h4>
   <div class="columns">
-    <% if @groups.any? %>
-      <% @groups.each do |group| %>
-        <div class="column is-half">
-          <%= render 'group_card', group: group %>
-        </div>
-      <% end %>
+    <% @suggested_groups.each do |group| %>
+      <div class="column is-half has-text-centered">
+        <%= render 'group_card', group: group %>
+      </div>
     <% end %>
   </div>
 </div>

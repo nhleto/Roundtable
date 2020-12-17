@@ -1,4 +1,5 @@
 <div class="suggestion-card has-text-centered">
+  <%= user.active_friends.map(&:active_friends).size %>
   <div class="media-content">
     <%= image_tag user_avatar(user, 50), style:'border-radius:50%;align-self:self-start' %>  
   </div>

@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     @posts = Post.all.nil_group
     @post = Post.new(group_id: params[:group_id])
     @groups = Group.all.order('created_at DESC')
+    @suggested_groups = (Group.all - current_user.groups)
     @group = Group.new
     @comment = current_user.comments.build
     @users = (User.all - current_user.friends).reject { |user| user == current_user }
@@ -70,8 +71,8 @@ class PostsController < ApplicationController
         format.js {}
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { redirect_to request.referrer, alert: "Post failure #{@post.errors.messages}" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.html { redirect_to request.referrer, alert: "#{@post.errors.first[1]}" }
+        format.json { render json: @post.errors.first[1], status: :unprocessable_entity }
       end
     end
   end

@@ -5,7 +5,7 @@ class Group < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   belongs_to :owner, class_name: 'User'
-  has_many :posts
+  has_many :posts, dependent: :destroy
   validates :name, presence: true, length: { maximum: 50, message: 'Group name maximum 50 characters' }
 
   private
