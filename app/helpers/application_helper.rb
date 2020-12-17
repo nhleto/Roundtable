@@ -19,30 +19,38 @@ module ApplicationHelper
   end
 
   def people_or_person(obj)
-    obj.count == 1 ? 'person' : 'people'
+    obj.size == 1 ? 'person' : 'people'
   end
 
   def comment_or_comments(obj)
-    obj.count == 1 ? 'comment' : 'comments'
+    obj.size == 1 ? 'comment' : 'comments'
   end
 
   def like_or_likes(obj)
-    obj.count == 1 ? 'like' : 'likes'
+    obj.size == 1 ? 'like' : 'likes'
   end
 
   def other_others(obj)
-    obj.count - 1 == 1 ? "\u0020 other" : "\u0020 others"
+    obj.size - 1 == 1 ? "\u0020 other" : "\u0020 others"
+  end
+
+  def friend_friends(obj)
+    obj.size == 1 ? "\u0020mutual friend" : "\u0020mutual friends"
+  end
+
+  def pluralize(obj, word)
+    obj.size == 1 ? "\u0020#{word}" : "\u0020#{word}s"
   end
 
   def and_others(like)
     string = []
-    if (like.count - 1).positive?
+    if (like.size - 1).positive?
       string << 'and '
     end
-    if (like.count - 1).positive?
-      string << like.count - 1
+    if (like.size - 1).positive?
+      string << like.size - 1
     end
-    if (like.count - 1).positive?
+    if (like.size - 1).positive?
       string << other_others(like)
     end
     string << ' liked this post'
@@ -50,7 +58,7 @@ module ApplicationHelper
   end
 
   def likes_border?(post)
-    post.count == 1
+    post.size == 1
   end
 
   def check_if_friends?(like)

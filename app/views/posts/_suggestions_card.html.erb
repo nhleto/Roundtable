@@ -1,13 +1,19 @@
 <div class="suggestion-card has-text-centered">
-  <%= user.active_friends.map(&:active_friends).size %>
+  <% mutual_friends = current_user.active_friends & user.active_friends %>
   <div class="media-content">
     <%= image_tag user_avatar(user, 50), style:'border-radius:50%;align-self:self-start' %>  
   </div>
-  <div class="content like-underline mb-2">
-    <%= link_to user.name, user_path(user) %>
+  <div class="like-underline mt-4 mb-4">
+    <%= link_to user_path(user) do %>
+      <h6 class="title is-6"><%= user.name %></h6>
+    <% end %>
   </div>
-  <span class='mb-2'>
+  <span class='mb-3'>
     <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: user.id }),
         method: :post, class: 'button is-primary is-small is-light is-outlined' %>
+  </span>
+  <span class='center'>
+    <%= image_tag 'friend-icon.png', size: '20', style: 'align-self:self-start', class: 'mt-1' %>&#8287
+    <%= mutual_friends.size %><%= friend_friends(mutual_friends) %>
   </span>
 </div>

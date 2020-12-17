@@ -262,6 +262,14 @@ button#like-comment:focus{
   width: 225px;
 }
 
+.column.is-half img:not(:last-child){
+  box-shadow: 3px 1em 1em -0.125em rgba(10, 10, 10, 0.2), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+}
+
+.media-content img{
+  box-shadow: 3px 1em 1em -0.125em rgba(10, 10, 10, 0.2), 0 0px 0 1px rgba(10, 10, 10, 0.2);
+}
+
 .suggestion-card .media-content, .content{
   margin-top: 10px;
 }
