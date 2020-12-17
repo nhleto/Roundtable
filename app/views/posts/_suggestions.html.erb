@@ -1,6 +1,25 @@
-<div class="box has-text-centered">
+<div class="box has-text-centered" style='overflow:hidden'>
   <h4 class="title is-4"><u>People you may know</u></h4>
-  <% if @users.any? %>
-    <%= render 'suggestions_card', user: @users.sample %>
-  <% end %>
+  <div class="columns">
+    <% if @users.any? %>
+      <% @users.each do |user| %>
+        <div class="column is-one-third">
+          <%= render 'suggestions_card', user: user %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="box group" style='overflow:hidden'>
+  <h4 class="title is-4"><u>Groups you might be interested in</u></h4>
+  <div class="columns">
+    <% if @groups.any? %>
+      <% @groups.each do |group| %>
+        <div class="column is-half">
+          <%= render 'group_card', group: group %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

@@ -8,10 +8,11 @@ class GroupsController < ApplicationController
     if @group.save
       @group.users << @group.owner
       @group.owner.memberships.last.update_attribute(:admin, true)
+      redirect_to @group
     else
-      flash[:alert] = @group.errors.messages.to_s
+      flash[:alert] = @group.errors.first[1]
+      redirect_to request.referrer
     end
-    redirect_to @group
   end
 
   def destroy; end

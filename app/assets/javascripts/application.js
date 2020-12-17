@@ -22,14 +22,6 @@ function showLikes(elem) {
   const nodes = parent.children;
   const background = parent.querySelector('.card')
 
-  // for (let i = 0; i < nodes.length; i++ ){
-  //   if (nodes[i].classList.contains('faded')){
-  //     nodes[i].classList.remove('faded')
-  //   } else {
-  //     nodes[i].classList += ' faded';
-  //   }
-  // }
-
   if (show.style.display === 'block') {
     show.style.display = 'none'
   } else {

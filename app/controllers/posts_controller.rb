@@ -4,12 +4,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.where(group_id: nil).order('created_at DESC')
+    @posts = Post.all.nil_group
     @post = Post.new(group_id: params[:group_id])
     @groups = Group.all.order('created_at DESC')
     @group = Group.new
     @comment = current_user.comments.build
-    @users = Friendship.where("NOT user_id = ? OR friend_id = ?", current_user.id, current_user.id).map(&:user)
+    @users = (User.all - current_user.friends).reject { |user| user == current_user }
     return unless params[:search]
 
     unless params[:search][:name].empty?

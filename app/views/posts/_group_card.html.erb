@@ -1,0 +1,10 @@
+<div class="suggestion-card">
+  <%= image_tag 'groups-placeholder.png', style: 'border-radius:10px 10px 0 0' %>
+  <div class="container center like-underline" style='overflow-y:hidden;word-break:break-word;'>
+    <%= link_to group.name, group %>
+  </div>
+  <div class="content ml-2" style='display:flex'>
+    <%= image_tag "https://static.xx.fbcdn.net/rsrc.php/v3/yB/r/rtgCzSCUnWc.png", size: '20' %>&#8287
+    <%= group.memberships.size %><%= group.memberships.size > 1 ? ' members in this group' : ' member in this group' %>
+  </div>
+</div>

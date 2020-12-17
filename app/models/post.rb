@@ -7,4 +7,6 @@ class Post < ApplicationRecord
   belongs_to :group, optional: true
   has_many :comments, dependent: :destroy
   has_many :likes, as: :likeable
+
+  scope :nil_group, -> { where(group_id: nil).order('created_at DESC') }
 end

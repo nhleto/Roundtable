@@ -28,13 +28,13 @@ button#delete{
   margin: auto;
 }
 
-input[type=submit]{
+.card input[type=submit]{
   width: 100%;
   background-color: #ebfffc;
 }
 
 #submit-button {
-  border-color: #d8efff;
+  border-color: #93d3ff;
   color: #006b5b;
   box-shadow: 0 0 20px 20px #d8efff inset, 0 0 0 0 #d8efff;
   transition: all 150ms ease-in-out;
@@ -236,12 +236,17 @@ button#like-comment:focus{
   justify-content: space-between;
 }
 
+.center{
+  display:flex;
+  justify-content: center;
+}
+
 .form-wrapper{
   position: relative;
   max-width: 0px;
 }
 
-.user-card{
+.suggestion-card{
   border: 1px solid black;
   border-radius: 10px;
   height: 200px;
@@ -249,13 +254,16 @@ button#like-comment:focus{
   word-wrap: break-word;
 }
 
-.user-card .media-content, .content{
-  // display: flex;
-  // justify-content: center;
+.group .suggestion-card{
+  height: 300px;
+  width: 225px;
+}
+
+.suggestion-card .media-content, .content{
   margin-top: 10px;
 }
 
-.user-card input[type=submit]{
+.suggestion-card input[type=submit]{
   width: 75%;
   margin-bottom: .5rem;
 }
