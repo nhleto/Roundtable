@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     root to: 'posts#index'
   end
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   resources :groups do
     resources :memberships, only: %i[create destroy] do
       member do
