@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(version: 2020_12_18_182632) do
   create_table "likes", force: :cascade do |t|
     t.integer "likeable_id"
     t.string "likeable_type"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["likeable_id", "likeable_type"], name: "index_likes_on_likeable_id_and_likeable_type"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
@@ -107,7 +107,6 @@ ActiveRecord::Schema.define(version: 2020_12_18_182632) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "likes", "users"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
 end
