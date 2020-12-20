@@ -17,7 +17,7 @@
     <p class='mb-3' style='display:flex'>
       <%= image_tag user_avatar(post.user, 40), style:'border-radius:50%', class: 'mr-1' %>
       <small style='margin-top:auto; margin-bottom:auto'>
-        Posted by <u><%= link_to post.user.username, user_path(post.user) %></u> <%= distance_of_time_in_words(post.created_at, Time.now) %> ago
+        Posted by <u><%= link_to post.user.name, user_path(post.user) %></u> <%= distance_of_time_in_words(post.created_at, Time.now) %> ago
       </small>
     </p>
     <% post.images.each do |image| %>
