@@ -58,6 +58,9 @@
         </div>
       </div>
 
+      <%= image_tag user_avatar(@user, 100), style: 'border-radius:50%' %>
+      <%= f.file_field :avatar %>
+
       <%= f.button :submit, "Sign up" %>
 
       <div class="field">

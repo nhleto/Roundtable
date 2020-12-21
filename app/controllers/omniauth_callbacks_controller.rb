@@ -3,18 +3,18 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
-  skip_before_action :verify_authenticity_token, only: :facebook
+  skip_before_action :verify_authenticity_token
   # You should also create an action method in this controller like this:
-  # def twitter
-  # end
-  def facebook
+
+  def google_oauth2
     @user = User.from_omniauth(request.env['omniauth.auth'])
+    # @user.avatar.attach(request.env['omniauth.auth'].image).save!
     # byebug
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
-      set_flash_message(:notice, :success, kind: 'Facebook') if is_navigational_format?
+      set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
     else
-      session['devise.facebook_data'] = request.env['omniauth.auth']
+      session['devise.google_data'] = request.env['omniauth.auth']
       redirect_to new_user_registration_url
     end
   end

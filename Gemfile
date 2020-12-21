@@ -54,9 +54,9 @@ gem 'bulma-extensions-rails', '~> 6.2', '>= 6.2.7'
 
 gem 'ancestry', '~> 3.2', '>= 3.2.1'
 
-gem 'omniauth-facebook', '~> 8.0'
-
 gem 'omniauth-github', '~> 1.4'
+
+gem 'omniauth-google-oauth2', '~> 0.8.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
