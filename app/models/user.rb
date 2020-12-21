@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   before_save :grab_image
+  validates :name, presence: true
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -20,8 +21,8 @@ class User < ApplicationRecord
   has_many :received_friends, through: :received_friendships, source: 'user'
 
   def grab_image
-    downloaded_image = open(self.avatar_url)
-    self.avatar.attach(io: downloaded_image, filename: "#{self.avatar_url}")
+    downloaded_image = open(avatar_url)
+    avatar.attach(io: downloaded_image, filename: avatar_url.to_s)
   end
 
   def self.from_omniauth(auth)
@@ -31,7 +32,7 @@ class User < ApplicationRecord
       user.name = auth.info.name # assuming the user model has a name
       user.date_of_birth = auth.info.user_birthday
       user.avatar_url = auth.info.image # assuming the user model has an image
-      # byebug
+      byebug
       # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!

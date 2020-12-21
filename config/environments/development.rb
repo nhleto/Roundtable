@@ -12,6 +12,8 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  # commenting out the line below seems to have a marked increase
+  # in how quickly images load in
   # config.reload_classes_only_on_change = false
 
   # Enable/disable caching. By default caching is disabled.

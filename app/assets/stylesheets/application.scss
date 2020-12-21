@@ -133,3 +133,31 @@ a:hover, a:active, u:hover, h2:hover{
   .suggestion-column { display: none; }
 }
  
+.sign-in-button{
+  background-color: #34ab99;
+  font-weight: bold;
+  color: white;
+}
+
+button.is-google:hover, button.is-github:hover, .sign-in-button:hover{
+  transition: .2s;
+  opacity: 0.8;
+  color: #fff;
+}
+
+input[type=submit]{
+  width:100%;
+}
+
+.text-divider {
+  display: flex;
+  align-items: center; // align text and lines vertically
+}
+
+.text-divider::before,
+.text-divider::after {
+  content: '';
+  height: 1px;
+  background-color: silver;
+  flex-grow: 1; // both lines will expand to occupy the available space
+}

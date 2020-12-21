@@ -61,7 +61,13 @@
       <%= image_tag user_avatar(@user, 100), style: 'border-radius:50%' %>
       <%= f.file_field :avatar %>
 
-      <%= f.button :submit, "Sign up" %>
+      <%= render 'devise/shared/sign-in-links' %>
+
+      <%= f.button :submit, "Sign in", class:'button mb-5 sign-in-button' %>
+
+      <span class='center mb-5 text-divider' style='color:rgba(74,74,74,0.3);'>
+        <small style='padding:0 20px 0 20px'>OR</small>
+      </span>
 
       <div class="field">
         <%= render "devise/shared/links" %>
