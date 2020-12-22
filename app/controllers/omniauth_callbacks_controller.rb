@@ -8,14 +8,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
     @user = User.from_omniauth(request.env['omniauth.auth'])
-    # @user.avatar.attach(request.env['omniauth.auth'].image).save!
-    # byebug
+
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
     else
-      session['devise.google_data'] = request.env['omniauth.auth']
-      redirect_to new_user_registration_url
+      set_flash_message(:alert, :failure, kind: "Google", reason: 'this email is associated with another account')
+      session['devise.google_oauth2_data'] = request.env['omniauth.auth']
+      redirect_to request.referrer
     end
   end
 
@@ -25,8 +25,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: 'Github') if is_navigational_format?
     else
+      set_flash_message(:alert, :failure, kind: "Github", reason: 'this email is associated with another account')
       session['devise.github_data'] = request.env['omniauth.auth']
-      redirect_to new_user_registration_url
+      redirect_to request.referrer
     end
   end
 

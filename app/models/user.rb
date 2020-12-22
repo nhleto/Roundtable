@@ -6,11 +6,13 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   before_save :grab_image
+
   validates :name, presence: true
+  validates :email, uniqueness: true
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :memberships
   has_many :groups, through: :memberships, dependent: :destroy
   has_many :owned_groups, class_name: 'Group', foreign_key: 'owner_id'
@@ -21,18 +23,20 @@ class User < ApplicationRecord
   has_many :received_friends, through: :received_friendships, source: 'user'
 
   def grab_image
-    downloaded_image = open(avatar_url)
-    avatar.attach(io: downloaded_image, filename: avatar_url.to_s)
+    unless avatar_url.nil?
+      downloaded_image = open(avatar_url)
+      avatar.attach(io: downloaded_image, filename: avatar_url.to_s)
+    end
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name # assuming the user model has a name
       user.date_of_birth = auth.info.user_birthday
       user.avatar_url = auth.info.image # assuming the user model has an image
-      byebug
+      # byebug
       # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!

@@ -137,16 +137,13 @@ a:hover, a:active, u:hover, h2:hover{
   background-color: #34ab99;
   font-weight: bold;
   color: white;
+  width:100%;
 }
 
 button.is-google:hover, button.is-github:hover, .sign-in-button:hover{
   transition: .2s;
   opacity: 0.8;
   color: #fff;
-}
-
-input[type=submit]{
-  width:100%;
 }
 
 .text-divider {

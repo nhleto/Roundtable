@@ -1,15 +1,19 @@
 <div class="section">
   <h2 class="title is-2 has-text-centered">Sign Up</h2>
   <div class="columns is-centered">
-    <div class="box">
+    <div class="box" style='width:500px'>
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= f.error_notification %>
+
+      <span style='display:flex;justify-content:center;align-items:center'>
+        <%= image_tag user_avatar(@user, 100), style: 'border-radius:50%' %>
+      </span>
+      <%= f.file_field :avatar, class: 'mb-4' %>
+
 
 
       <div class="field">
         <div class="control">
           <%= f.input :name,
-                    required: true,
                     wrapper: false,
                     label_html: { class: 'label' },
                     input_html: { class: 'input' } %>
@@ -19,7 +23,6 @@
       <div class="field">
         <div class="control">
           <%= f.input :email,
-                    required: true,
                     wrapper: false,
                     label_html: { class: 'label' },
                     input_html: { class: 'input' } %>
@@ -29,7 +32,6 @@
       <div class="field">
         <div class="control">
           <%= f.input :date_of_birth,
-                    required: true,
                     wrapper: false,
                     label_html: { class: 'label' },
                     input_html: { class: 'input' },
@@ -40,7 +42,6 @@
       <div class="field">
         <div class="control">
           <%= f.input :password,
-                    required: true,
                     wrapper: false,
                     label_html: { class: 'label' },
                     hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -51,15 +52,11 @@
       <div class="field">
         <div class="control">
           <%= f.input :password_confirmation,
-                    required: true,
                     wrapper: false,
                     label_html: { class: 'label' },
                     input_html: { class: 'input' } %>
         </div>
       </div>
-
-      <%= image_tag user_avatar(@user, 100), style: 'border-radius:50%' %>
-      <%= f.file_field :avatar %>
 
       <%= render 'devise/shared/sign-in-links' %>
 

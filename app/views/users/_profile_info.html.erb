@@ -1,25 +1,41 @@
 <div class="box">
-  <h3 class="title is-3"><%= @user.id %></h3>
-  <p>
-    <strong>Name:</strong>
-    <%= @user.name %>
-  </p>
+  <span style='display:flex;justify-content:center;align-items:center'>
+    <%= image_tag user_avatar(@user, 100), style: 'border-radius:50%' %>
+  </span>
+  <span class='center mt-3 mb-3 accordion like-underline'>
+    <b>Add bio</b>
+  </span>
 
-  <p>
-    <strong>Password:</strong>
-    <%= @user.password %>
-  </p>
+  <div class="panel" style='position:relative;display:flex;justify-content:center'>
+    <%= simple_form_for(@user) do |f| %>
+      <%= f.input :bio,
+          wrapper: false,
+          label: false %>
 
-  <p>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </p>
+      <%= f.submit 'Save' %> 
+    <% end %>
+  </div>
 
-  <p>
-    <strong>Date of birth:</strong>
-    <%= @user.date_of_birth %>
-  </p>
+  <div class="field">
+    <div class="control">
+      <span><b>Name: </b></span><%= @user.name %>
+    </div>
+  </div>
 
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-  <%= link_to 'Back', users_path %>
+  <div class="field">
+    <div class="control">
+      <span><b>Email: </b></span><%= @user.email %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <span><b>Birthday: </b></span><%= @user.date_of_birth %>
+    </div>
+  </div>
+
+  <span>
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Back', users_path %>
+  </span>
 </div>

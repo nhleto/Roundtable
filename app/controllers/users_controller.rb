@@ -46,7 +46,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :ok, location: @user }
         sign_in(:user, current_user, bypass: true)
       else
-        format.html { render :edit }
+        format.html { render :edit, alert: @user.errors.first[1] }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

@@ -3,16 +3,16 @@
   <div class="media-content">
     <%= image_tag user_avatar(user, 50), style:'border-radius:50%;align-self:self-start' %>  
   </div>
-  <div class="like-underline mt-4 mb-4">
+  <div class="like-underline mt-2 mb-4">
     <%= link_to user_path(user) do %>
       <h6 class="title is-6"><%= user.name %></h6>
     <% end %>
   </div>
-  <span class='mb-3'>
+  <span>
     <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: user.id }),
         method: :post, class: 'button is-primary is-small is-light is-outlined' %>
   </span>
-  <span class='center'>
+  <span class='center mt-1'>
     <%= image_tag 'friend-icon.png', size: '20', style: 'align-self:self-start', class: 'mt-1' %>&#8287
     <%= mutual_friends.size %><%= friend_friends(mutual_friends) %>
   </span>
