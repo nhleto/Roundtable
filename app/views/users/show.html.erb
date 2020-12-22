@@ -6,32 +6,15 @@
       <% if @user != current_user && !@user.pending_friends.include?(current_user) && !current_user.friends.include?(@user) %>
         <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: @user.id }) %>
       <% end %>
-
-      <%= render 'friends_table' %>
+      <% if false %>
+        <%= render 'friends_table' %>
+      <% end %>
       <%= render 'profile_info' %>
     </div>
     <div class="column is-one-third">
       <% if @user == current_user %>
-        <div class="card">
-          <div class="card-header">
-            <p class="card-header-title">
-              Friend Requests
-            </p>
-          </div>
-          <div class="card-content">
-            <div class="content">
-              <% if @user.received_friends.any? %>
-                <h5 class="title is-5">Friend Requests</h5>
-                <div class="field is-grouped">
-                  <% received_not_active_friends(@user).each do |friend| %>
-                    <%= button_to 'Accept', friendships_path(friendships: { user_id: current_user.id, friend_id: friend.id }), method: :post  %></li>
-                    <%= button_to 'Reject', friendship_path(friendships: {  user_id: current_user.id, friend_id: friend.id }), method: :delete %>
-                  <% end %>           
-                </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
+          <button class="button accordion">Friend Requests</button>
+          <%= render 'shared/people_card', post: @friendships %>
       <% end %>
     </div>
   </div>

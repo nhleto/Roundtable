@@ -288,3 +288,14 @@ button#like-comment:focus{
 .title .is-4 {
   text-shadow: 1px 1px 1px rgba(10, 10, 10, 0.2);
 }
+
+.bio-form, .bio-form.show{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  box-shadow:none;
+}
+
+#user_bio{
+  resize: none;
+}

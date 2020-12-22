@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, uniqueness: true
+  validates :bio, length: { maximum: 100, message: 'Bio limit 100 characters' }
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy

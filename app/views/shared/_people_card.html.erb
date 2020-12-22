@@ -1,7 +1,11 @@
-<div class="card like panel2 panel6 panel7 people-card" style='position:relative'>
+<div class="card like panel panel2 panel6 panel7 people-card" style='position:relative'>
   <div class="card-header">
     <p class="card-header-title" style='display:flex; justify-content:space-between'>
-      <%= post == @group.memberships ? 'Members' : 'Likes' %>
+      <%
+=begin%>
+ <%= post == @group.memberships ? 'Members' : 'Likes' %> 
+<%
+=end%>
       <button class="delete accordion accordion2 accordion6 accordion7"></button>
     </p>
   </div>
@@ -27,7 +31,7 @@
                     method: :post, class: 'button is-primary is-small is-light is-outlined' %>
               </span>
             <% end %>
-            <% if current_user == @group.owner && !like.user.memberships.find_by(group_id: @group.id).admin %>
+            <% if !@group.nil? && current_user == @group.owner && !like.user.memberships.find_by(group_id: @group.id).admin %>
               <%= button_to 'Make Admin', make_admin_group_membership_path(@group.id, like.user.id), method: :patch,
                   class: 'button is-small' %>
             <% end %>

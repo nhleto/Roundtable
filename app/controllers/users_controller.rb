@@ -12,6 +12,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @friendships = Friendship.all.where(friend_id: @user.id).map(&:user) - @user.active_friends
+    @friendships = @friendships.map(&:friendships).flatten
   end
 
   # GET /users/new
@@ -46,6 +48,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :ok, location: @user }
         sign_in(:user, current_user, bypass: true)
       else
+        flash[:alert] = @user.errors.first[1].to_s
         format.html { render :edit, alert: @user.errors.first[1] }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -71,6 +74,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name, :username, :password, :email, :date_of_birth, :avatar)
+    params.require(:user).permit(:name, :username, :password, :email, :date_of_birth, :avatar, :bio)
   end
 end

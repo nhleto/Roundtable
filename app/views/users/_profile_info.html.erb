@@ -2,19 +2,26 @@
   <span style='display:flex;justify-content:center;align-items:center'>
     <%= image_tag user_avatar(@user, 100), style: 'border-radius:50%' %>
   </span>
-  <span class='center mt-3 mb-3 accordion like-underline'>
-    <b>Add bio</b>
-  </span>
 
-  <div class="panel" style='position:relative;display:flex;justify-content:center'>
-    <%= simple_form_for(@user) do |f| %>
-      <%= f.input :bio,
-          wrapper: false,
-          label: false %>
+  <% if @user == current_user && @user.bio.nil? || @user == current_user && @user.bio == '' %>
+    <span class='center mt-3 mb-3 accordion like-underline'>
+      <b>Add bio</b>
+    </span>
 
-      <%= f.submit 'Save' %> 
-    <% end %>
-  </div>
+    <div class="panel bio-form">
+      <%= simple_form_for(@user) do |f| %>
+        <%= f.input :bio,
+            wrapper: false,
+            input_html: { style: 'width:200px;height:100px;border-radius:10px;text-align:center;overflow-y:hidden' },
+            placeholder: 'Describe yourself',
+            label: false %>
+        <div>
+          <%= f.submit 'Save', class:'button is-dark is-small' %>
+          <% end %>
+          <div class="button is-small is-dark accordion">Cancel</div>
+        </div>
+    </div>
+  <% end %>
 
   <div class="field">
     <div class="control">
@@ -36,6 +43,6 @@
 
   <span>
     <%= link_to 'Edit', edit_user_path(@user) %> |
-    <%= link_to 'Back', users_path %>
+    <%= link_to 'Back', posts_path %>
   </span>
 </div>
