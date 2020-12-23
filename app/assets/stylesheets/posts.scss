@@ -169,11 +169,6 @@ button#like-comment:focus{
   display: none;
 }
 
-@media (max-width: 1200px){
-  .short-likes { display: block; }
-  .full-likes { display: none; }
-}
-
 .full-likes{
   cursor: pointer;
 }

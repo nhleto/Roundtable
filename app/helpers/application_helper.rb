@@ -8,9 +8,15 @@ module ApplicationHelper
     end
   end
 
-  # def user_fields_empty(user)
-  #   if user.date_of_birth.nil?
-  # end
+  def people_card_header(post)
+    if @group && post == @group.memberships
+      'Members'
+    elsif @friendships && post == @friendships
+      'Friend Requests'
+    else
+      'Likes'
+    end
+  end
 
   def has_descendants(c)
     Comment.find(c)
