@@ -174,7 +174,7 @@ button.is-google:hover, button.is-github:hover, .sign-in-button:hover{
     position: absolute;
     left: -10px;
     top: -2px;
-    color: #3298dc;
+    color: #000000;
     $path: polygon(0 25%, 100% 65%, 100% 100%, 0% 100%);
     -webkit-clip-path: $path;
     clip-path: $path;
@@ -183,7 +183,7 @@ button.is-google:hover, button.is-github:hover, .sign-in-button:hover{
   &:before {
     content: $random-text;
     position: absolute;
-    color: #3298dc;
+    color: #000000;
     $path: polygon(0 0, 110% 0, 100% 65%, 0 25%);
     -webkit-clip-path: $path;
     clip-path: $path;
