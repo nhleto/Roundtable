@@ -2,7 +2,6 @@ module ApplicationHelper
   def user_avatar(user, size)
     if user.avatar.attached?
       user.avatar.variant(resize: "#{size}x#{size}!")
-      # gravatar_image_url(user.email, size: size)
     else
       gravatar_image_url(user.email, size: size)
     end
@@ -16,6 +15,14 @@ module ApplicationHelper
     else
       'Likes'
     end
+  end
+
+  def nav_badge(user)
+    received_not_active_friends(user).size + 1 if user.date_of_birth.nil?
+  end
+
+  def received_not_active_friends(user)
+    user.received_friends - user.active_friends
   end
 
   def has_descendants(c)
