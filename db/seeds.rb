@@ -14,18 +14,18 @@ Friendship.destroy_all
 Membership.destroy_all
 Group.destroy_all
 
-User.create!(name: 'henry', username: 'username', password: 'password', email: 'me@me.com', date_of_birth: '2020-01-01')
+User.create!(name: 'henry', password: 'password', email: 'me@me.com', date_of_birth: '2020-01-01')
 
-User.create!(name: 'sarah', username: 'usernamee', password: 'password', email: 'mee@me.com', date_of_birth: '2020-01-01')
+User.create!(name: 'sarah', password: 'password', email: 'mee@me.com', date_of_birth: '2020-01-01')
 
 # username: Faker::Movies::LordOfTheRings.unique.character
 
 10.times do |i|
-  User.create!(name: Faker::FunnyName.unique.name, password: 'password', username: "username#{i}",
+  User.create!(name: Faker::FunnyName.unique.name, password: 'password',
                email: Faker::Internet.unique.email, date_of_birth: Faker::Date.between(from: '1997-01-01', to: '1999-01-01'))
 end
 
-# @users = User.all
+@users = User.all
 
 # @users.each_with_index do |user, i|
 #   user.avatar.attach(io: File.open("app/assets/images/FakeBook_Images/#{i + 1}.jpg"), filename: 'avatarpic.jpg')
@@ -33,7 +33,7 @@ end
 # end
 
 5.times do
-  Group.create!(name: Faker::Game.unique.genre, description: Faker::Lorem.unique.paragraphs)
+  Group.create!(name: Faker::Game.unique.genre, description: Faker::Lorem.unique.paragraphs, owner_id: @users.ids.sample)
 end
 
 20.times do

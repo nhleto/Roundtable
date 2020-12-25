@@ -3,7 +3,12 @@
   <div class="columns">
     <% if @users.any? %>
       <% @users.each do |user| %>
+        <% if false %>
         <div class="column is-one-third">
+          <%= render 'suggestions_card', user: user %>
+        </div>
+        <% end %>
+        <div class="column is-half">
           <%= render 'suggestions_card', user: user %>
         </div>
       <% end %>

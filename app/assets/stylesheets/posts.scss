@@ -138,21 +138,6 @@ button#like-comment:focus{
   transition: .4s ease-in-out;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) { 
-  .container {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    background-color: rgba(0,0,0,0);
-    transition: background-color .8s;
-  }
-  .container:hover {
-    background-color: rgba(0,0,0,0.18);  
-  }
-  .container::-webkit-scrollbar-thumb {
-    background-color: inherit;
-  }
-}
-
 .panel::-webkit-scrollbar-button{
   border-radius: 50%;
 }
@@ -244,8 +229,8 @@ button#like-comment:focus{
 .suggestion-card{
   border: 1px solid rgba(219, 219, 219, 0.5);
   border-radius: 10px;
-  height: 200px;
-  width: 150px;
+  // height: 200px;
+  // width: 150px;
   word-wrap: break-word;
   margin:auto;
   box-shadow: -1px 1em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);

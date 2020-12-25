@@ -18,7 +18,11 @@ module ApplicationHelper
   end
 
   def nav_badge(user)
-    received_not_active_friends(user).size + 1 if user.date_of_birth.nil?
+    if user.date_of_birth.nil?
+      received_not_active_friends(user).size + 1
+    else
+      received_not_active_friends(user).size
+    end
   end
 
   def received_not_active_friends(user)
