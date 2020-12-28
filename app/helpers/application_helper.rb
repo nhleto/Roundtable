@@ -87,4 +87,8 @@ module ApplicationHelper
   def find_membership(user, group)
     user.memberships.find_by(group_id: group.id).admin == true if group.id && !user.memberships.find_by(group_id: group.id).nil?
   end
+
+  def break_group_name(name)
+    name.chars[0..10].join + '...'
+  end
 end

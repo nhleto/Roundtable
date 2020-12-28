@@ -2,15 +2,18 @@
   <h4 class="title is-4" style='text-shadow: 1px 1px 1px rgba(10, 10, 10, 0.2);'>People you may know</h4>
   <div class="wrapper">
     <div class="columns">
-    
       <% if @users.any? %>
         <% @users.each do |user| %>
-          <div class="column is-one-third">
+          <div class="column is-half-until-fullhd is-one-third-fullhd people">
             <%= render 'suggestions_card', user: user %>
           </div>
-          <div class="column is-half">
+          <%
+=begin%>
+ <div class="column is-one-third-fullhd people">
             <%= render 'suggestions_card', user: user %>
-          </div>
+          </div> 
+<%
+=end%>
         <% end %>
       <% end %>
     </div>
@@ -21,9 +24,12 @@
   <h4 class="title is-4" style='text-shadow: 1px 1px 1px rgba(10, 10, 10, 0.2);'>Groups you might be interested in</h4>
   <div class="columns">
     <% @suggested_groups.each do |group| %>
-      <div class="column is-half has-text-centered">
+      <div class="column is-half group has-text-centered group">
         <%= render 'group_card', group: group %>
       </div>
+      <div class="column group is-full has-text-centered">
+        <%= render 'group_card', group: group %>
+      </div>      
     <% end %>
   </div>
 </div>

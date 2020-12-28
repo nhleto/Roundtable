@@ -1,7 +1,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <div class="navbar-item">
-        <h2 class="title is-2 cut-text" style='color:gray;'>Roundtable<%= ' > ' + @group.name if @group && @group.id %></h2>
+        <h2 class="title is-2 cut-text" style='color:gray;'>Roundtable<%= ' > ' + break_group_name(@group.name) if @group && @group.id %></h2>
       </div>
       <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" style='color:black'>
         <span aria-hidden="true"></span>

@@ -129,20 +129,18 @@ a:hover, a:active, u:hover, h2:hover{
   box-shadow: none;
 }
 
-@media only screen and (max-width: 1600px){
-  .suggestion-column{ display: none; }
+@media only screen and (max-width: 1200px){
+  .suggestion-column { display: none; }
 }
 
-@media only screen and (min-width: 2650px ){
-  .wrapper .column.is-one-third { display: none; }
-  .wrapper .column.is-half { display: block; }
-}
+// @media only screen and (min-width: 3000px){
+//   .column.is-half.group{ display:block; };
+//   .column.is-full.group{ display:none; };
 
-@media only screen and (max-width: 5000px ){
-  .wrapper .column.is-one-third { display: block; }
-  .wrapper .column.is-half { display: none; }
-}
- 
+//   .is-one-third.people {display: block;};
+//   .is-half.people {display: none;};
+// }
+
 .sign-in-button{
   background-color: #34ab99;
   font-weight: bold;
