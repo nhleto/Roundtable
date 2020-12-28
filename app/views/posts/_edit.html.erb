@@ -1,0 +1,12 @@
+<div class="panel2 mb-5" style='position:relative'>
+  <%= simple_form_for(@post) do |f| %>
+
+      <%= f.input :body,
+      input_html: { class: 'input is-small', style: 'resize:none;height:auto' },
+      label_html: { class: 'label', style: 'float:left'},
+      wrapper: false %>
+
+      <%= f.submit 'Update Post',
+      class: 'button is-primary is-light' %>
+  <% end %>
+</div>

@@ -22,7 +22,7 @@
     </div>
     <div class="column is-one-quarter">
       <div class="box">
-        <h4 class="title is-4 has-text-centered"><%= @user.friends.size %><%= pluralize(@user.active_friends, 'Friend') %></h4>
+        <h4 class="title is-4 has-text-centered"><%= @user.active_friends.size %><%= pluralize(@user.active_friends, 'Friend') %></h4>
       </div>
     </div>
   </div>
@@ -43,15 +43,14 @@
       <% if @user != current_user && !@user.pending_friends.include?(current_user) && !current_user.friends.include?(@user) %>
         <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: @user.id }) %>
       <% end %>
-      <% if false %>
-        <%= render 'friends_table' %>
-      <% end %>
       <%= render 'profile_info' %>
     </div>
     <div class="column is-one-quarter">
+      <button class="button is-info is-light accordion" style='width:100%'>Friends</button>
+      <%= render 'shared/people_card', post: @friends %>
       <% if @user == current_user %>
-          <button class="button accordion">Friend Requests</button>
-          <%= render 'shared/people_card', post: @friendships %>
+        <button class="button is-warning is-light accordion" style='width:100%'>Friend Requests</button>
+        <%= render 'shared/people_card', post: @friendships %>
       <% end %>
     </div>
   </div>

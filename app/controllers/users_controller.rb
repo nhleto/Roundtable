@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @friendships = Friendship.all.where(friend_id: @user.id).map(&:user) - @user.active_friends
     @friendships = @friendships.map(&:friendships).flatten
+    @friends = @user.active_friends.map(&:friendships).flatten
   end
 
   # GET /users/new

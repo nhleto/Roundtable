@@ -12,6 +12,8 @@ module ApplicationHelper
       'Members'
     elsif @friendships && post == @friendships
       'Friend Requests'
+    elsif @friends && post == @friends
+      'Friends'
     else
       'Likes'
     end

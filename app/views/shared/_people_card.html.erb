@@ -17,9 +17,11 @@
           </div>
           <span style='display:flex'>
             <% if check_if_friends?(like) %>
-              <span>        
-                <%= button_to 'Already Friends', friendships_path(friendships: { user_id: current_user.id, friend_id: like.user.id }),
-                    method: :post, class: 'button is-danger is-small is-inverted', disabled: 'true' %>
+              <span>
+                <% unless @friends && post == @friends %>
+                  <%= button_to 'Already Friends', friendships_path(friendships: { user_id: current_user.id, friend_id: like.user.id }),
+                      method: :post, class: 'button is-danger is-small is-inverted', disabled: 'true' %>
+                <% end %>
               </span>
             <% elsif like.user != current_user && !like.user.friendships.include?(current_user) %>
               <span>

@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   has_many_attached :images
   validates :body, presence: { message: 'Body cannot be blank' }
-  validates_length_of :images, maximum: 3, message: 'No more than three images per post'
+  validates_length_of :images, maximum: 4, message: 'No more than four images per post'
 
   belongs_to :user
   belongs_to :group, optional: true

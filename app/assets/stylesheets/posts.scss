@@ -59,7 +59,7 @@ button#delete{
 }
 
 /* Style the element that is used to open and close the accordion class */
-p.accordion, button.accordion, div.accordion1, .accordion2, .accordion6 {
+.accordion, .accordion1, .accordion2, .accordion6 {
   cursor: pointer;
   transition: 0.4s;
 }
@@ -279,4 +279,9 @@ button#like-comment:focus{
 
 #user_bio{
   resize: none;
+}
+
+#group-suggestion-image{
+  box-shadow: 3px 1em 1em -0.125em rgba(10, 10, 10, 0.2), 0 0px 0 1px rgba(10, 10, 10, 0.2);
+  border-radius:10px 10px 0 0;
 }
