@@ -1,16 +1,19 @@
 <div class="box has-text-centered" style='overflow:hidden'>
   <h4 class="title is-4" style='text-shadow: 1px 1px 1px rgba(10, 10, 10, 0.2);'>People you may know</h4>
-  <div class="columns">
-    <% if @users.any? %>
-      <% @users.each do |user| %>
-        <div class="column is-one-third">
-          <%= render 'suggestions_card', user: user %>
-        </div>
-        <div class="column is-half">
-          <%= render 'suggestions_card', user: user %>
-        </div>
+  <div class="wrapper">
+    <div class="columns">
+    
+      <% if @users.any? %>
+        <% @users.each do |user| %>
+          <div class="column is-one-third">
+            <%= render 'suggestions_card', user: user %>
+          </div>
+          <div class="column is-half">
+            <%= render 'suggestions_card', user: user %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
 
