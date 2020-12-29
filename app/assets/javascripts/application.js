@@ -37,7 +37,7 @@ window.onload = function(){
 };
 
 
-function showLikes(elem) {
+window.onload = function showLikes(elem) {
   const show = elem.nextElementSibling
   const parent = document.querySelector(".fader")
   const nodes = parent.children;
@@ -48,11 +48,10 @@ function showLikes(elem) {
   } else {
     show.style.display = 'block'
   }
-  // parent.classList.toggle("faded")
   background.classList.toggle('opaque')
 }
 
-function hideLikes(elem) {
+window.onload = function hideLikes(elem) {
   const hide = elem.parentNode.parentNode.parentNode
   if (hide.style.display === 'block') {
     hide.style.display = 'none'

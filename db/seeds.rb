@@ -6,13 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Like.destroy_all
 User.destroy_all
 Post.destroy_all
 Comment.destroy_all
 Friendship.destroy_all
 Membership.destroy_all
 Group.destroy_all
+Like.destroy_all
 
 User.create!(name: 'henry', password: 'password', email: 'me@me.com', date_of_birth: '2020-01-01')
 
@@ -20,7 +20,7 @@ User.create!(name: 'sarah', password: 'password', email: 'mee@me.com', date_of_b
 
 # username: Faker::Movies::LordOfTheRings.unique.character
 
-10.times do |i|
+10.times do
   User.create!(name: Faker::FunnyName.unique.name, password: 'password',
                email: Faker::Internet.unique.email, date_of_birth: Faker::Date.between(from: '1997-01-01', to: '1999-01-01'))
 end

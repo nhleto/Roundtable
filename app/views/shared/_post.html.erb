@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
     <p class="card-header-title" style='display:flex; justify-content:space-between'>
-      Create a Post <%= "in #{@group.name}" if @group.name %>
+      Create a Post <%= "in #{@group.name}" if @group && @group.name %>
       <div style='display:flex;max-width:200px'>
         <%= simple_form_for(@post) do |f| %>
           <%= f.file_field :images, multiple: true,

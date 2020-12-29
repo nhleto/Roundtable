@@ -15,6 +15,8 @@ class UsersController < ApplicationController
     @friendships = Friendship.all.where(friend_id: @user.id).map(&:user) - @user.active_friends
     @friendships = @friendships.map(&:friendships).flatten
     @friends = @user.active_friends.map(&:friendships).flatten
+    @posts = Post.where(wall_id: @user.id)
+    @post = Post.new
   end
 
   # GET /users/new
@@ -75,6 +77,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name, :username, :password, :email, :date_of_birth, :avatar, :bio)
+    params.require(:user).permit(:name, :username, :password, :email, :date_of_birth, :avatar, :bio, :wall_id)
   end
 end
