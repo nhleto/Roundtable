@@ -58,6 +58,8 @@ gem 'omniauth-github', '~> 1.4'
 
 gem 'omniauth-google-oauth2', '~> 0.8.1'
 
+gem 'aws-sdk-s3', '~> 1.87'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
