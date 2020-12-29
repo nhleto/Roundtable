@@ -12,11 +12,9 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @friendships = Friendship.all.where(friend_id: @user.id).map(&:user) - @user.active_friends
-    @friendships = @friendships.map(&:friendships).flatten
+    @friend = Friendship.all.where(friend_id: @user.id).map(&:user) - @user.active_friends
+    @friendships = @friend.map(&:friendships).flatten
     @friends = @user.active_friends.map(&:friendships).flatten
-    @posts = Post.where(wall_id: @user.id)
-    @post = Post.new
   end
 
   # GET /users/new
@@ -77,6 +75,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name, :username, :password, :email, :date_of_birth, :avatar, :bio, :wall_id)
+    params.require(:user).permit(:name, :username, :password, :email, :date_of_birth, :avatar, :bio)
   end
 end

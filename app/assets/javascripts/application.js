@@ -16,7 +16,7 @@
 //= require_tree .
 //= require bulma-extensions
 
-window.onload = function(){
+window.onload = function counter(){
   const textarea = document.querySelector("textarea")
   if(textarea){
     textarea.addEventListener("input", event => {
@@ -37,7 +37,7 @@ window.onload = function(){
 };
 
 
-window.onload = function showLikes(elem) {
+function showLikes(elem) {
   const show = elem.nextElementSibling
   const parent = document.querySelector(".fader")
   const nodes = parent.children;
@@ -51,7 +51,7 @@ window.onload = function showLikes(elem) {
   background.classList.toggle('opaque')
 }
 
-window.onload = function hideLikes(elem) {
+function hideLikes(elem) {
   const hide = elem.parentNode.parentNode.parentNode
   if (hide.style.display === 'block') {
     hide.style.display = 'none'
@@ -69,28 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-
-
-// function enlarge() {
-//   let post = document.querySelector("#input-style");
-//   let background = document.querySelector(".fader");
-//   let cardHeader = document.querySelector("#delete");
-//   let button = document.querySelector("#post-submit")
-  
-//   if (cardHeader.style.display === 'block' && button.style.display === 'block') {
-//     cardHeader.style.display = 'none';
-//     button.style.display = 'none';
-//   } else {
-//     cardHeader.style.display = 'block';
-//     button.style.display = 'block';
-//   }
-//   post.classList.toggle("bigger")
-//   background.classList.toggle("post-feed")
-// }
-
-// function postEnlarge(element) {
-//   element.classList.toggle("big-post")
-// }
 
 function hideComments(elem) {
   const comment = elem.getElementsByClassName("comments")[0];

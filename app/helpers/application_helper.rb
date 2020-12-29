@@ -10,9 +10,7 @@ module ApplicationHelper
   def people_card_header(post)
     if @group && post == @group.memberships
       'Members'
-    elsif @friendships && post == @friendships
-      'Friend Requests'
-    elsif @friends && post == @friends
+    elsif @friends && post == @friends.uniq! { |friend| friend[:user_id] }
       'Friends'
     else
       'Likes'

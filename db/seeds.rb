@@ -20,22 +20,36 @@ User.create!(name: 'sarah', password: 'password', email: 'mee@me.com', date_of_b
 
 # username: Faker::Movies::LordOfTheRings.unique.character
 
-10.times do
+15.times do
   User.create!(name: Faker::FunnyName.unique.name, password: 'password',
                email: Faker::Internet.unique.email, date_of_birth: Faker::Date.between(from: '1997-01-01', to: '1999-01-01'))
 end
 
 @users = User.all
 
-# @users.each_with_index do |user, i|
-#   user.avatar.attach(io: File.open("app/assets/images/FakeBook_Images/#{i + 1}.jpg"), filename: 'avatarpic.jpg')
-#   user.save
-# end
+@users.each_with_index do |user, i|
+  user.avatar.attach(io: File.open("app/assets/images/FakeBook_Images/#{i + 1}.jpg"), filename: 'avatarpic.jpg')
+  user.save
+end
 
 5.times do
   Group.create!(name: Faker::Game.unique.genre, description: Faker::Lorem.unique.paragraphs, owner_id: @users.ids.sample)
 end
 
 20.times do
+  Membership.create(group_id: Group.all.ids.sample, user_id: @users.ids.sample)
+end
+
+# 20.times do
+#   Friendship.create(friend_id: @users.ids.sample, user_id: @users.ids.sample)
+# end
+
+# likeable_option = ['Post', 'Comment']
+
+20.times do
   Post.create!(body: Faker::Lorem.unique.paragraphs, user_id: User.ids.sample)
+end
+
+30.times do
+  Like.create(likeable_type: 'Post', likeable_id: Post.all.ids.sample, user_id: @users.ids.sample)
 end
