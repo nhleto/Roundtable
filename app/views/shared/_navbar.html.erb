@@ -3,7 +3,7 @@
       <div class="navbar-item">
         <h2 class="title is-2 cut-text" style='color:gray;'>Roundtable<%= ' > ' + break_group_name(@group.name) if @group && @group.id %></h2>
       </div>
-      <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" style='color:black'>
+      <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -38,7 +38,7 @@
       <div class="navbar-end">
         <% if user_signed_in? %>
         <div class="navbar-item has-dropdown is-hoverable">
-          <div class="navbar-link">
+          <div class="navbar-link" style='display:flex'>
             <%= image_tag user_avatar(current_user, 25), style:'border-radius:50%' %>
             <h4 class="title is-4 ml-4 mb-1" style='color:#4a4e69'>
               <%= link_to current_user.name, user_path(current_user), turbolinks: false %>     

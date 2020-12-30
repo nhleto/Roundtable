@@ -1,14 +1,5 @@
 <div class="section">
-  <% if @user.date_of_birth.nil? %>
-    <div class="container mt-0 mb-3" id='odin-test'>
-      <div class="notification is-danger is-light">
-        <p class="notice">
-          Please provide a date of birth for your profile
-          <button class="delete" id='flash'></button>
-        </p>
-      </div>
-    </div>
-  <% end %>
+  <% user_flash(@user) %>
   <div class="columns is-centered">
     <div class="column is-one-quarter">
       <div class="box">

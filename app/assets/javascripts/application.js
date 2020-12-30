@@ -16,7 +16,7 @@
 //= require_tree .
 //= require bulma-extensions
 
-window.onload = function counter(){
+document.addEventListener("turbolinks:load", () => {
   const textarea = document.querySelector("textarea")
   if(textarea){
     textarea.addEventListener("input", event => {
@@ -34,33 +34,10 @@ window.onload = function counter(){
       };
     });
   };
-};
+});
 
 
-function showLikes(elem) {
-  const show = elem.nextElementSibling
-  const parent = document.querySelector(".fader")
-  const nodes = parent.children;
-  const background = parent.querySelector('.card')
-
-  if (show.style.display === 'block') {
-    show.style.display = 'none'
-  } else {
-    show.style.display = 'block'
-  }
-  background.classList.toggle('opaque')
-}
-
-function hideLikes(elem) {
-  const hide = elem.parentNode.parentNode.parentNode
-  if (hide.style.display === 'block') {
-    hide.style.display = 'none'
-  } else {
-    hide.style.display = 'block'
-  }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   (document.querySelectorAll('.container .notification .delete') || []).forEach(($delete) => {
     let $notification = $delete.parentNode.parentNode;
 
@@ -70,17 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-function hideComments(elem) {
-  const comment = elem.getElementsByClassName("comments")[0];
-  if (comment.style.display === 'none') {
-    comment.style.display = 'block';
-  } else {
-    comment.style.display = 'none';
-  }
-}
 
-
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("turbolinks:load", function (event) {
   let acc = document.getElementsByClassName("accordion");
   let panel = document.getElementsByClassName('panel');
 
@@ -105,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("turbolinks:load", function (event) {
   let acc2 = document.getElementsByClassName("accordion2");
   let panel2 = document.getElementsByClassName('panel2');
 
@@ -131,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("turbolinks:load", function (event) {
   let acc2 = document.getElementsByClassName("accordion6");
   let panel2 = document.getElementsByClassName('panel6');
 
@@ -156,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("turbolinks:load", function (event) {
   let acc2 = document.getElementsByClassName("accordion7");
   let panel2 = document.getElementsByClassName('panel7');
 
@@ -181,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("turbolinks:load", function (event) {
   let acc = document.getElementsByClassName("accordion4");
   let panel = document.getElementsByClassName('panel4');
 
@@ -207,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("turbolinks:load", function (event) {
   let acc = document.getElementsByClassName("accordion5");
   let panel = document.getElementsByClassName('panel5');
 
@@ -235,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("turbolinks:load", function (event) {
   let acc = document.getElementsByClassName("accordion1");
   let panel = document.getElementsByClassName('panel1');
 
@@ -261,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("turbolinks:load", function (event) {
   let acc = document.getElementsByClassName("accordion3");
   let panel = document.getElementsByClassName('panel3');
 
@@ -286,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
 
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
@@ -295,16 +263,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if ($navbarBurgers.length > 0) {
 
     // Add a click event on each of them
-    $navbarBurgers.forEach(el => {
+    $navbarBurgers.forEach( el => {
       el.addEventListener('click', () => {
 
         // Get the target from the "data-target" attribute
         const target = el.dataset.target;
         const $target = document.getElementById(target);
-
+        console.log($target)
+        console.log(el.classList)
         // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
+        el.classList.toggle('.is-active');
+        $target.classList.toggle('.is-active');
 
       });
     });

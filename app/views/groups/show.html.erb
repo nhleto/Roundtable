@@ -40,23 +40,30 @@
         </div>
         <%= render "/shared/people_card", post: @group.memberships %>
       </div>
-      <%= render "/shared/post" %>
-      <p class='mb-4'></p>
-      <%= render "/shared/feed" %>
+      <div class="columns">
+        <div class="column is-full">
+          <%= render "/shared/post" %>
+          <p class='mb-4'></p>
+          <%= render "/shared/feed" %>      
+        </div>
+        <div class="column is-three-quarters">
+          <div class="box break-word">
+            <h3 class="title is-3 mb-1">Group Description</h3>
+            <p><%= @group.description %></p>
+            <% if find_membership(current_user, @group) %>
+              <button class="button is-primary is-light accordion mt-4 mb-3">Edit Group Info</button>
+              <div class="panel form-outline" style='position:relative'>
+                <%= render "/shared/groups_form" %>
+              </div>
+            <% end %>
+          </div>        
+        </div>
+      </div>
     </div>
   </div>
   <div class="column is-one-third">
     <div class="section">
-      <div class="box break-word">
-        <h3 class="title is-3 mb-1">Group Description</h3>
-        <p><%= @group.description %></p>
-        <% if find_membership(current_user, @group) %>
-          <button class="button is-primary is-light accordion mt-4 mb-3">Edit Group Info</button>
-          <div class="panel form-outline" style='position:relative'>
-            <%= render "/shared/groups_form" %>
-          </div>
-        <% end %>
-      </div>
+
     </div>
   </div>
 </div>

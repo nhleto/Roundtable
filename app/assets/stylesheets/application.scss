@@ -16,7 +16,7 @@
 
  @import 'bulma';
 
- #flash{
+#flash{
   float: right;
 }
 
@@ -26,6 +26,13 @@
   margin-right: auto;
   overflow: hidden;
   width: 50%;
+}
+
+.hide-flash {
+  opacity: 0;
+  transition: 0.5s ease;
+  max-width: 0px;
+  max-height: none;
 }
 
 .navbar{
@@ -117,11 +124,6 @@ a:hover, a:active, u:hover, h2:hover{
   }
 }
 
-.hide-flash {
-  opacity: 0;
-  transition: opacity 0.5s ease;  
-}
-
 .people-card{
   position: relative;
   border: 1px solid rgba(219, 219, 219, 0.5);
@@ -133,14 +135,6 @@ a:hover, a:active, u:hover, h2:hover{
 @media only screen and (max-width: 1200px){
   .suggestion-column { display: none; }
 }
-
-// @media only screen and (min-width: 3000px){
-//   .column.is-half.group{ display:block; };
-//   .column.is-full.group{ display:none; };
-
-//   .is-one-third.people {display: block;};
-//   .is-half.people {display: none;};
-// }
 
 .sign-in-button{
   background-color: #34ab99;

@@ -7,6 +7,16 @@ module ApplicationHelper
     end
   end
 
+  def user_flash(user)
+    if user.date_of_birth.nil? && !user.valid_password?(user.name.split[0].to_s + '12345')
+      flash.now[:alert] = 'Please provide a date of birth for your profile'
+    elsif user.valid_password?(user.name.split[0].to_s + '12345') && !user.date_of_birth.nil?
+      flash.now[:alert] = 'Your password is: your firtname + 12345. Please change it from your profile page'
+    elsif user.valid_password?(user.name.split[0].to_s + '12345') && user.date_of_birth.nil?
+      flash.now[:alert] = 'Please provide a date of birth and new password'
+    end
+  end
+
   def people_card_header(post)
     if @group && post == @group.memberships
       'Members'
@@ -18,8 +28,12 @@ module ApplicationHelper
   end
 
   def nav_badge(user)
-    if user.date_of_birth.nil?
+    if user.date_of_birth.nil? && !user.valid_password?(user.name.split[0].to_s + '12345')
       received_not_active_friends(user).size + 1
+    elsif user.valid_password?(user.name.split[0].to_s + '12345') && !user.date_of_birth.nil?
+      received_not_active_friends(user).size + 1
+    elsif user.valid_password?(user.name.split[0].to_s + '12345') && user.date_of_birth.nil?
+      received_not_active_friends(user).size + 2
     else
       received_not_active_friends(user).size
     end
@@ -59,15 +73,9 @@ module ApplicationHelper
 
   def and_others(like)
     string = []
-    if (like.size - 1).positive?
-      string << 'and '
-    end
-    if (like.size - 1).positive?
-      string << like.size - 1
-    end
-    if (like.size - 1).positive?
-      string << other_others(like)
-    end
+    string << 'and ' if (like.size - 1).positive?
+    string << like.size - 1 if (like.size - 1).positive?
+    string << other_others(like) if (like.size - 1).positive?
     string << ' liked this post'
     string.join
   end
@@ -85,7 +93,9 @@ module ApplicationHelper
   end
 
   def find_membership(user, group)
-    user.memberships.find_by(group_id: group.id).admin == true if group.id && !user.memberships.find_by(group_id: group.id).nil?
+    if group.id && !user.memberships.find_by(group_id: group.id).nil?
+      user.memberships.find_by(group_id: group.id).admin == true
+    end
   end
 
   def break_group_name(name)
