@@ -11,7 +11,7 @@
         <h4 class="title is-4 has-text-centered">Profile</h4>
       </div>
     </div>
-    <div class="column is-one-quarter">
+    <div class="column is-one-third-tablet is-one-third-mobile is-one-third-desktop is-one-quarter-fullhd">
       <div class="box" style='display:flex;justify-content:space-around;'>
         <h4 class="title is-4 has-text-centered mb-0"><%= @user.active_friends.size %><%= pluralize(@user.active_friends, 'Friend') %></h4>
         <% if @user != current_user && !@user.pending_friends.include?(current_user) && !current_user.friends.include?(@user) %>
@@ -40,12 +40,12 @@
     <div class="column is-one-quarter">
       <%= render 'profile_info' %>
     </div>
-    <div class="column is-one-quarter">
+    <div class="column is-one-third-tablet is-one-third-mobile is-one-third-desktop is-one-quarter-fullhd">
       <button class="button is-info is-light accordion" style='width:100%'>Friends</button>
-      <%= render 'shared/people_card', post: @friends.uniq! { |friend| friend[:user_id] } %>
+      <%= render 'shared/people_card', post: @friends %>
       <% if @user == current_user %>
         <button class="button is-warning is-light accordion" style='width:100%'>Friend Requests</button>
-        <%= render 'friend_request_card', post: @friendships.uniq! { |friend| friend[:user_id] } %>
+        <%= render 'friend_request_card', post: @friendships %>
       <% end %>
     </div>
   </div>
