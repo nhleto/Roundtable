@@ -20,7 +20,7 @@
       </small>
     </p>
     <% post.images.each do |image| %>
-      <%= image_tag image.variant(resize: '250x250') %>
+      <%= image_tag(image, size: '250x250') %>
     <% end %>
     <p class='post-border'><%= post.body %></p>
     <% if post.likes.any? || post.comments.any? %>
