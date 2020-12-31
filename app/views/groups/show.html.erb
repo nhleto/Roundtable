@@ -47,7 +47,7 @@
           <%= render "/shared/feed" %>      
         </div>
         <div class="column is-three-quarters">
-          <div class="box break-word">
+          <div class="box break-word" style='position:absolute;margin-right:20px'>
             <h3 class="title is-3 mb-1">Group Description</h3>
             <p><%= @group.description %></p>
             <% if find_membership(current_user, @group) %>
