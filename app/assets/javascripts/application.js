@@ -260,6 +260,7 @@ document.addEventListener('turbolinks:load', () => {
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
   // Check if there are any navbar burgers
+  console.log($navbarBurgers)
   if ($navbarBurgers.length > 0) {
 
     // Add a click event on each of them
