@@ -1,5 +1,7 @@
 <div class="section">
-  <% user_flash(@user) %>
+  <% if @user == current_user %>
+    <% user_flash(@user) %>
+  <% end %>
   <div class="columns is-centered">
     <div class="column is-one-quarter">
       <div class="box">
