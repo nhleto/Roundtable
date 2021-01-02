@@ -5,41 +5,41 @@
   </div>
   <div class="column is-one-half">
     <div class="section">
-      <div style='height:100%;min-width:100%'>
-        <%= image_tag(@group.banner, class: 'group-photo-size') %>
-      </div>
-      <div class="box" style='border-radius: 0 0 10px 10px;'>
-        <div class='group-name-button'>
-          <h3 class="title is-3 mb-0"><%= @group.name %></h3>
-          <% if !current_user.groups.include?(@group) %>
-            <%= button_to  "Join Group", group_memberships_path(@group, current_user), 
-                    class: 'button is-primary is-light' %>
-          <% elsif current_user == @group.owner %>
-            <div style='position:relative'>
-              <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
-              <div class='panel' style='position:absolute;right:20px;'>
-                <%= button_to  "Delete Group", group_path(@group), 
-                        method: :delete, class: 'button is-danger is-light' %>
-              </div>
-            </div>
-          <% else %>
-            <div style='position:relative'>
-              <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
-              <div class='panel' style='position:absolute;right:20px;'>
-                <%= button_to  "Leave Group", group_membership_path(@group, current_user), 
-                        method: :delete, class: 'button is-danger is-light' %>
-              </div>
-            </div>
-          <% end %>
+        <div class='group-photo-wrapper'>
+          <%= image_tag(@group.banner, class: 'group-photo-size') %>
         </div>
-        <div class='space-between'>
-          <p><%= @group.users.count %> <%= member_or_members(@group) %></p>
-          <% if @group.users%>
-            <p class='accordion2 like-underline'>View Members</p>
-          <% end %>
+        <div class="box" style='border-radius: 0 0 10px 10px;'>
+          <div class='group-name-button'>
+            <h3 class="title is-3 mb-0"><%= @group.name %></h3>
+            <% if !current_user.groups.include?(@group) %>
+              <%= button_to  "Join Group", group_memberships_path(@group, current_user), 
+                      class: 'button is-primary is-light' %>
+            <% elsif current_user == @group.owner %>
+              <div style='position:relative'>
+                <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
+                <div class='panel' style='position:absolute;right:20px;'>
+                  <%= button_to  "Delete Group", group_path(@group), 
+                          method: :delete, class: 'button is-danger is-light' %>
+                </div>
+              </div>
+            <% else %>
+              <div style='position:relative'>
+                <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
+                <div class='panel' style='position:absolute;right:20px;'>
+                  <%= button_to  "Leave Group", group_membership_path(@group, current_user), 
+                          method: :delete, class: 'button is-danger is-light' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class='space-between'>
+            <p><%= @group.users.count %> <%= member_or_members(@group) %></p>
+            <% if @group.users%>
+              <p class='accordion2 like-underline'>View Members</p>
+            <% end %>
+          </div>
+          <%= render "/shared/people_card", post: @group.memberships %>
         </div>
-        <%= render "/shared/people_card", post: @group.memberships %>
-      </div>
       <div class="columns">
         <div class="column is-full">
           <%= render "/shared/post" %>

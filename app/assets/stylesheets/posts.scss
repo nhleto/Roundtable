@@ -283,7 +283,14 @@ button#like-comment:focus{
   resize: none;
 }
 
+.group-suggestion-wrapper{
+  height: 150px;
+  width: 223px;
+}
+
 #group-suggestion-image{
   box-shadow: 3px 1em 1em -0.125em rgba(10, 10, 10, 0.2), 0 0px 0 1px rgba(10, 10, 10, 0.2);
   border-radius:10px 10px 0 0;
+  width: 100%;
+  height: 100%;
 }
