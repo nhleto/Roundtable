@@ -26,4 +26,6 @@
   <li>Bulma v0.9.0</li>
   <li>PostgreSQL v12.4</li>
   <li>Javascript(ES6)</li>
+  <li>Amazon S3</li>
+  <li>Heroku Deployment</li>
 </ul>
