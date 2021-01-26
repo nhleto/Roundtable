@@ -6,7 +6,7 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <meta name="google-site-verification" content="L9W1QbOPNd4DSRpBTVGidMX2fNpl_buOHy_5Zsq-el4" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
   <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bulma-social@2/css/single/github/github.min.css" %>
@@ -14,8 +14,9 @@
 </head>
 
 <body class='has-navbar-fixed-bottom' id='html'>
-  <%= render '/shared/navbar' %>
-
+  <% if user_signed_in? %>
+    <%= render '/shared/navbar' %>
+  <% end %>
   <%= render '/shared/flash' %>
 
   <%= render '/shared/footer' %>
