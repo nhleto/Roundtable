@@ -1,20 +1,20 @@
-<% if flash[:notice] %>
-  <div class="container" id='odin-test'>
+<% if flash[:notice] && flash[:notice] != '' %>
+  <div class="odin-test">
     <div class="notification is-primary is-light">
       <p class="notice" style='display:flex;justify-content:space-between'>
         <%= notice %>
-        <button class="delete" id='flash'></button>
+        <div class="X" id='flash'><i class="fa fa-times" style='font-size:25px'></i></div>
       </p>
     </div>
   </div>
 <% end %>
 
-<% if flash[:alert] %>
-  <div class="container" id='odin-test'>
+<% if flash[:alert] && flash[:alert] != '' %>
+  <div class="container odin-test">
     <div class="notification is-danger is-light">
       <p class="notice">
         <%= alert %>
-        <button class="delete" id='flash'></button>
+        <div class="X" id='flash'><i class="fa fa-times" style='font-size:25px'></i></div>
       </p>
     </div>
   </div>
