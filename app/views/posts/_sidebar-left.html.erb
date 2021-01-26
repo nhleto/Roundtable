@@ -1,0 +1,9 @@
+<div class="sidebar" id='mySidebar'>  
+  <a href="javascript:void(0)" class="closebtn">&times;</a>
+  <h3 class="title is-3 ml-5 mb-0"><u>All Groups</u></h3>
+  <% @groups.each do |group| %>
+    <%= link_to group_path(group), data: { turbolinks: "false" } do %>
+      <h4 class="title is-4 mb-0" style='color:rgb(248, 239, 213);'><%= group.name %></h4>
+    <% end %>
+  <% end %>
+</div>

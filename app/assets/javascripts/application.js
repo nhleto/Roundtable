@@ -38,11 +38,11 @@ document.addEventListener("turbolinks:load", () => {
 
 
 document.addEventListener('turbolinks:load', () => {
-  (document.querySelectorAll('.container .notification .delete') || []).forEach(($delete) => {
-    let $notification = $delete.parentNode.parentNode;
+  (document.querySelectorAll('.odin-test .notification') || []).forEach(($delete) => {
+    let $notification = $delete.parentNode;
 
     $delete.addEventListener('click', () => {
-      $notification.parentNode.removeChild($notification);
+      $notification.classList.add('hide-flash');
     });
   });
 });
@@ -279,3 +279,20 @@ document.addEventListener('turbolinks:load', () => {
     });
   }
 });
+
+document.addEventListener('turbolinks:load', ()=>{
+  console.log(document.querySelector("#mySidebar")) 
+  document.querySelector('.openbtn').addEventListener('click', ()=>{
+    document.getElementById("mySidebar").classList.add('reveal')
+  })
+  document.querySelector('.closebtn').addEventListener('click', ()=>{
+    document.getElementById("mySidebar").classList.remove('reveal')
+  })
+})
+
+document.addEventListener('turbolinks:load', ()=>{
+  let cutText = document.querySelector('.cut-text')
+  if (cutText.innerHTML.includes('&gt;') && screen.width < 1081){
+    cutText.innerHTML = 'Roundtable'
+  }
+})
