@@ -4,13 +4,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.nil_group
+    @posts = Post.all.includes([images_attachments: :blob]).includes([:likes]).includes(:user).includes([:comments]).nil_group
     @post = Post.new(group_id: params[:group_id])
     @groups = Group.all.order('created_at DESC')
-    @suggested_groups = (Group.all - current_user.groups)
+    @suggested_groups = (Group.includes([group_photo_attachment: :blob]) - current_user.groups)
     @group = Group.new
     @comment = current_user.comments.build
-    @users = (User.all - current_user.friends).reject { |user| user == current_user }
+    @users = (User.includes([:avatar_attachment]).includes([:friends]) - current_user.friends).reject { |user| user == current_user }
     return unless params[:search]
 
     unless params[:search][:name].empty?
@@ -64,7 +64,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.build(post_params)
-    @posts = Post.all.order('created_at DESC')
+    # @posts = Post.all.order('created_at DESC')
     respond_to do |format|
       if @post.save
         format.html { redirect_to request.referrer, notice: 'Post was successfully created.' }
