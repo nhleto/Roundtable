@@ -17,6 +17,16 @@
 @import 'bulma';
 
 @media only screen and (max-width: 1080px){
+  #group-description{
+    position: relative;
+  }
+  #group-columns{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  #profile-header, #user-bio, #group-hidden{
+    display: none;
+  }
   .groups-column, .suggestion-column{
     display: none;
   }
@@ -71,18 +81,18 @@
   .openbtn {
     font-size: 20px;
     cursor: pointer;
-    background-color: #c9ada7;
     color: black;
     padding: 10px 15px;
     border: none;
     width: fit-content;
     font-weight: 600;
+    margin: auto;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
   }
   .openbtn:hover {
     background-color: #444;
-  }
-  #button-container{
-    margin: 0 15px;
   }
 }
 
@@ -91,8 +101,11 @@
     margin: 0px 100px;
   }
   .sidebar, .sidebar a, .sidebar2, .sidebar2 span,
-  .openbtn, .openbtn2, #button-container{
+  .openbtn, .openbtn2, #button-container, .user-pro-bio{
     display: none;
+  }
+  #edit-pro-box{
+    width: 500px;
   }
 }
 

@@ -3,7 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .break-word{
-  word-break: break-all;
+  position:absolute;
+  z-index:30;
+  width: 19em;
 }
 
 .group-photo-size{

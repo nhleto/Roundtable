@@ -2,7 +2,7 @@
   <% if @user == current_user %>
     <% user_flash(@user) %>
   <% end %>
-  <div class="columns is-centered">
+  <div class="columns is-centered" id='profile-header'>
     <div class="column is-one-quarter">
       <div class="box">
         <h4 class="title is-4 has-text-centered">About</h4>
@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="columns is-centered">
-    <div class="column is-one-quarter">
+    <div class="column is-one-quarter" id='user-bio'>
       <div class="box">
         <h5 class="title is-5 mb-2"><%= @user.name.split[0] %>'s bio</h5>
         <p class='mb-4'><%= @user.bio %></p>
