@@ -28,4 +28,5 @@
   <li>Javascript(ES6)</li>
   <li>Amazon S3</li>
   <li>Heroku Deployment</li>
+  <li>Google/Github API</li>
 </ul>
