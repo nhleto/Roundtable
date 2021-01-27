@@ -1,5 +1,5 @@
-<div class="columns">
-  <div class="column is-one-quarter">
+<div class="columns" id='group-columns'>
+  <div class="column is-one-quarter" id='group-hidden'>
     <div class="section">
     </div>
   </div>
@@ -41,13 +41,13 @@
           <%= render "/shared/people_card", post: @group.memberships %>
         </div>
       <div class="columns">
-        <div class="column is-full">
+        <div class="column is-full" id='move-beneath'>
           <%= render "/shared/post" %>
           <p class='mb-4'></p>
           <%= render "/shared/feed" %>
         </div>
         <div class="column is-three-quarters">
-          <div class="box break-word" style='position:absolute;margin-right:20px;z-index:30'>
+          <div class="box break-word" id='group-description'>
             <h3 class="title is-3 mb-1">Group Description</h3>
             <p><%= @group.description %></p>
             <% if find_membership(current_user, @group) %>
@@ -56,14 +56,13 @@
                 <%= render "/shared/groups_form" %>
               </div>
             <% end %>
-          </div>        
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="column is-one-third">
+  <div class="column is-one-third" id='group-hidden'>
     <div class="section">
-
     </div>
   </div>
 </div>

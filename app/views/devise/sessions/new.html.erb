@@ -12,7 +12,6 @@
                     wrapper: false,
                     label_html: { class: 'label' },
                     input_html: { class: 'input' } %>
-          <p>Guest account email: guest@guest.com</p>
         </div>
       </div> 
 
@@ -23,13 +22,13 @@
                     label_html: { class: 'label' },
                     hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                     input_html: { class: 'input' } %>
-          <p>Guest account password: Password</p>
         </div>
       </div>
       
       <%= render 'devise/shared/sign-in-links' %>
 
       <%= f.button :submit, "Sign in", class:'button mb-5 sign-in-button' %>
+      <%= f.button :submit, 'Guest Account', class: 'button mb-5 sign-in-button', id: 'guest-button', style: 'background-color:#346bab;' %>
 
       <span class='center mb-5 text-divider' style='color:rgba(74,74,74,0.3);'>
         <small style='padding:0 20px 0 20px'>OR</small>

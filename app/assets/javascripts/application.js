@@ -296,3 +296,21 @@ document.addEventListener('turbolinks:load', ()=>{
     cutText.innerHTML = 'Roundtable'
   }
 })
+
+document.addEventListener('turbolinks:load', ()=>{
+  let mover = document.querySelector('#group-description')
+  if (screen.width < 1081){
+    mover.style.marginLeft = '10px'
+    document.querySelector('#move-beneath').insertAdjacentElement('beforebegin', mover)
+  }
+})
+
+document.addEventListener('turbolinks:load', ()=>{
+  let guestButton = document.querySelector('#guest-button')
+  let inputForms = document.querySelectorAll('#user_email, #user_password')
+  console.log(inputForms)
+   guestButton.addEventListener('click', (e)=>{
+    inputForms[0].value = 'guest@guest.com'
+    inputForms[1].value = 'Password'
+   })
+})
