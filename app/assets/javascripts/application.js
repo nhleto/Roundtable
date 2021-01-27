@@ -311,6 +311,6 @@ document.addEventListener('turbolinks:load', ()=>{
   console.log(inputForms)
    guestButton.addEventListener('click', (e)=>{
     inputForms[0].value = 'guest@guest.com'
-    inputForms[1].value = 'Password'
+    inputForms[1].value = 'password'
    })
 })
