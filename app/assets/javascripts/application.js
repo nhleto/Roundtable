@@ -70,9 +70,8 @@ document.addEventListener("turbolinks:load", function (event) {
       els[i].classList[fnName](className);
     }
   }
-
 });
-
+  
 document.addEventListener("turbolinks:load", function (event) {
   let acc2 = document.getElementsByClassName("accordion2");
   let panel2 = document.getElementsByClassName('panel2');
@@ -202,7 +201,6 @@ document.addEventListener("turbolinks:load", function (event) {
 });
 
 
-
 document.addEventListener("turbolinks:load", function (event) {
   let acc = document.getElementsByClassName("accordion1");
   let panel = document.getElementsByClassName('panel1');
@@ -308,9 +306,10 @@ document.addEventListener('turbolinks:load', ()=>{
 document.addEventListener('turbolinks:load', ()=>{
   let guestButton = document.querySelector('#guest-button')
   let inputForms = document.querySelectorAll('#user_email, #user_password')
-  console.log(inputForms)
-   guestButton.addEventListener('click', (e)=>{
-    inputForms[0].value = 'guest@guest.com'
-    inputForms[1].value = 'password'
-   })
+  if (guestButton){
+    guestButton.addEventListener('click', (e)=>{
+      inputForms[0].value = 'guest@guest.com'
+      inputForms[1].value = 'password'
+    })    
+  }
 })

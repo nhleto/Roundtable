@@ -1,0 +1,54 @@
+<% if post.user == current_user %>
+  <i class="accordion fa fa-ellipsis-h" style='float:right;font-size:20px;cursor:pointer'></i>
+<% end %>
+<% if current_user == post.user && user_signed_in? %>
+  <div class="panel box" style='right:35px;padding:2px;margin-bottom:0px;z-index:3'>
+    <%= link_to post_path(post), method: :delete do %>
+      <div class='option-icons'><span><span class="icon"><i class='fa fa-trash-o' aria-hidden='true'></i></span>Delete this post</span></div>
+    <% end %>
+    <div class='option-icons accordion2'><span><span class="icon"><i class='fa fa-pencil' aria-hidden='true'></i></span>Edit this post</span></div>
+  </div>
+  <%= render  "shared/edit" %>
+<% end %>
+<p class='mb-3' style='display:flex'>
+  <%= image_tag user_avatar(post.user, 40), style:'border-radius:50%', class: 'mr-1' %>
+  <small style='margin-top:auto; margin-bottom:auto'>
+    Posted by <u><%= link_to post.user.name, user_path(post.user) %></u> <%= distance_of_time_in_words(post.created_at, Time.now) %> ago
+  </small>
+</p>
+<% post.images.each do |image| %>
+  <%= image_tag(image, size: '250x250') %>
+<% end %>
+<p class='post-border'><%= post.body %></p>
+<% if post.likes.any? || post.comments.any? %>
+  <div class="post-border" style='display:flex;justify-content:space-between'>
+    <span class='full-likes accordion2'>
+      <% if post.likes.map(&:user).include?(current_user) %>
+        <%= "👍 " %>
+        <span class='like-underline'>
+          <%= 'You ' + and_others(post.likes) if post.likes.any? %>
+        </span>
+      <% else %>
+        <%= '👍 ' if post.likes.any? %>
+        <span class="like-underline">
+          <%= post.likes.size if post.likes.any? %>
+          <%=" #{people_or_person(post.likes)} liked this post" if post.likes.any? %>
+        </span>
+      <% end %>
+    </span>
+    <span class='full-comments like-underline accordion3'>
+      <%= post.comments.size if post.comments.any? %><%= " #{comment_or_comments(post.comments)}" if post.comments.any? %><%= ' 💬' if post.comments.any? %>
+    </span>
+  </div>
+<%= render '/shared/people_card', post: post.likes %>
+<% end %>
+<% if post.likes.map(&:user).include?(current_user) %>
+  <%= link_to unlike_post_path(post), method: :delete do %>
+    <button class="button post<%= post.id %>" id='like-comment'><i class="fa fa-heart"></i>&#8287Unlike</button><button class="accordion button" id='like-comment'>
+  <% end %>
+<% else %>
+  <%= link_to like_post_path(post), method: :post do %>
+    <button class='button post<%= post.id %>' id='like-comment'><i class="fa fa-heart"></i>&#8287Like</button><button class="accordion button" id='like-comment'>
+  <% end %>
+<% end %>
+<i class="fa fa-comments mr-2"></i>Comment</button>
