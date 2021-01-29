@@ -1,0 +1,12 @@
+var flash = document.querySelector('.navbar')
+
+var template = `<div class="odin-test">
+    <div class="notification is-danger is-light">
+      <p class="notice">
+        <%= @post.errors.first[1] %>
+        <div class="X" id='flash'><i class="fa fa-times" style='font-size:25px'></i></div>
+      </p>
+    </div>
+  </div>` 
+
+flash.insertAdjacentHTML('afterend', template)

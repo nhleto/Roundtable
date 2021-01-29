@@ -1,0 +1,5 @@
+var divider = document.querySelector('.fader')
+var flash = document.querySelector('.navbar')
+
+divider.insertAdjacentHTML('afterbegin', "<%= j render 'shared/message-display', { post: @post, comment: Comment.new }  =%>")
+flash.insertAdjacentHTML('afterend', "<%= j render 'shared/flash' %>")

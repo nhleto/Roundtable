@@ -28,7 +28,7 @@ class PostsController < ApplicationController
     @like = @post.likes.build(user_id: current_user.id)
     respond_to do |format|
       if @like.save
-        format.js {}
+        format.js { render :like }
         format.html { redirect_to request.referrer }
       else
         format.html { redirect_to request.referrer, alert: "Like Failed to save: #{@like.errors.messages}" }
@@ -64,14 +64,15 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.build(post_params)
-    # @posts = Post.all.order('created_at DESC')
+    @comment = Comment.new
     respond_to do |format|
       if @post.save
         format.html { redirect_to request.referrer, notice: 'Post was successfully created.' }
-        format.js {}
+        format.js { flash.now[:notice] = 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { redirect_to request.referrer, alert: "#{@post.errors.first[1]}" }
+        format.js { render :error }
         format.json { render json: @post.errors.first[1], status: :unprocessable_entity }
       end
     end
@@ -90,11 +91,12 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
     respond_to do |format|
-      format.html { redirect_to request.referrer, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-      format.js {}
+      if @post.destroy
+        format.js { flash.now[:notice] = 'Post was successfully destroyed' }
+        format.html { redirect_to request.referrer, notice: 'Post was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
