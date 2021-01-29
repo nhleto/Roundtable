@@ -1,11 +1,5 @@
 <div class="fader">
   <% @posts.each_with_index do |post, i| %>
-  <div class="box <%= post.id %>" id='post-feed' style='position:relative;'>
     <%= render "shared/message-display", post: post %>
-    <div class="panel3 panel" style='box-shadow:none;margin-top:10px;position:relative'>
-      <%= render '/shared/form', post: post %>
-      <%= render '/shared/comment', post: post %>
-    </div>
-  </div>
   <% end %>
 </div>

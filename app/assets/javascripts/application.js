@@ -17,7 +17,7 @@
 //= require bulma-extensions
 
 document.addEventListener("turbolinks:load", () => {
-  const textarea = document.querySelector("textarea")
+  const textarea = document.querySelector("#user_bio")
   if(textarea){
     textarea.addEventListener("input", event => {
       const target = event.currentTarget;
@@ -312,4 +312,78 @@ document.addEventListener('turbolinks:load', ()=>{
       inputForms[1].value = 'password'
     })    
   }
+})
+
+document.addEventListener('ajax:success', ()=>{
+  let acc = document.getElementsByClassName("accordion");
+  let panel = document.getElementsByClassName('panel');
+
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].onclick = function () {
+      let setClasses = !this.classList.contains('active');
+      setClass(acc, 'active', 'remove');
+      setClass(panel, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+      }
+    }
+  }
+
+  let acc2 = document.getElementsByClassName("accordion2");
+  let panel2 = document.getElementsByClassName('panel2');
+
+  for (let i = 0; i < acc2.length; i++) {
+    acc2[i].onclick = function () {
+      let setClasses = !this.classList.contains('active');
+      setClass(acc2, 'active', 'remove');
+      setClass(panel2, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.parentNode.nextElementSibling.classList.toggle("show");
+        console.log(this.parentNode.nextElementSibling)
+      }
+    }
+  }
+
+
+  function setClass(els, className, fnName) {
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList[fnName](className);
+    }
+  }
+})
+
+
+
+document.addEventListener('turbolinks:load', ()=>{
+  let submitter = document.querySelector('#submit-button')
+  let input = document.querySelector('#input-style')
+  submitter.addEventListener('click', ()=>{
+    setTimeout(() => {
+    input.value = ''
+    }, 50);
+  })
+})
+
+document.addEventListener('ajax:success', ()=>{
+  (document.querySelectorAll('.odin-test .notification') || []).forEach(($delete) => {
+    let $notification = $delete.parentNode;
+
+    $delete.addEventListener('click', () => {
+      $notification.classList.add('hide-flash');
+    });
+  });
+})
+
+document.addEventListener('ajax:success', ()=>{
+  let allFlash = document.querySelectorAll('.odin-test')
+  window.elements = allFlash
+  allFlash.forEach(element => {
+    if (allFlash.length > 1){
+      allFlash[1].remove()
+    }
+  });
 })
