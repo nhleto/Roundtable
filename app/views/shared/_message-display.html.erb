@@ -1,4 +1,4 @@
-<div class="box <%= post.id %>" id='post-feed' style='position:relative;'>
+<div class="box box-<%= post.id %>" id="post-feed" style='position:relative;'>
   <% if post.user == current_user %>
     <i class="accordion fa fa-ellipsis-h" style='float:right;font-size:20px;cursor:pointer'></i>
   <% end %>
@@ -20,10 +20,10 @@
   <% post.images.each do |image| %>
     <%= image_tag(image, size: '250x250') %>
   <% end %>
-  <p class='post-border'><%= post.body %></p>
+  <p class='post-border' id="like-<%= post.id %>"><%= post.body %></p>
   <% if post.likes.any? || post.comments.any? %>
     <div class="post-border" style='display:flex;justify-content:space-between'>
-      <span class='full-likes accordion2'>
+      <span class="full-likes accordion2">
         <% if post.likes.map(&:user).include?(current_user) %>
           <%= "👍 " %>
           <span class='like-underline'>
@@ -48,7 +48,7 @@
       <button class="button post<%= post.id %>" id='like-comment'><i class="fa fa-heart"></i>&#8287Unlike</button><button class="accordion button" id='like-comment'>
     <% end %>
   <% else %>
-    <%= link_to like_post_path(post), method: :post do %>
+    <%= link_to like_post_path(post), remote: true, method: :post do %>
       <button class='button post<%= post.id %>' id='like-comment'><i class="fa fa-heart"></i>&#8287Like</button><button class="accordion button" id='like-comment'>
     <% end %>
   <% end %>

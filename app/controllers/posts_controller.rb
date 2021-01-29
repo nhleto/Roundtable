@@ -28,7 +28,7 @@ class PostsController < ApplicationController
     @like = @post.likes.build(user_id: current_user.id)
     respond_to do |format|
       if @like.save
-        format.js {}
+        format.js { render :like }
         format.html { redirect_to request.referrer }
       else
         format.html { redirect_to request.referrer, alert: "Like Failed to save: #{@like.errors.messages}" }
@@ -93,9 +93,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     respond_to do |format|
       if @post.destroy
+        format.js { flash.now[:notice] = 'Post was successfully destroyed' }
         format.html { redirect_to request.referrer, notice: 'Post was successfully destroyed.' }
         format.json { head :no_content }
-        format.js {}
       end
     end
   end

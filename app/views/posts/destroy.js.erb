@@ -1,3 +1,20 @@
-var post = document.querySelector("#post-feed")
-console.log("<%= @post.id %>")
+var post = document.querySelector('.box-<%= @post.id %>')
+var flash = document.querySelector('.navbar')
+
 post.remove()
+
+flash.insertAdjacentHTML('afterend', "<%= j render 'shared/flash' %>")
+
+var flasher = document.querySelector('.odin-test')
+var del = document.querySelector('#flash')
+del.addEventListener('click', ()=>{
+  flasher.classList.add('hide-flash')
+})
+
+var allFlash = document.querySelectorAll('.odin-test')
+window.elements = allFlash
+allFlash.forEach(element => {
+  if (allFlash.length > 1){
+    allFlash[1].remove()
+  }
+});
