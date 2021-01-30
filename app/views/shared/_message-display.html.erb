@@ -44,12 +44,12 @@
   <%= render '/shared/people_card', post: post.likes %>
   <% end %>
   <% if post.likes.map(&:user).include?(current_user) %>
-    <%= link_to unlike_post_path(post), method: :delete do %>
-      <button class="button post<%= post.id %>" id='like-comment'><i class="fa fa-heart"></i>&#8287Unlike</button><button class="accordion button" id='like-comment'>
+    <%= link_to unlike_post_path(post), remote: true, method: :delete do %>
+      <button class="button post<%= post.id %>" id='like-comment'><i class="fa fa-heart" id="likes-<%= post.id %>"></i>&#8287Unlike</button><button class="accordion button" id='like-comment'>
     <% end %>
   <% else %>
     <%= link_to like_post_path(post), remote: true, method: :post do %>
-      <button class='button post<%= post.id %>' id='like-comment'><i class="fa fa-heart"></i>&#8287Like</button><button class="accordion button" id='like-comment'>
+      <button class='button post<%= post.id %>' id='like-comment'><i class="fa fa-heart" id="likes-<%= post.id %>"></i>&#8287Like</button><button class="accordion button" id='like-comment'>
     <% end %>
   <% end %>
   <i class="fa fa-comments mr-2"></i>Comment</button>

@@ -1,6 +1,7 @@
 var like = document.querySelector("#like-<%= @post.id %>")
 var button = document.querySelector('.button.post<%= @post.id %>')
-console.log(button)
+console.log(like)
+button.innerHTML = `<i class="fa fa-heart">&#8287Unlike`
 like.insertAdjacentHTML('afterend', template)
 
 var template = `<div class="post-border" style='display:flex;justify-content:space-between'>
