@@ -43,7 +43,7 @@
     </div>
   <%= render '/shared/people_card', post: post.likes %>
   <% end %>
-  <div class="multi-buttons">
+  <div class="multi-buttons" id='buttons-<%= post.id %>'>
     <% if post.likes.map(&:user).include?(current_user) %>
       <%= link_to unlike_post_path(post), remote: true, method: :delete do %>
         <button class="likes-<%= post.id %> button post<%= post.id %>" id='like-comment'><i class="fa fa-heart"></i>&#8287Unlike</button>
@@ -53,9 +53,9 @@
         <button class="likes-<%= post.id %> button post<%= post.id %>" id='like-comment'><i class="fa fa-heart"></i>&#8287Like</button>
       <% end %>
     <% end %>
-    <button class="comment-<%= @post.id %> accordion button" id='like-comment'><i class="fa fa-comments mr-2" id="commment-<%= post.id %>"></i>Comment</button>
+    <button class="comment-<%= post.id %> accordion2 button" id='like-comment'><i class="fa fa-comments mr-2" id="commment-<%= post.id %>"></i>Comment</button>
   </div>
-  <div class="panel3 panel" style='box-shadow:none;margin-top:10px;position:relative'>
+  <div class="panel3 panel2" style='box-shadow:none;margin-top:10px;position:relative'>
     <%= render '/shared/form', post: post, comment: @comment %>
     <%= render '/shared/comment', post: post %>
   </div>
