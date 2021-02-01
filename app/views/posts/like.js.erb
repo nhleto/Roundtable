@@ -1,14 +1,10 @@
 var like = document.querySelector("#like-<%= @post.id %>")
-var likeButton = document.querySelector('.likes-<%= @post.id %>')
-var commentButton = document.querySelector('.comment-<%= @post.id %>')
 var buttons = document.querySelector("#buttons-<%= @post.id %>")
 
 buttons.remove()
-// console.log(buttons)
-console.log(like)
 
 var template =  `<% if @post.likes.any? || @post.comments.any? %>
-<div class="post-border" style='display:flex;justify-content:space-between'>
+<div class="post-border" id="border-<%= @post.id %>" style='display:flex;justify-content:space-between'>
   <span class="full-likes accordion2">
     <% if @post.likes.map(&:user).include?(current_user) %>
       <%= "👍 " %>
@@ -45,12 +41,24 @@ var template =  `<% if @post.likes.any? || @post.comments.any? %>
 
 like.insertAdjacentHTML('afterend', template)
 
-let acc2 = document.getElementsByClassName("accordion2");
-let panel2 = document.getElementsByClassName('panel2');
+var newButtons = document.querySelector("#buttons-<%= @post.id %>")
+var postBorder = document.querySelectorAll('#border-<%= @post.id %>')
+var [head, ...tail] = postBorder
 
-for (let i = 0; i < acc2.length; i++) {
+if (newButtons.nextElementSibling === head){
+  head.nextElementSibling.remove()
+  head.remove()
+} else if (newButtons.nextElementSibling === tail[0]) {
+  tail[0].nextElementSibling.remove()
+  tail[0].remove()
+}
+
+var acc2 = document.getElementsByClassName("accordion2");
+var panel2 = document.getElementsByClassName('panel2');
+
+for (var i = 0; i < acc2.length; i++) {
   acc2[i].onclick = function () {
-    let setClasses = !this.classList.contains('active');
+    var setClasses = !this.classList.contains('active');
     setClass(acc2, 'active', 'remove');
     setClass(panel2, 'show', 'remove');
 
@@ -62,7 +70,7 @@ for (let i = 0; i < acc2.length; i++) {
 }
 
 function setClass(els, className, fnName) {
-  for (let i = 0; i < els.length; i++) {
+  for (var i = 0; i < els.length; i++) {
     els[i].classList[fnName](className);
   }
 }
