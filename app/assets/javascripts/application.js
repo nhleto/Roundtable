@@ -279,7 +279,6 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 document.addEventListener('turbolinks:load', ()=>{
-  console.log(document.querySelector("#mySidebar")) 
   document.querySelector('.openbtn').addEventListener('click', ()=>{
     document.getElementById("mySidebar").classList.add('reveal')
   })
@@ -343,7 +342,6 @@ document.addEventListener('ajax:success', ()=>{
       if (setClasses) {
         this.classList.toggle("active");
         this.parentNode.nextElementSibling.classList.toggle("show");
-        console.log(this.parentNode.nextElementSibling)
       }
     }
   }
@@ -380,7 +378,6 @@ document.addEventListener('ajax:success', ()=>{
 
 document.addEventListener('ajax:success', ()=>{
   let allFlash = document.querySelectorAll('.odin-test')
-  window.elements = allFlash
   allFlash.forEach(element => {
     if (allFlash.length > 1){
       allFlash[1].remove()

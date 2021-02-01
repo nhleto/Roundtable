@@ -41,7 +41,7 @@ class PostsController < ApplicationController
     @like = @post.likes.find_by(user_id: current_user.id)
     respond_to do |format|
       if @like.destroy
-        format.js { render :unlike }
+        format.js { render :like }
         format.html { redirect_to request.referrer }
       else
         format.html { redirect_to request.referrer, alert: "Like Failed to destroy: #{@like.errors.messages}" }
