@@ -44,9 +44,9 @@
     </div>
     <div class="column is-one-third-desktop is-one-quarter-fullhd">
       <button class="button is-info is-light accordion" style='width:100%'>Friends</button>
-      <%= render 'shared/people_card', post: @friends %>
+      <%= render 'shared/people_card', class:'mb-2', post: @friends %>
       <% if @user == current_user %>
-        <button class="button is-warning is-light accordion" style='width:100%'>Friend Requests</button>
+        <button class="button is-warning is-light accordion mt-2" style='width:100%'>Friend Requests</button>
         <%= render 'friend_request_card', post: @friendships %>
       <% end %>
     </div>

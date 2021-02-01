@@ -239,7 +239,8 @@ document.addEventListener("turbolinks:load", function (event) {
 
       if (setClasses) {
         this.classList.toggle("active");
-        this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("show");
+        this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("show");
+        console.log(this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling)
       }
     }
   }

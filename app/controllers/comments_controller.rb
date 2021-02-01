@@ -10,10 +10,15 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    unless @comment.save
-      flash[:alert] = @comment.errors.messages.to_s
+    @post = Post.find(params[:comment][:post_id])
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to request.referrer }
+        format.js {}
+      else
+        format.html { flash[:alert] = @comment.errors.messages.to_s }
+      end
     end
-    redirect_to request.referrer
   end
 
   def like
@@ -21,7 +26,7 @@ class CommentsController < ApplicationController
     @like = @comment.likes.build(user_id: current_user.id)
     respond_to do |format|
       if @like.save
-        format.js { }
+        format.js {}
         format.html { redirect_to request.referrer }
       else
         format.html { redirect_to request.referrer, alert: "Like Failed to save: #{@like.errors.messages}" }
