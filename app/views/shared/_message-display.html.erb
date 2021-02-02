@@ -22,7 +22,7 @@
   <% end %>
   <p class='post-border' id="like-<%= post.id %>"><%= post.body %></p>
   <%= render "shared/like-bar", post: post %>
-  <div class="panel3 panel2" style='box-shadow:none;margin-top:10px;position:relative'>
+  <div class="panel2 panel3" id='comment-input-<%= post.id %>' style='box-shadow:none;margin-top:10px;position:relative'>
     <%= render '/shared/form', post: post, comment: @comment %>
     <%= render '/shared/comment', post: post %>
   </div>

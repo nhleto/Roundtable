@@ -1,4 +1,4 @@
-<%= simple_form_for(comment) do |f| %>
+<%= simple_form_for(comment, remote: true) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -6,7 +6,7 @@
     <div class="control" style='width:100%'>
       <%= f.input :body,
       wrapper: false,
-      input_html: { class: 'input is-small', style: 'resize:none; width:100%;' },
+      input_html: { class: 'input is-small', style: 'resize:none; width:100%;', id: "comment-submitter" },
       placeholder: "Write a comment",
       label: false %>
     </div>
