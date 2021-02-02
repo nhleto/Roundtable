@@ -385,3 +385,8 @@ document.addEventListener('ajax:success', ()=>{
     }
   });
 })
+
+
+document.addEventListener('ajax:success', ()=>{
+
+})

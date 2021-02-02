@@ -53,6 +53,23 @@ if (newButtons.nextElementSibling === head){
   tail[0].remove()
 }
 
+var acc = document.getElementsByClassName("accordion3");
+var panel = document.getElementsByClassName('panel3');
+
+for (var i = 0; i < acc.length; i++) {
+  acc[i].onclick = function () {
+    var setClasses = !this.classList.contains('active');
+    setClass(acc, 'active', 'remove');
+    setClass(panel, 'show', 'remove');
+
+    if (setClasses) {
+      this.classList.toggle("active");
+      this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("show");
+      console.log(this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling)
+    }
+  }
+}
+
 var acc2 = document.getElementsByClassName("accordion2");
 var panel2 = document.getElementsByClassName('panel2');
 
@@ -74,3 +91,4 @@ function setClass(els, className, fnName) {
     els[i].classList[fnName](className);
   }
 }
+

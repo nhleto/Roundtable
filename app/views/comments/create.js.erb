@@ -79,7 +79,7 @@ var template2 =  `<% if @post.likes.any? || @post.comments.any? %>
 <% end %>
 <div class="multi-buttons" id='buttons-<%= @post.id %>'>
 <% if @post.likes.map(&:user).include?(current_user) %>
-  <%= link_to unlike_post_path(@post), remote: true, method: :devare do %>
+  <%= link_to unlike_post_path(@post), remote: true, method: :delete do %>
     <button class="likes-<%= @post.id %> button post<%= @post.id %>" id='like-comment'><i class="fa fa-heart"></i>&#8287Unlike</button>
   <% end %>
 <% else %>
@@ -94,27 +94,20 @@ var like = document.querySelector("#like-<%= @post.id %>")
 var buttons = document.querySelector("#buttons-<%= @post.id %>")
 var postBorder = document.querySelectorAll('#border-<%= @post.id %>')
 
-
-
-console.log(commentInput.childNodes)
-
 postBorder.forEach(element => {
   element.nextElementSibling.remove()
   element.remove()
 });
 
 if (commentInput.childNodes.length <= 3){
-  console.log(commentInput)
   commentInput.insertAdjacentHTML('beforeend', template)
   var comment = document.querySelector('#comment-<%= @comment.id %>')
 } else if (commentInput.childNodes.length >= 5){
-  console.log(commentInput)
   var tail = commentInput.childNodes[2].nextElementSibling
   tail.insertAdjacentHTML('beforebegin', template)
 }
 
 buttons.remove()
-console.log(like)
 like.insertAdjacentHTML('afterend', template2)
 
 var submitter = document.querySelectorAll('#comment-submitter')
@@ -152,6 +145,7 @@ for (var i = 0; i < acc.length; i++) {
     if (setClasses) {
       this.classList.toggle("active");
       this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("show");
+      console.log(this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling)
     }
   }
 }
