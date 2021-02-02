@@ -13,7 +13,7 @@ var template = `<% if !@post.comments.nil? %>
         <span>
           <% if @comment.likes.map(&:user).include?(current_user) %>
             <span class='like-underline'>
-              <%= link_to unlike_comment_path(@comment), method: :delete do %>
+              <%= link_to unlike_comment_path(@comment), method: :devare do %>
                 <i class="fa fa-heart"></i>
                 Unlike
               <% end %> 
@@ -35,7 +35,7 @@ var template = `<% if !@post.comments.nil? %>
         </span>
         <span>
           <% if @comment.user == current_user %>
-            <%= link_to @comment, method: :delete do %>
+            <%= link_to @comment, method: :devare do %>
               <i class='fa fa-trash-o' aria-hidden='true'></i>
             <% end %>
           <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>
@@ -55,11 +55,109 @@ var template = `<% if !@post.comments.nil? %>
   <% end %>
 <% end %>`
 
+var template2 =  `<% if @post.likes.any? || @post.comments.any? %>
+<div class="post-border" id="border-<%= @post.id %>" style='display:flex;justify-content:space-between'>
+  <span class="full-likes accordion2">
+    <% if @post.likes.map(&:user).include?(current_user) %>
+      <%= "👍 " %>
+      <span class='like-underline'>
+        <%= 'You ' + and_others(@post.likes) if @post.likes.any? %>
+      </span>
+    <% else %>
+      <%= '👍 ' if @post.likes.any? %>
+      <span class="like-underline">
+        <%= @post.likes.size if @post.likes.any? %>
+        <%=" #{people_or_person(@post.likes)} liked this post" if @post.likes.any? %>
+      </span>
+    <% end %>
+  </span>
+  <span class='full-comments like-underline accordion3'>
+    <%= @post.comments.size if @post.comments.any? %><%= " #{comment_or_comments(@post.comments)}" if @post.comments.any? %><%= ' 💬' if @post.comments.any? %>
+  </span>
+</div>
+<%= render '/shared/people_card', post: @post.likes %>
+<% end %>
+<div class="multi-buttons" id='buttons-<%= @post.id %>'>
+<% if @post.likes.map(&:user).include?(current_user) %>
+  <%= link_to unlike_post_path(@post), remote: true, method: :devare do %>
+    <button class="likes-<%= @post.id %> button post<%= @post.id %>" id='like-comment'><i class="fa fa-heart"></i>&#8287Unlike</button>
+  <% end %>
+<% else %>
+  <%= link_to like_post_path(@post), remote: true, method: :post do %>
+    <button class="likes-<%= @post.id %> button post<%= @post.id %>" id='like-comment'><i class="fa fa-heart"></i>&#8287Like</button>
+  <% end %>
+<% end %>
+<button class="comment-<%= @post.id %> accordion2 button" id='like-comment'><i class="fa fa-comments mr-2" id="commment-<%= @post.id %>"></i>Comment</button>
+</div>
+`
+var like = document.querySelector("#like-<%= @post.id %>")
+var buttons = document.querySelector("#buttons-<%= @post.id %>")
+var postBorder = document.querySelectorAll('#border-<%= @post.id %>')
+
+
+
+console.log(commentInput.childNodes)
+
+postBorder.forEach(element => {
+  element.nextElementSibling.remove()
+  element.remove()
+});
+
 if (commentInput.childNodes.length <= 3){
+  console.log(commentInput)
   commentInput.insertAdjacentHTML('beforeend', template)
   var comment = document.querySelector('#comment-<%= @comment.id %>')
-} else if (commentInput.childNodes.length >= 6){
+} else if (commentInput.childNodes.length >= 5){
+  console.log(commentInput)
   var tail = commentInput.childNodes[2].nextElementSibling
   tail.insertAdjacentHTML('beforebegin', template)
 }
 
+buttons.remove()
+console.log(like)
+like.insertAdjacentHTML('afterend', template2)
+
+var submitter = document.querySelectorAll('#comment-submitter')
+setTimeout(() => {
+  submitter.forEach(element => {
+    element.value = ''
+  });  
+}, 50);
+
+var acc2 = document.getElementsByClassName("accordion2");
+var panel2 = document.getElementsByClassName('panel2');
+
+for (var i = 0; i < acc2.length; i++) {
+  acc2[i].onclick = function () {
+    var setClasses = !this.classList.contains('active');
+    setClass(acc2, 'active', 'remove');
+    setClass(panel2, 'show', 'remove');
+
+    if (setClasses) {
+      this.classList.toggle("active");
+      this.parentNode.nextElementSibling.classList.toggle("show");
+    }
+  }
+}
+
+var acc = document.getElementsByClassName("accordion3");
+var panel = document.getElementsByClassName('panel3');
+
+for (var i = 0; i < acc.length; i++) {
+  acc[i].onclick = function () {
+    var setClasses = !this.classList.contains('active');
+    setClass(acc, 'active', 'remove');
+    setClass(panel, 'show', 'remove');
+
+    if (setClasses) {
+      this.classList.toggle("active");
+      this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("show");
+    }
+  }
+}
+
+function setClass(els, className, fnName) {
+  for (var i = 0; i < els.length; i++) {
+    els[i].classList[fnName](className);
+  }
+}
