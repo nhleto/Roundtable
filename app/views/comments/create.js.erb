@@ -1,7 +1,7 @@
 var commentInput = document.querySelector('#comment-input-<%= @post.id %>')
 var template = `<% if !@post.comments.nil? %>
   <% unless @comment.has_parent? %>
-  <div class="media" id='comment-<%= @comment.id %>'>
+  <div class="media mt-0" id='comment-<%= @comment.id %>'>
     <div class="media-content" style='overflow-wrap:anywhere;'>
       <p style='display:flex'>
         <%= image_tag user_avatar(@comment.user, 20), id: 'comment-gravatar' %>
@@ -64,10 +64,10 @@ postBorder.forEach(element => {
   element.remove()
 });
 
-if (commentInput.childNodes.length <= 3){
+if (commentInput.querySelectorAll('*').length <= 9){
   commentInput.insertAdjacentHTML('beforeend', template)
   var comment = document.querySelector('#comment-<%= @comment.id %>')
-} else if (commentInput.childNodes.length >= 5){
+} else if (commentInput.querySelectorAll('*').length >= 10){
   var tail = commentInput.childNodes[2].nextElementSibling
   tail.insertAdjacentHTML('beforebegin', template)
 }

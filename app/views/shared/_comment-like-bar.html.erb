@@ -24,7 +24,7 @@
   </span>
   <span>
     <% if comment.user == current_user %>
-      <%= link_to comment, method: :delete do %>
+      <%= link_to comment, method: :delete, remote: true do %>
         <i class='fa fa-trash-o' aria-hidden='true'></i>
       <% end %>
     <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>
