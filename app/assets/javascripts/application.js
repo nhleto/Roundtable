@@ -360,9 +360,11 @@ document.addEventListener('ajax:success', ()=>{
 document.addEventListener('turbolinks:load', ()=>{
   let submitter = document.querySelector('#submit-button')
   let input = document.querySelector('#input-style')
+  let file = document.querySelector('#post_images')
   submitter.addEventListener('click', ()=>{
     setTimeout(() => {
-    input.value = ''
+      file.value = ''
+      input.value = ''
     }, 50);
   })
 })
@@ -388,5 +390,51 @@ document.addEventListener('ajax:success', ()=>{
 
 
 document.addEventListener('ajax:success', ()=>{
+  let acc = document.getElementsByClassName("accordion5");
+  let panel = document.getElementsByClassName('panel5');
 
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].onclick = function () {
+      let setClasses = !this.classList.contains('active');
+      setClass(acc, 'active', 'remove');
+      setClass(panel, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.parentNode.parentNode.nextElementSibling.nextElementSibling.classList.toggle("show");
+      }
+    }
+  }
+
+  function setClass(els, className, fnName) {
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList[fnName](className);
+    }
+  }
 })
+document.addEventListener('ajax:success', ()=>{
+
+  var acc = document.getElementsByClassName("accordion3");
+  var panel = document.getElementsByClassName('panel3');
+
+  for (var i = 0; i < acc.length; i++) {
+    acc[i].onclick = function () {
+      var setClasses = !this.classList.contains('active');
+      setClass(acc, 'active', 'remove');
+      setClass(panel, 'show', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle("active");
+        this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("show");
+        console.log(this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling)
+      }
+    }
+  }
+
+  function setClass(els, className, fnName) {
+    for (var i = 0; i < els.length; i++) {
+      els[i].classList[fnName](className);
+    }
+  }
+})
+

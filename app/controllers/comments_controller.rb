@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
     @like = @comment.likes.find_by(user_id: current_user.id)
     respond_to do |format|
       if @like.destroy
-        format.js {}
+        format.js { render :like }
         format.html { redirect_to request.referrer }
       else
         format.html { redirect_to request.referrer, alert: "Like Failed to destroy: #{@like.errors.messages}" }
