@@ -1,50 +1,15 @@
 var commentInput = document.querySelector('#comment-input-<%= @post.id %>')
-
 var template = `<% if !@post.comments.nil? %>
   <% unless @comment.has_parent? %>
-  <div class="media" id='comment-<%= @comment.id %>'>
+  <div class="media mt-0" id='comment-<%= @comment.id %>'>
     <div class="media-content" style='overflow-wrap:anywhere;'>
       <p style='display:flex'>
         <%= image_tag user_avatar(@comment.user, 20), id: 'comment-gravatar' %>
         <small>Posted by <u><%= link_to @comment.user.name, user_path(@comment.user) %></u> <%= distance_of_time_in_words(@comment.created_at, Time.now) %> ago</small>
       </p>
       <p><%= @comment.body %></p>
-      <div style='display:flex;justify-content:space-between;'>
-        <span>
-          <% if @comment.likes.map(&:user).include?(current_user) %>
-            <span class='like-underline'>
-              <%= link_to unlike_comment_path(@comment), method: :devare do %>
-                <i class="fa fa-heart"></i>
-                Unlike
-              <% end %> 
-            </span>
-          <% else %>
-            <span class="like-underline">
-              <%= link_to like_comment_path(@comment), method: :post do %>
-                <i class="fa fa-heart"></i>
-                Like
-              <% end %>
-            </span>
-          <% end %>
-          <span class='accordion6'>
-            <%= "|" unless @comment.likes.count == 0 %>
-            <span class='like-underline'>
-              <%= @comment.likes.count unless @comment.likes.count == 0 %>
-            </span>
-          </span>
-        </span>
-        <span>
-          <% if @comment.user == current_user %>
-            <%= link_to @comment, method: :devare do %>
-              <i class='fa fa-trash-o' aria-hidden='true'></i>
-            <% end %>
-          <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>
-          <% end %>
-          <i class="fa fa-reply accordion5 mb-3" aria-hidden='true' style='cursor:pointer;position:relative;bottom:-2px;'></i>
-        </span>
-      </div>
-      <%= render '/shared/people_card', post: @comment.likes %>
-      <div class="panel5">
+      <%= render 'shared/comment-like-bar', comment: @comment %>
+      <div class="panel5 panel9">
         <%= render '/shared/nested_comment', class: 'nested-comment', comment: @comment %>
       </div>
       <div class="comment-child" style='margin-left:30px'>
@@ -99,10 +64,10 @@ postBorder.forEach(element => {
   element.remove()
 });
 
-if (commentInput.childNodes.length <= 3){
+if (commentInput.querySelectorAll('*').length <= 9){
   commentInput.insertAdjacentHTML('beforeend', template)
   var comment = document.querySelector('#comment-<%= @comment.id %>')
-} else if (commentInput.childNodes.length >= 5){
+} else if (commentInput.querySelectorAll('*').length >= 10){
   var tail = commentInput.childNodes[2].nextElementSibling
   tail.insertAdjacentHTML('beforebegin', template)
 }
@@ -111,10 +76,14 @@ buttons.remove()
 like.insertAdjacentHTML('afterend', template2)
 
 var submitter = document.querySelectorAll('#comment-submitter')
+var nested = document.querySelectorAll('#nested-submitter')
 setTimeout(() => {
   submitter.forEach(element => {
     element.value = ''
-  });  
+  });
+  nested.forEach(element => {
+    element.value = ''
+  });
 }, 50);
 
 var acc2 = document.getElementsByClassName("accordion2");
@@ -133,25 +102,38 @@ for (var i = 0; i < acc2.length; i++) {
   }
 }
 
-var acc = document.getElementsByClassName("accordion3");
-var panel = document.getElementsByClassName('panel3');
 
-for (var i = 0; i < acc.length; i++) {
-  acc[i].onclick = function () {
-    var setClasses = !this.classList.contains('active');
-    setClass(acc, 'active', 'remove');
-    setClass(panel, 'show', 'remove');
+"<% if @comment.has_parent? %>"
+  var parentComment = document.querySelector("#comment-<%= @comment.parent.id %>")
+  var template3 = `
+    <% unless !@comment.ancestry? %>
+    <div class="<%= 'comment-child' unless @comment.parent.ancestors.length >= 1 %>" style='margin-top:10px;'>
+      <div class="media" id='child-comment-<%= @comment.id %>' style='border-top:1px solid rgba(219, 219, 219, 0.5);padding-top:1rem'>
+      <div class="media-content" style='overflow-wrap:anywhere;'>
+        <p style='display:flex'>
+          <%= image_tag user_avatar(@comment.user, 20), id: 'comment-gravatar' %>
+          <small>Posted by <u><%= link_to @comment.user.name, user_path(@comment.user) %></u> <%= distance_of_time_in_words(@comment.created_at, Time.now) %> ago</small>
+        </p>
+        <p><%= @comment.body %></p>
+        <%= render "shared/children-comment-like-bar", comment: @comment %>
+        <div class="panel6 panel5 panel7">
+          <%= render '/shared/nested_comment', comment: @comment %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    </div>`
 
-    if (setClasses) {
-      this.classList.toggle("active");
-      this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("show");
-      console.log(this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling)
+  "<% if @comment.ancestors.length > 1 %>"
+    var nestedParent = document.querySelector('#child-comment-<%= @comment.parent.id %>')
+    nestedParent.insertAdjacentHTML('afterend', template3)
+  "<% else %>"
+    var commentChild = document.querySelector("#comment-<%= @comment.parent.id %> .comment-child")
+    console.log(commentChild)
+    if (commentChild){
+      commentChild.insertAdjacentHTML('beforebegin', template3)
+    } else {
+      parentComment.insertAdjacentHTML('afterend', template3)
     }
-  }
-}
-
-function setClass(els, className, fnName) {
-  for (var i = 0; i < els.length; i++) {
-    els[i].classList[fnName](className);
-  }
-}
+  "<% end %>"
+"<% end %>"

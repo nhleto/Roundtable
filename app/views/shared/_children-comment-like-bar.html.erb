@@ -1,0 +1,37 @@
+<div id="comment-<%= comment.id %>-bar" style='display:flex;justify-content:space-between'>
+  <small>Reply to <%= comment.parent.body.split[0] if comment.parent %> ...</small>
+  <span style='display:flex'>
+    <span>
+      <% if comment.likes.map(&:user).include?(current_user) %>
+        <span class='like-underline'>
+          <%= link_to unlike_comment_path(comment), remote: true, method: :delete do %>
+            <i class="fa fa-heart"></i>
+            Unlike
+          <% end %> 
+        </span>
+      <% else %>
+        <span class="like-underline">
+          <%= link_to like_comment_path(comment), remote: true, method: :post do %>
+            <i class="fa fa-heart"></i>
+            Like
+          <% end %>
+        </span>
+      <% end %>
+      <span class='accordion7'>
+        <%= "|" unless comment.likes.count == 0 %>
+        <span class='like-underline'>
+          <%= comment.likes.count unless comment.likes.count == 0 %>
+        </span>
+      </span>
+    </span>
+    <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>
+    <% if comment.user == current_user %>
+      <%= link_to comment, method: :delete do %>
+        <i class='fa fa-trash-o' aria-hidden='true'></i>
+      <% end %>
+    <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>
+    <% end %>
+    <i class="fa fa-reply accordion5 mb-3" aria-hidden='true' style='cursor:pointer;position:relative;bottom:-5px;'></i>
+  </span>
+</div>
+<%= render '/shared/people_card', post: comment.likes %>

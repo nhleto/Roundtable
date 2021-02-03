@@ -1,51 +1,15 @@
 <% if comment.has_children? %>
-  <% comment.subtree_ids.sort.each do |c| %>
+  <% comment.subtree_ids.sort.reverse.each do |c| %>
     <% comment = has_descendants(c) %>
     <% next if !comment.ancestry? %>
-    <div class="media">
+    <div class="media mt-0" id='child-comment-<%= comment.id %>'>
     <div class="media-content" style='overflow-wrap:anywhere;'>
       <p style='display:flex'>
         <%= image_tag user_avatar(comment.user, 20), id: 'comment-gravatar' %>
         <small>Posted by <u><%= link_to comment.user.name, user_path(comment.user) %></u> <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago</small>
       </p>
       <p><%= comment.body %></p>
-      <div style='display:flex;justify-content:space-between'>
-        <small>Reply to <%= comment.parent.body.split[0] if comment.parent %> ...</small>
-        <span style='display:flex'>
-          <span>
-            <% if comment.likes.map(&:user).include?(current_user) %>
-              <span class='like-underline'>
-                <%= link_to unlike_comment_path(comment), method: :delete do %>
-                  <i class="fa fa-heart"></i>
-                  Unlike
-                <% end %> 
-              </span>
-            <% else %>
-              <span class="like-underline">
-                <%= link_to like_comment_path(comment), method: :post do %>
-                  <i class="fa fa-heart"></i>
-                  Like
-                <% end %>
-              </span>
-            <% end %>
-            <span class='accordion7'>
-              <%= "|" unless comment.likes.count == 0 %>
-              <span class='like-underline'>
-                <%= comment.likes.count unless comment.likes.count == 0 %>
-              </span>
-            </span>
-          </span>
-          <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>
-          <% if comment.user == current_user %>
-            <%= link_to comment, method: :delete do %>
-              <i class='fa fa-trash-o' aria-hidden='true'></i>
-            <% end %>
-          <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>
-          <% end %>
-          <i class="fa fa-reply accordion5 mb-3" aria-hidden='true' style='cursor:pointer;position:relative;bottom:-5px;'></i>
-        </span>
-      </div>
-      <%= render '/shared/people_card', post: comment.likes %>
+      <%= render "shared/children-comment-like-bar", comment: comment %>
       <div class="panel6 panel5">
         <%= render '/shared/nested_comment', comment: comment %>
       </div>

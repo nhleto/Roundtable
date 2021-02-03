@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
     @like = @comment.likes.find_by(user_id: current_user.id)
     respond_to do |format|
       if @like.destroy
-        format.js {}
+        format.js { render :like }
         format.html { redirect_to request.referrer }
       else
         format.html { redirect_to request.referrer, alert: "Like Failed to destroy: #{@like.errors.messages}" }
@@ -49,11 +49,14 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    @post = Post.find_by(id: @comment.post_id)
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
-      # format.js {}
+      if @comment.destroy
+        format.js {}
+        format.html { redirect_to request.referrer }
+      else
+        format.html { redirect_to request.referrer, alert: "Like Failed to destroy: #{@like.errors.messages}" }
+      end
     end
   end
 
