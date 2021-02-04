@@ -7,7 +7,7 @@
           <%= link_to unlike_comment_path(comment), remote: true, method: :delete do %>
             <i class="fa fa-heart"></i>
             Unlike
-          <% end %> 
+          <% end %>
         </span>
       <% else %>
         <span class="like-underline">
@@ -26,7 +26,7 @@
     </span>
     <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>
     <% if comment.user == current_user %>
-      <%= link_to comment, method: :delete do %>
+      <%= link_to comment, remote:true, method: :delete do %>
         <i class='fa fa-trash-o' aria-hidden='true'></i>
       <% end %>
     <span style='position:relative;bottom:2px'>&#8287:&#8287:&#8287</span>

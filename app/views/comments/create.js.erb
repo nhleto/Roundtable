@@ -108,7 +108,7 @@ for (var i = 0; i < acc2.length; i++) {
   var template3 = `
     <% unless !@comment.ancestry? %>
     <div class="<%= 'comment-child' unless @comment.parent.ancestors.length >= 1 %>" style='margin-top:10px;'>
-      <div class="media" id='child-comment-<%= @comment.id %>' style='border-top:1px solid rgba(219, 219, 219, 0.5);padding-top:1rem'>
+      <div class="media mt-0" id='child-comment-<%= @comment.id %>' style='border-top:1px solid rgba(219, 219, 219, 0.5);padding-top:1rem'>
       <div class="media-content" style='overflow-wrap:anywhere;'>
         <p style='display:flex'>
           <%= image_tag user_avatar(@comment.user, 20), id: 'comment-gravatar' %>

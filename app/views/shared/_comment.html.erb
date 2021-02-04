@@ -1,7 +1,7 @@
 <% if !post.comments.nil? %>
   <% post.comments.each do |comment| %>
   <% next if comment.has_parent? %>
-    <div class="media" id="comment-<%= comment.id %>">
+    <div class="media mt-1" id="comment-<%= comment.id %>">
       <div class="media-content" style='overflow-wrap:anywhere;'>
         <p style='display:flex'>
           <%= image_tag user_avatar(comment.user, 20), id: 'comment-gravatar' %>
