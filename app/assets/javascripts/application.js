@@ -280,12 +280,16 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 document.addEventListener('turbolinks:load', ()=>{
-  document.querySelector('.openbtn').addEventListener('click', ()=>{
-    document.getElementById("mySidebar").classList.add('reveal')
-  })
-  document.querySelector('.closebtn').addEventListener('click', ()=>{
-    document.getElementById("mySidebar").classList.remove('reveal')
-  })
+  if (document.querySelector('.openbtn')){
+    document.querySelector('.openbtn').addEventListener('click', ()=>{
+      document.getElementById("mySidebar").classList.add('reveal')
+    })
+  }
+  if (document.querySelector('.closebtn')) {
+    document.querySelector('.closebtn').addEventListener('click', ()=>{
+      document.getElementById("mySidebar").classList.remove('reveal')
+    })    
+  }
 })
 
 document.addEventListener('turbolinks:load', ()=>{
@@ -361,12 +365,14 @@ document.addEventListener('turbolinks:load', ()=>{
   let submitter = document.querySelector('#submit-button')
   let input = document.querySelector('#input-style')
   let file = document.querySelector('#post_images')
-  submitter.addEventListener('click', ()=>{
-    setTimeout(() => {
-      file.value = ''
-      input.value = ''
-    }, 50);
-  })
+  if(submitter){
+    submitter.addEventListener('click', ()=>{
+      setTimeout(() => {
+        file.value = ''
+        input.value = ''
+      }, 50);
+    })
+  }
 })
 
 document.addEventListener('ajax:success', ()=>{

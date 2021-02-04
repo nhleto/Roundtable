@@ -1,0 +1,10 @@
+var friend = document.querySelector('#friendship-<%= User.find(Friendship.last.friend_id).id %>')
+var friendPanel = document.querySelector('#friends-card')
+var button = document.querySelector('#button-<%= User.find(Friendship.last.friend_id).id %>')
+console.log(button, friend)
+if (friendPanel){
+  friendPanel.insertAdjacentElement("afterbegin", friend)
+} else {
+  button.insertAdjacentHTML('afterend', "<button class='button is-danger is-small is-inverted', disabled='true'>Pending</button>")
+}
+button.remove()

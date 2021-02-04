@@ -5,7 +5,7 @@
       <button class="delete accordion accordion2 accordion6 accordion7"></button>
     </p>
   </div>
-  <div class="card-content" style='border-bottom:1pxdashedlightgray;max-height:250px'>
+  <div class="card-content" id='<%= 'friends-card' if @friends && post == @friends %>' style='border-bottom:1pxdashedlightgray;max-height:250px'>
     <% if post %>
       <% post.each do |like| %>
         <ul class='like-display post-border' style='<%= 'border-bottom:none' if likes_border?(post) %>'>
@@ -24,8 +24,8 @@
                 <% end %>
               </span>
             <% elsif like.user != current_user && !like.user.friendships.include?(current_user) %>
-              <span>
-                <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: like.user.id }),
+              <span id="button-<%= User.find(like.user.id).id %>">
+                <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: like.user.id }), remote: true,
                     method: :post, class: 'button is-primary is-small is-light is-outlined' %>
               </span>
             <% end %>
