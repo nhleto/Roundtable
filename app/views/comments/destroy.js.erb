@@ -1,6 +1,5 @@
 var parentComment = document.querySelector('#comment-<%= @comment.id %>')
 var border = document.querySelector('#border-<%= @post.id %>')
-var commentInput = document.querySelector('#comment-input-<%= @post.id %>')
 var buttons = document.querySelector("#buttons-<%= @post.id %>")
 var template = `<% if @post.likes.any? || @post.comments.any? %>
 <div class="post-border" id="border-<%= @post.id %>" style='display:flex;justify-content:space-between'>
@@ -25,17 +24,37 @@ var template = `<% if @post.likes.any? || @post.comments.any? %>
 <%= render '/shared/people_card', post: @post.likes %>
 <% end %>
 `
+
+"<% if @comment.has_parent? &&  @children.length >= 1 %>"
+  var childComment = document.querySelector('#child-comment-<%= @comment.id %>')
+  var loop = "<%= @children %>".replace(/^\[(.+)\]$/,'$1').split(',')
+  var commentIds = []
+  for (var i = 0; i < loop.length; i++){
+    commentIds.push(parseInt(loop[i]))
+  }
+  var elementArray = []
+  commentIds.forEach(function (elem, i) {
+    elementArray[i] = document.querySelector(`#child-comment-${elem}`)
+  });
+  elementArray.forEach(element => {
+    element.remove()
+  });
+  childComment.remove()
+"<% elsif @comment.has_parent? %>"
+  console.log("comment has parent")
+  var childComment = document.querySelector('#child-comment-<%= @comment.id %>')
+  childComment.remove()
+"<% else %>"
+  parentComment.querySelectorAll('*').forEach(element => {
+    element.remove()
+  });
+  parentComment.remove()
+"<% end %>"
+
 border.insertAdjacentHTML('afterend', template)
 
-console.log(border)
 border.nextElementSibling.nextElementSibling.remove()
 border.remove()
-
-parentComment.querySelectorAll('*').forEach(element => {
-  element.remove()
-});
-
-parentComment.remove()
 
 var multiButtons = document.querySelector("#buttons-<%= @post.id %>")
 var like = document.querySelector("#like-<%= @post.id %>")
@@ -55,9 +74,7 @@ var template2 = `<div class="multi-buttons" id='buttons-<%= @post.id %>'>
 
 if (!multiButtons){
   like.insertAdjacentHTML('afterend', template2)
-  console.log(like.nextElementSibling.nextElementSibling)
   like.nextElementSibling.nextElementSibling.remove()
-  // multiButtons.nextElementSibling.remove()
 }
 
 var acc2 = document.getElementsByClassName("accordion2");
@@ -75,7 +92,6 @@ for (var i = 0; i < acc2.length; i++) {
     }
   }
 }
-
 
 var acc = document.getElementsByClassName("accordion3");
 var panel = document.getElementsByClassName('panel3');

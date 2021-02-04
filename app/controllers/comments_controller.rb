@@ -49,6 +49,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    @children = @comment.descendant_ids
     @post = Post.find_by(id: @comment.post_id)
     respond_to do |format|
       if @comment.destroy
