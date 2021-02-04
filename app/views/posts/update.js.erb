@@ -1,0 +1,9 @@
+var postBody = document.querySelector('#like-<%= @post.id %>')
+
+var template = `<% @post.images.each do |image| %>
+<%= image_tag(image, size: '250x250') %>
+<% end %>
+<p class='post-border' id="like-<%= @post.id %>"><%= @post.body %></p>`
+
+postBody.insertAdjacentHTML('afterend', template)
+postBody.remove()

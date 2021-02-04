@@ -16,6 +16,10 @@
 
 @import 'bulma';
 
+.comment-child{
+  margin-left: 30px;
+}
+
 .panel:not(:last-child) {
   margin-bottom: 0;
 }

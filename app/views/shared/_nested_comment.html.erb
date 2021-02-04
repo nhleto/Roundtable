@@ -1,5 +1,4 @@
-<%= simple_form_for(@comment) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(Comment.new, remote: true) do |f| %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <%= f.hidden_field :parent_id, value: comment.id %>
   <%= f.hidden_field :post_id, value: comment.post.id %>
@@ -8,15 +7,14 @@
     <div class="control" style='width:100%'>
       <%= f.input :body,
       wrapper: false,
-      input_html: { class: 'input is-small', style: 'resize:none; width:100%;' },
+      input_html: { class: 'input is-small', style: 'resize:none; width:100%;', id: 'nested-submitter' },
       label: false,
       placeholder: "Reply to a Comment" %>
     </div>
 
-
     <div class="control">
       <%= f.button :submit, 'Comment',
-      class: 'button is-primary is-small' %>
+      class: 'button is-primary is-small submitter' %>
     </div>
   </div>
 
