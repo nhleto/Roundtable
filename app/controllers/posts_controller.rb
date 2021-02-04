@@ -58,7 +58,9 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit; end
+  def edit
+    @post = Post.find(params[:id])
+  end
 
   # POST /posts
   # POST /posts.json
@@ -83,8 +85,17 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)
-    @post.save
-    redirect_to request.referrer
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to request.referrer, notice: 'Post was successfully updated.' }
+        format.js { render :update }
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { redirect_to request.referrer, alert: @post.errors.first[1].to_s }
+        format.js {}
+        format.json { render json: @post.errors.first[1], status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /posts/1
