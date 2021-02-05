@@ -8,8 +8,8 @@
       <h6 class="title is-6"><%= user.name %></h6>
     <% end %>
   </div>
-  <span>
-    <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: user.id }),
+  <span id='user-<%= user.id %>-card'>
+    <%= button_to 'Add Friend', friendships_path(friendships: { user_id: current_user.id, friend_id: user.id }), remote: true,
         method: :post, class: 'button is-primary is-small is-light is-outlined' %>
   </span>
   <span class='center mt-1 mb-2'>
