@@ -5,10 +5,17 @@ class MembershipsController < ApplicationController
     if @membership.user == @group.owner
       @membership.update_attribute(:admin, true)
     end
-    if !@membership.save
-      flash[:alert] = @membership.errors
+    respond_to do |format|
+      if @membership.save
+        format.js { flash.now[:notice] = "Joined #{@group.name}!" }
+        format.html { redirect_to request.referrer }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { redirect_to request.referrer }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.js {}
+      end
     end
-    redirect_to request.referrer
   end
 
   def destroy

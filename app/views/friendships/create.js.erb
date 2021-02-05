@@ -4,6 +4,8 @@ var button = document.querySelectorAll('#button-<%= User.find(Friendship.last.fr
 var userFriendsTab = document.querySelector('#user-friends-tab')
 var badge = document.querySelector('.badge')
 var userCard = document.querySelector('#user-<%= Friendship.last.friend_id %>-card')
+var flash = document.querySelector('.navbar')
+
 if(userCard){
   userCard.insertAdjacentHTML('afterend', "<button class='button is-danger is-small is-inverted', disabled='true'>Pending</button>")
   userCard.remove()
@@ -24,3 +26,21 @@ button.forEach(element => {
   element.remove()
 });
  
+flash.insertAdjacentHTML('afterend', "<%= j render 'shared/flash' %>")
+
+setTimeout(() => {
+  (document.querySelectorAll('.odin-test .notification') || []).forEach(($delete) => {
+    var $notification = $delete.parentNode;
+
+    $delete.addEventListener('click', () => {
+      $notification.classList.add('hide-flash');
+    });
+  });
+}, 50);
+
+var allFlash = document.querySelectorAll('.odin-test')
+allFlash.forEach(element => {
+  if (allFlash.length > 1){
+    allFlash[1].remove()
+  }
+});

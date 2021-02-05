@@ -11,8 +11,8 @@
     <%= image_tag "https://static.xx.fbcdn.net/rsrc.php/v3/yB/r/rtgCzSCUnWc.png", size: '20' %>&#8287
     <%= group.users.size %><%= pluralize(group.users, 'member') %> in this group
   </div>
-  <div class="content">
-    <%= button_to  "Join Group", group_memberships_path(group, current_user), 
+  <div class="content" id="button-<%= group.id %>">
+    <%= button_to  "Join Group", group_memberships_path([group, current_user]), remote: true,
         class: 'button is-primary is-light is-outlined join-group', style:'width:85%;display:flex;margin:auto' %>
   </div>
 </div>

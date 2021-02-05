@@ -1,0 +1,25 @@
+var button = document.querySelector('#button-<%= @group.id %>')
+var flash = document.querySelector('.navbar')
+var groupIdCards = document.querySelectorAll('#group-id-cards')
+
+groupIdCards[0].remove()
+
+flash.insertAdjacentHTML('afterend', "<%= j render 'shared/flash' %>")
+
+setTimeout(() => {
+  (document.querySelectorAll('.odin-test .notification') || []).forEach(($delete) => {
+    let $notification = $delete.parentNode;
+  
+    $delete.addEventListener('click', () => {
+      $notification.classList.add('hide-flash');
+    });
+  });
+}, 50);
+
+
+var allFlash = document.querySelectorAll('.odin-test')
+allFlash.forEach(element => {
+  if (allFlash.length > 1){
+    allFlash[1].remove()
+  }
+});
