@@ -5,7 +5,7 @@
       <button class="delete accordion accordion2 accordion6 accordion7"></button>
     </p>
   </div>
-  <div class="card-content" id='<%= 'friends-card' if @friends && post == @friends %>' style='border-bottom:1pxdashedlightgray;max-height:250px'>
+  <div class="card-content" id='<%= card_content_id(post) %>' style='border-bottom:1pxdashedlightgray;max-height:250px'>
     <% if post %>
       <% post.each do |like| %>
         <ul class='like-display post-border' style='<%= 'border-bottom:none' if likes_border?(post) %>'>

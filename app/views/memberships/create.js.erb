@@ -1,8 +1,44 @@
 var button = document.querySelector('#button-<%= @group.id %>')
 var flash = document.querySelector('.navbar')
 var groupIdCards = document.querySelectorAll('#group-id-cards')
+var groupJoinButton = document.querySelector('#group-join-button')
+var groupCard = document.querySelector('#groups-card')
+var template = `<%= button_to  'Leave Group', group_membership_path(@group, current_user), remote: true,
+                    method: :delete, class: 'button is-danger is-light' %>`
 
-groupIdCards[0].remove()
+var template2 = `<ul class='like-display post-border' style='<%= 'border-bottom:none' if post_header(size) %>'>
+<div style='display:inline-flex'>
+  <%= image_tag user_avatar(@user, 50), id: 'like-gravatar' %>
+  <span>
+    <%= link_to @user.name, user_path(@user), class: 'like-underline' %>   
+  </span>
+</div>
+<span style='display:flex'>
+  <% if !@group.nil? && current_user == @group.owner && !like.user.memberships.find_by(group_id: @group.id).admin %>
+    <%= button_to 'Make Admin', make_admin_group_membership_path(@group.id, like.user.id), method: :patch,
+        class: 'button is-small' %>
+  <% end %>
+</span>
+</ul>`
+
+function border(groupCard) {
+  if (groupCard.querySelectorAll("*").length > 0){
+    'border-bottom:none'
+  }
+}
+
+if (groupJoinButton) {
+  groupJoinButton.insertAdjacentHTML('afterend', template)
+  groupJoinButton.remove()
+}
+
+if (groupCard) {
+  groupCard.insertAdjacentHTML('afterbegin', template2)
+}
+
+if (groupIdCards){
+  groupIdCards[0].remove()
+}
 
 flash.insertAdjacentHTML('afterend', "<%= j render 'shared/flash' %>")
 

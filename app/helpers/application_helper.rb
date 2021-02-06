@@ -101,4 +101,16 @@ module ApplicationHelper
   def break_group_name(name)
     name.chars[0..10].join + '...'
   end
+
+  def card_content_id(post)
+    if post == @friends
+      'friends-card'
+    else
+      'groups-card'
+    end
+  end
+
+  def post_header(size)
+    
+  end
 end

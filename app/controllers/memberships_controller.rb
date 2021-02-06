@@ -2,6 +2,7 @@ class MembershipsController < ApplicationController
   def create
     @group = Group.find(params[:group_id])
     @membership = @group.memberships.new(user_id: current_user.id)
+    @user = User.find_by(id: @membership.user_id)
     if @membership.user == @group.owner
       @membership.update_attribute(:admin, true)
     end
@@ -20,8 +21,18 @@ class MembershipsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:group_id])
-    @membership = @group.memberships.find_by(group_id: @group.id).delete
-    redirect_to request.referrer
+    @membership = @group.memberships.find_by(group_id: @group.id)
+    respond_to do |format|
+      if @membership.destroy
+        format.js { flash.now[:alert] = "Left #{@group.name}!" }
+        format.html { redirect_to request.referrer }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { redirect_to request.referrer }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.js {}
+      end
+    end
   end
 
   def make_admin

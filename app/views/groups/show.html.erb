@@ -13,7 +13,7 @@
             <h3 class="title is-3 mb-0"><%= @group.name %></h3>
             <% if !current_user.groups.include?(@group) %>
               <%= button_to  "Join Group", group_memberships_path([@group, current_user]), remote: true, 
-                      class: 'button is-primary is-light' %>
+                      class: 'button is-primary is-light', id: "group-join-button" %>
             <% elsif current_user == @group.owner %>
               <div style='position:relative'>
                 <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
@@ -26,7 +26,7 @@
               <div style='position:relative'>
                 <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
                 <div class='panel' style='position:absolute;right:20px;'>
-                  <%= button_to  "Leave Group", group_membership_path(@group, current_user), 
+                  <%= button_to  "Leave Group", group_membership_path([@group, current_user]), remote: true,
                           method: :delete, class: 'button is-danger is-light' %>
                 </div>
               </div>
