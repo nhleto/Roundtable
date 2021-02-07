@@ -6,7 +6,7 @@ var groupCard = document.querySelector('#groups-card')
 var template = `<%= button_to  'Leave Group', group_membership_path(@group, current_user), remote: true,
                     method: :delete, class: 'button is-danger is-light' %>`
 
-var template2 = `<ul class='like-display post-border' style='<%= 'border-bottom:none' if post_header(size) %>'>
+var template2 = `<ul class='like-display post-border' id='inserted-card-<%= @user.id %>'>
 <div style='display:inline-flex'>
   <%= image_tag user_avatar(@user, 50), id: 'like-gravatar' %>
   <span>
@@ -15,17 +15,35 @@ var template2 = `<ul class='like-display post-border' style='<%= 'border-bottom:
 </div>
 <span style='display:flex'>
   <% if !@group.nil? && current_user == @group.owner && !like.user.memberships.find_by(group_id: @group.id).admin %>
-    <%= button_to 'Make Admin', make_admin_group_membership_path(@group.id, like.user.id), method: :patch,
+    <%= button_to 'Make Admin', make_admin_group_membership_path(@group.id, @user.id), method: :patch,
         class: 'button is-small' %>
   <% end %>
 </span>
 </ul>`
 
-function border(groupCard) {
-  if (groupCard.querySelectorAll("*").length > 0){
-    'border-bottom:none'
-  }
-}
+var template3 = ` <div class='group-name-button'>
+<h3 class="title is-3 mb-0"><%= @group.name %></h3>
+<% if !current_user.groups.include?(@group) %>
+  <%= button_to  "Join Group", group_memberships_path([@group, current_user]), remote: true, 
+          class: 'button is-primary is-light', id: "group-join-button" %>
+<% elsif current_user == @group.owner %>
+  <div style='position:relative'>
+    <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
+    <div class='panel' style='position:absolute;right:20px;'>
+      <%= button_to  "Delete Group", group_path(@group), 
+              method: :delete, class: 'button is-danger is-light' %>
+    </div>
+  </div>
+<% else %>
+  <div style='position:relative'>
+    <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
+    <div class='panel' style='position:absolute;right:20px;'>
+      <%= button_to  "Leave Group", group_membership_path([@group, current_user]), remote: true,
+              method: :delete, class: 'button is-danger is-light' %>
+    </div>
+  </div>
+<% end %>
+</div>`
 
 if (groupJoinButton) {
   groupJoinButton.insertAdjacentHTML('afterend', template)
@@ -34,9 +52,14 @@ if (groupJoinButton) {
 
 if (groupCard) {
   groupCard.insertAdjacentHTML('afterbegin', template2)
+  var insertedCard = document.querySelector('#inserted-card-<%= @user.id %>')
+  console.log(insertedCard)
+  if (groupCard.querySelectorAll('*').length <= 6){
+    insertedCard.style.borderBottom = 'none'
+  }
 }
 
-if (groupIdCards){
+if (groupIdCards.length >= 1){
   groupIdCards[0].remove()
 }
 

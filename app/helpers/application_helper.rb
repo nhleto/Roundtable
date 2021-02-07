@@ -109,8 +109,4 @@ module ApplicationHelper
       'groups-card'
     end
   end
-
-  def post_header(size)
-    
-  end
 end
