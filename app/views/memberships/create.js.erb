@@ -1,8 +1,10 @@
 var button = document.querySelector('#button-<%= @group.id %>')
 var flash = document.querySelector('.navbar')
 var groupIdCards = document.querySelectorAll('#group-id-cards')
-var groupJoinButton = document.querySelector('#group-join-button')
 var groupCard = document.querySelector('#groups-card')
+var groupNameButton = document.querySelector('.group-name-button')
+var membersCount = document.querySelector('#group-members-count')
+var submitButton = document.querySelector('#submit-button')
 var template = `<%= button_to  'Leave Group', group_membership_path(@group, current_user), remote: true,
                     method: :delete, class: 'button is-danger is-light' %>`
 
@@ -14,7 +16,7 @@ var template2 = `<ul class='like-display post-border' id='inserted-card-<%= @use
   </span>
 </div>
 <span style='display:flex'>
-  <% if !@group.nil? && current_user == @group.owner && !like.user.memberships.find_by(group_id: @group.id).admin %>
+  <% if !@group.nil? && current_user == @group.owner && !@user.memberships.find_by(group_id: @group.id).admin %>
     <%= button_to 'Make Admin', make_admin_group_membership_path(@group.id, @user.id), method: :patch,
         class: 'button is-small' %>
   <% end %>
@@ -38,29 +40,32 @@ var template3 = ` <div class='group-name-button'>
   <div style='position:relative'>
     <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
     <div class='panel' style='position:absolute;right:20px;'>
-      <%= button_to  "Leave Group", group_membership_path([@group, current_user]), remote: true,
+      <%= button_to  "Leave Group", group_membership_path(@group, current_user), remote: true,
               method: :delete, class: 'button is-danger is-light' %>
     </div>
   </div>
 <% end %>
 </div>`
 
-if (groupJoinButton) {
-  groupJoinButton.insertAdjacentHTML('afterend', template)
-  groupJoinButton.remove()
-}
+if (groupNameButton) {
+  groupNameButton.insertAdjacentHTML('afterend', template3)
+  groupNameButton.remove()
 
-if (groupCard) {
   groupCard.insertAdjacentHTML('afterbegin', template2)
   var insertedCard = document.querySelector('#inserted-card-<%= @user.id %>')
   console.log(insertedCard)
   if (groupCard.querySelectorAll('*').length <= 6){
     insertedCard.style.borderBottom = 'none'
   }
-}
 
-if (groupIdCards.length >= 1){
-  groupIdCards[0].remove()
+  if (groupIdCards.length >= 1){
+    groupIdCards[0].remove()
+  }
+
+  membersCount.innerHTML = '<%= @group.users.size %> <%= member_or_members(@group) %>'
+
+  submitButton.value = 'Post'
+  submitButton.disabled = false
 }
 
 flash.insertAdjacentHTML('afterend', "<%= j render 'shared/flash' %>")
@@ -82,3 +87,26 @@ allFlash.forEach(element => {
     allFlash[1].remove()
   }
 });
+
+
+let acc7 = document.getElementsByClassName("accordion");
+let panel7 = document.getElementsByClassName('panel');
+
+for (let i = 0; i < acc7.length; i++) {
+  acc7[i].onclick = function () {
+    let setClasses = !this.classList.contains('active');
+    setClass(acc7, 'active', 'remove');
+    setClass(panel7, 'show', 'remove');
+
+    if (setClasses) {
+      this.classList.toggle("active");
+      this.nextElementSibling.classList.toggle("show");
+    }
+  }
+}
+
+function setClass(els, className, fnName) {
+  for (let i = 0; i < els.length; i++) {
+    els[i].classList[fnName](className);
+  }
+}
