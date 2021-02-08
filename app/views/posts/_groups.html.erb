@@ -8,7 +8,7 @@
   <% if @groups.any? %>
     <% @groups.each do |group| %>
       <p class='has-text-centered' id='group-name-content'>
-        <%= link_to group.name, group_path(group), id: 'group-name-link' %>
+        <%= link_to group.name, group_path(group), data: { turbolinks: "false" }, id: 'group-name-link' %>
       </p>
     <% end %>
   <% end %>

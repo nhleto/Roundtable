@@ -4,7 +4,7 @@
     <%= image_tag user_avatar(user, 50), style:'border-radius:50%;align-self:self-start' %>  
   </div>
   <div class="like-underline mt-2 mb-4">
-    <%= link_to user_path(user) do %>
+    <%= link_to user_path(user), data: { turbolinks: "false" } do %>
       <h6 class="title is-6"><%= user.name %></h6>
     <% end %>
   </div>
