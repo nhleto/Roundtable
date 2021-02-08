@@ -8,7 +8,7 @@
   <div class="card-content" id='<%= card_content_id(post) %>' style='border-bottom:1pxdashedlightgray;max-height:250px'>
     <% if post %>
       <% post.each do |like| %>
-        <ul class='like-display post-border' style='<%= 'border-bottom:none' if likes_border?(post) %>'>
+        <ul class='like-display post-border' style='<%= 'border-bottom:none' if likes_border?(post) %>' id='user-<%= like.user.id if like.user %>'>
           <div style='display:inline-flex'>
             <%= image_tag user_avatar(like.user, 50), id: 'like-gravatar' %>
             <span>

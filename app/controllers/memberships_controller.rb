@@ -22,6 +22,7 @@ class MembershipsController < ApplicationController
   def destroy
     @group = Group.find(params[:group_id])
     @membership = @group.memberships.find_by(group_id: @group.id)
+    @user = User.find_by(id: @membership.user_id)
     respond_to do |format|
       if @membership.destroy
         format.js { flash.now[:alert] = "Left #{@group.name}!" }

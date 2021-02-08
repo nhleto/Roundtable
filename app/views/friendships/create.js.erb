@@ -21,7 +21,10 @@ if (friendPanel){
     element.insertAdjacentHTML('afterend', "<button class='button is-danger is-small is-inverted', disabled='true'>Pending</button>")
   });
 }
-badge.innerHTML = '<%= received_not_active_friends(current_user).size - 1  %>'
+window.elements = badge
+if (badge !== null){
+  badge.innerHTML = '<%= received_not_active_friends(current_user).size - 1  %>'
+}
 button.forEach(element => {
   element.remove()
 });

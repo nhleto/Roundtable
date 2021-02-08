@@ -1,0 +1,58 @@
+var flash = document.querySelector('.navbar')
+var groupNameButton = document.querySelector('.group-name-button')
+var membersCount = document.querySelector('#group-members-count')
+var insertedCard = document.querySelector('#user-<%= @user.id %>')
+var template3 = ` <div class='group-name-button'>
+<h3 class="title is-3 mb-0"><%= @group.name %></h3>
+<% if !current_user.groups.include?(@group) %>
+  <%= button_to  "Join Group", group_memberships_path([@group, current_user]), remote: true, 
+          class: 'button is-primary is-light', id: "group-join-button" %>
+<% elsif current_user == @group.owner %>
+  <div style='position:relative'>
+    <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
+    <div class='panel' style='position:absolute;right:20px;'>
+      <%= button_to  "Delete Group", group_path(@group), 
+              method: :delete, class: 'button is-danger is-light' %>
+    </div>
+  </div>
+<% else %>
+  <div style='position:relative'>
+    <i class="accordion fa fa-ellipsis-h" style='font-size:20px;cursor:pointer;float:right'></i>
+    <div class='panel' style='position:absolute;right:20px;'>
+      <%= button_to  "Leave Group", group_membership_path(@group, current_user), remote: true,
+              method: :delete, class: 'button is-danger is-light' %>
+    </div>
+  </div>
+<% end %>
+</div>`
+
+if (groupNameButton) {
+  groupNameButton.insertAdjacentHTML('afterend', template3)
+  groupNameButton.remove()
+
+  membersCount.innerHTML = '<%= @group.users.size %> <%= member_or_members(@group) %>'
+  insertedCard.remove()
+
+  submitButton.value = 'You must join <%= @group.name %> to post here'
+  submitButton.disabled = true
+}
+
+flash.insertAdjacentHTML('afterend', "<%= j render 'shared/flash' %>")
+
+setTimeout(() => {
+  (document.querySelectorAll('.odin-test .notification') || []).forEach(($delete) => {
+    var $notification = $delete.parentNode;
+  
+    $delete.addEventListener('click', () => {
+      $notification.classList.add('hide-flash');
+    });
+  });
+}, 50);
+
+
+var allFlash = document.querySelectorAll('.odin-test')
+allFlash.forEach(element => {
+  if (allFlash.length > 1){
+    allFlash[1].remove()
+  }
+});

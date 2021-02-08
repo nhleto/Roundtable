@@ -33,7 +33,7 @@
             <% end %>
           </div>
           <div class='space-between'>
-            <p id='group-members-count'><%= @group.users.count %> <%= member_or_members(@group) %></p>
+            <p><%= @group.users.count %> <%= member_or_members(@group) %></p>
             <% if @group.users%>
               <p class='accordion2 like-underline'>View Members</p>
             <% end %>

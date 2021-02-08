@@ -5,10 +5,7 @@ var groupCard = document.querySelector('#groups-card')
 var groupNameButton = document.querySelector('.group-name-button')
 var membersCount = document.querySelector('#group-members-count')
 var submitButton = document.querySelector('#submit-button')
-var template = `<%= button_to  'Leave Group', group_membership_path(@group, current_user), remote: true,
-                    method: :delete, class: 'button is-danger is-light' %>`
-
-var template2 = `<ul class='like-display post-border' id='inserted-card-<%= @user.id %>'>
+var template2 = `<ul class='like-display post-border' id='user-<%= @user.id %>'>
 <div style='display:inline-flex'>
   <%= image_tag user_avatar(@user, 50), id: 'like-gravatar' %>
   <span>
@@ -52,27 +49,26 @@ if (groupNameButton) {
   groupNameButton.remove()
 
   groupCard.insertAdjacentHTML('afterbegin', template2)
-  var insertedCard = document.querySelector('#inserted-card-<%= @user.id %>')
+  var insertedCard = document.querySelector('#user-<%= @user.id %>')
   console.log(insertedCard)
   if (groupCard.querySelectorAll('*').length <= 6){
     insertedCard.style.borderBottom = 'none'
   }
-
-  if (groupIdCards.length >= 1){
-    groupIdCards[0].remove()
-  }
-
   membersCount.innerHTML = '<%= @group.users.size %> <%= member_or_members(@group) %>'
 
   submitButton.value = 'Post'
   submitButton.disabled = false
 }
 
+if (groupIdCards.length >= 1){
+  groupIdCards[0].remove()
+}
+
 flash.insertAdjacentHTML('afterend', "<%= j render 'shared/flash' %>")
 
 setTimeout(() => {
   (document.querySelectorAll('.odin-test .notification') || []).forEach(($delete) => {
-    let $notification = $delete.parentNode;
+    var $notification = $delete.parentNode;
   
     $delete.addEventListener('click', () => {
       $notification.classList.add('hide-flash');
@@ -89,12 +85,12 @@ allFlash.forEach(element => {
 });
 
 
-let acc7 = document.getElementsByClassName("accordion");
-let panel7 = document.getElementsByClassName('panel');
+var acc7 = document.getElementsByClassName("accordion");
+var panel7 = document.getElementsByClassName('panel');
 
-for (let i = 0; i < acc7.length; i++) {
+for (var i = 0; i < acc7.length; i++) {
   acc7[i].onclick = function () {
-    let setClasses = !this.classList.contains('active');
+    var setClasses = !this.classList.contains('active');
     setClass(acc7, 'active', 'remove');
     setClass(panel7, 'show', 'remove');
 
@@ -106,7 +102,7 @@ for (let i = 0; i < acc7.length; i++) {
 }
 
 function setClass(els, className, fnName) {
-  for (let i = 0; i < els.length; i++) {
+  for (var i = 0; i < els.length; i++) {
     els[i].classList[fnName](className);
   }
 }
