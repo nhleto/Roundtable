@@ -52,7 +52,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :ok, location: @user }
         sign_in(:user, current_user, bypass: true)
       else
-        flash[:alert] = @user.errors.first[1].to_s
+        format.js { flash.now[:alert] = @user.errors.first[1].to_s } 
         format.html { render :edit, alert: @user.errors.first[1] }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
