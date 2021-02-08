@@ -444,3 +444,10 @@ document.addEventListener('ajax:success', ()=>{
   }
 })
 
+(document.querySelectorAll('.odin-test .notification') || []).forEach(($delete) => {
+  let $notification = $delete.parentNode;
+
+  $delete.addEventListener('click', () => {
+    $notification.classList.add('hide-flash');
+  });
+});

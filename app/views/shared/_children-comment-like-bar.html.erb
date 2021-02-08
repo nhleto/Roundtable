@@ -1,5 +1,5 @@
 <div id="comment-<%= comment.id %>-bar" style='display:flex;justify-content:space-between'>
-  <small>Reply to <%= comment.parent.body.split[0] if comment.parent %> ...</small>
+  <small id='reply-split'>Reply to <%= comment.parent.body.split[0] if comment.parent %> ...</small>
   <span style='display:flex'>
     <span>
       <% if comment.likes.map(&:user).include?(current_user) %>
