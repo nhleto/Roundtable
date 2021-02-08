@@ -299,13 +299,13 @@ document.addEventListener('turbolinks:load', ()=>{
   }
 })
 
-document.addEventListener('turbolinks:load', ()=>{
-  let mover = document.querySelector('#group-description')
-  if (screen.width < 1081){
-    mover.style.marginLeft = '10px'
-    document.querySelector('#move-beneath').insertAdjacentElement('beforebegin', mover)
-  }
-})
+// document.addEventListener('turbolinks:load', ()=>{
+//   let mover = document.querySelector('#group-description')
+//   if (screen.width < 1081){
+//     mover.style.marginLeft = '10px'
+//     document.querySelector('#move-beneath').insertAdjacentElement('beforebegin', mover)
+//   }
+// })
 
 document.addEventListener('turbolinks:load', ()=>{
   let guestButton = document.querySelector('#guest-button')
