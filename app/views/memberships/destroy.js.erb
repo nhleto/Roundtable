@@ -2,6 +2,7 @@ var flash = document.querySelector('.navbar')
 var groupNameButton = document.querySelector('.group-name-button')
 var membersCount = document.querySelector('#group-members-count')
 var insertedCard = document.querySelector('#user-<%= @user.id %>')
+var submitButton = document.querySelector('#submit-button')
 var template3 = ` <div class='group-name-button'>
 <h3 class="title is-3 mb-0"><%= @group.name %></h3>
 <% if !current_user.groups.include?(@group) %>

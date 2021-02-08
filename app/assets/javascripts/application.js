@@ -299,14 +299,6 @@ document.addEventListener('turbolinks:load', ()=>{
   }
 })
 
-// document.addEventListener('turbolinks:load', ()=>{
-//   let mover = document.querySelector('#group-description')
-//   if (screen.width < 1081){
-//     mover.style.marginLeft = '10px'
-//     document.querySelector('#move-beneath').insertAdjacentElement('beforebegin', mover)
-//   }
-// })
-
 document.addEventListener('turbolinks:load', ()=>{
   let guestButton = document.querySelector('#guest-button')
   let inputForms = document.querySelectorAll('#user_email, #user_password')
@@ -443,11 +435,3 @@ document.addEventListener('ajax:success', ()=>{
     }
   }
 })
-
-(document.querySelectorAll('.odin-test .notification') || []).forEach(($delete) => {
-  let $notification = $delete.parentNode;
-
-  $delete.addEventListener('click', () => {
-    $notification.classList.add('hide-flash');
-  });
-});
