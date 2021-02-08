@@ -22,7 +22,11 @@ if (friendPanel){
   });
 }
 if (badge !== null){
-  badge.innerHTML = '<%= received_not_active_friends(current_user).size %>'
+  if (parseInt(badge.innerHTML) === 1){
+    badge.remove()
+  } else {
+    badge.innerHTML = '<%= received_not_active_friends(current_user).size %>'
+  }
 }
 button.forEach(element => {
   element.remove()
