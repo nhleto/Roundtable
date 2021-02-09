@@ -21,7 +21,7 @@ class MembershipsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:group_id])
-    @membership = @group.memberships.find_by(group_id: @group.id)
+    @membership = @group.memberships.find_by(user_id: current_user.id)
     @user = User.find_by(id: @membership.user_id)
     respond_to do |format|
       if @membership.destroy
