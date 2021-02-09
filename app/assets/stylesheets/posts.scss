@@ -258,10 +258,9 @@ button#like-comment:focus{
 .column.is-half img:not(:last-child){
   box-shadow: 3px 1em 1em -0.125em rgba(10, 10, 10, 0.2), 0 0px 0 1px rgba(10, 10, 10, 0.02);
 }
-@media only screen and (min-width: 1080px){
-  .media-content img{
-    box-shadow: 3px 1em 1em -0.125em rgba(10, 10, 10, 0.2), 0 0px 0 1px rgba(10, 10, 10, 0.2);
-  }
+
+.media-content img{
+  box-shadow: none;
 }
 
 .suggestion-card .media-content, .content{
